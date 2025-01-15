@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 04, 2025 alle 20:19
+-- Creato il: Gen 15, 2025 alle 16:35
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -102,7 +102,8 @@ INSERT INTO `colore` (`id`, `nome`) VALUES
 (6, 'NERO'),
 (7, 'CELESTE'),
 (8, 'VIOLA'),
-(10, 'ROSSO');
+(10, 'ROSSO'),
+(11, 'NERO');
 
 -- --------------------------------------------------------
 
@@ -115,6 +116,17 @@ CREATE TABLE `colore_has_modello` (
   `id_colore` int(11) NOT NULL,
   `id_modello` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `colore_has_modello`
+--
+
+INSERT INTO `colore_has_modello` (`id`, `id_colore`, `id_modello`) VALUES
+(7, 4, 15),
+(8, 4, 15),
+(9, 4, 15),
+(10, 4, 15),
+(11, 4, 15);
 
 -- --------------------------------------------------------
 
@@ -152,6 +164,8 @@ CREATE TABLE `dettagli_ordine` (
 
 CREATE TABLE `fornitori` (
   `id` int(11) NOT NULL,
+  `azienda` varchar(45) NOT NULL,
+  `partita_iva` varchar(45) NOT NULL,
   `nome` varchar(45) NOT NULL,
   `cognome` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -163,11 +177,12 @@ CREATE TABLE `fornitori` (
 --
 
 CREATE TABLE `fornitori_has_prodotti` (
+  `id` int(11) NOT NULL,
   `id_prodotti` int(11) NOT NULL,
   `id_fornitore` int(11) NOT NULL,
   `data` date NOT NULL,
   `importo` int(11) NOT NULL,
-  `descrizione` varchar(45) DEFAULT NULL
+  `descrizione` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -228,7 +243,12 @@ CREATE TABLE `modello` (
 
 INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) VALUES
 (13, 2, 1, 'Nike Air Force 1', 'Scarpe da ginnastica'),
-(14, 2, 2, 'Nike Air Force 1', 'PIPPO');
+(14, 2, 2, 'Nike Air Force 1', 'PIPPO'),
+(15, 2, 3, 'AIr Jordan 3 Black Cat', 'Scarpe'),
+(16, 2, 3, 'AIr Jordan 3 Black Cat', 'Scarpe'),
+(17, 2, 3, 'AIr Jordan 3 Black Cat', 'Scarpe'),
+(18, 2, 3, 'AIr Jordan 3 Black Cat', 'Scarpe'),
+(19, 2, 3, 'AIr Jordan 3 Black Cat', 'Scarpe');
 
 -- --------------------------------------------------------
 
@@ -353,7 +373,8 @@ CREATE TABLE `utenti` (
 --
 
 INSERT INTO `utenti` (`id`, `nome`, `cognome`, `data_nascita`, `luogo_nascita`, `sesso`, `email`, `telefono`, `password`, `ruolo`) VALUES
-(14, 'Nicola', 'Lacerenza', '1998-04-07', 'Barletta', 'maschio', 'admin@gmail.com', '3282018804', '5a6663d75fb68c8a15ac040b2bd478ece92fdd39f9099df5e7db1f8695366d82ac70d50b73ac74019a6e8e769f65a820b1181d38fe60588b995beb246ab1702f', 'admin');
+(14, 'Nicola', 'Lacerenza', '1998-04-07', 'Barletta', 'maschio', 'admin@gmail.com', '3282018804', '5a6663d75fb68c8a15ac040b2bd478ece92fdd39f9099df5e7db1f8695366d82ac70d50b73ac74019a6e8e769f65a820b1181d38fe60588b995beb246ab1702f', 'admin'),
+(22, 'NIcola', 'Lacerenza', '1998-04-07', 'Barletta', 'maschio', 'nicolace98@gmail.com', '3282018804', '5a6663d75fb68c8a15ac040b2bd478ece92fdd39f9099df5e7db1f8695366d82ac70d50b73ac74019a6e8e769f65a820b1181d38fe60588b995beb246ab1702f', 'cliente');
 
 --
 -- Indici per le tabelle scaricate
@@ -415,8 +436,9 @@ ALTER TABLE `fornitori`
 -- Indici per le tabelle `fornitori_has_prodotti`
 --
 ALTER TABLE `fornitori_has_prodotti`
-  ADD PRIMARY KEY (`id_prodotti`,`id_fornitore`),
-  ADD KEY `fk_FORNITORI_has_PRODOTTI_FORNITORI1` (`id_fornitore`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_FORNITORI_has_PRODOTTI_FORNITORI1` (`id_fornitore`),
+  ADD KEY `fk_FORNITORI_has_PRODOTTI_PRODOTTI` (`id_prodotti`);
 
 --
 -- Indici per le tabelle `immagini`
@@ -516,13 +538,13 @@ ALTER TABLE `codice_sconto`
 -- AUTO_INCREMENT per la tabella `colore`
 --
 ALTER TABLE `colore`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT per la tabella `colore_has_modello`
 --
 ALTER TABLE `colore_has_modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT per la tabella `customers`
@@ -543,22 +565,28 @@ ALTER TABLE `fornitori`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT per la tabella `fornitori_has_prodotti`
+--
+ALTER TABLE `fornitori_has_prodotti`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT per la tabella `immagini_has_prodotti`
 --
 ALTER TABLE `immagini_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT per la tabella `modello`
 --
 ALTER TABLE `modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -570,7 +598,7 @@ ALTER TABLE `ordine`
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT per la tabella `taglia`
@@ -582,13 +610,13 @@ ALTER TABLE `taglia`
 -- AUTO_INCREMENT per la tabella `taglie_has_prodotti`
 --
 ALTER TABLE `taglie_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
 --
 ALTER TABLE `utenti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Limiti per le tabelle scaricate
@@ -619,6 +647,7 @@ ALTER TABLE `dettagli_ordine`
 --
 ALTER TABLE `fornitori_has_prodotti`
   ADD CONSTRAINT `fk_FORNITORI_has_PRODOTTI_FORNITORI1` FOREIGN KEY (`id_fornitore`) REFERENCES `fornitori` (`id`),
+  ADD CONSTRAINT `fk_FORNITORI_has_PRODOTTI_PRODOTTI` FOREIGN KEY (`id_prodotti`) REFERENCES `prodotti` (`id`),
   ADD CONSTRAINT `fk_FORNITORI_has_PRODOTTI_PRODOTTI1` FOREIGN KEY (`id_prodotti`) REFERENCES `prodotti` (`id`);
 
 --
