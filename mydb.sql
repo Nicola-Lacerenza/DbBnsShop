@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 15, 2025 alle 16:35
+-- Creato il: Feb 15, 2025 alle 20:38
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -38,8 +38,8 @@ CREATE TABLE `brand` (
 --
 
 INSERT INTO `brand` (`id`, `nome`, `descrizione`) VALUES
-(1, 'NIKE', 'NIKE'),
-(2, 'NEW BALANCE', NULL),
+(1, 'NIKE', 'Brand di Scarpe da ginnastica'),
+(2, 'NEW BALANCE', 'Scarpe'),
 (3, 'JORDAN', NULL),
 (4, 'ADIDAS', NULL),
 (5, 'PUMA', NULL);
@@ -52,17 +52,18 @@ INSERT INTO `brand` (`id`, `nome`, `descrizione`) VALUES
 
 CREATE TABLE `categoria` (
   `id` int(11) NOT NULL,
-  `nome_categoria` varchar(45) NOT NULL
+  `nome_categoria` varchar(45) NOT NULL,
+  `target` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dump dei dati per la tabella `categoria`
 --
 
-INSERT INTO `categoria` (`id`, `nome_categoria`) VALUES
-(1, 'STIVALI'),
-(2, 'SNEAKERS'),
-(3, 'MOCASSINI');
+INSERT INTO `categoria` (`id`, `nome_categoria`, `target`) VALUES
+(1, 'STIVALI', 'UOMO'),
+(2, 'SNEAKERS', 'UOMO'),
+(3, 'MOCASSINI', 'UOMO');
 
 -- --------------------------------------------------------
 
@@ -122,11 +123,7 @@ CREATE TABLE `colore_has_modello` (
 --
 
 INSERT INTO `colore_has_modello` (`id`, `id_colore`, `id_modello`) VALUES
-(7, 4, 15),
-(8, 4, 15),
-(9, 4, 15),
-(10, 4, 15),
-(11, 4, 15);
+(18, 4, 25);
 
 -- --------------------------------------------------------
 
@@ -242,13 +239,7 @@ CREATE TABLE `modello` (
 --
 
 INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) VALUES
-(13, 2, 1, 'Nike Air Force 1', 'Scarpe da ginnastica'),
-(14, 2, 2, 'Nike Air Force 1', 'PIPPO'),
-(15, 2, 3, 'AIr Jordan 3 Black Cat', 'Scarpe'),
-(16, 2, 3, 'AIr Jordan 3 Black Cat', 'Scarpe'),
-(17, 2, 3, 'AIr Jordan 3 Black Cat', 'Scarpe'),
-(18, 2, 3, 'AIr Jordan 3 Black Cat', 'Scarpe'),
-(19, 2, 3, 'AIr Jordan 3 Black Cat', 'Scarpe');
+(25, 2, 1, 'Nike Air Force 1', 'Scarpe');
 
 -- --------------------------------------------------------
 
@@ -526,7 +517,7 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT per la tabella `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT per la tabella `codice_sconto`
@@ -544,7 +535,7 @@ ALTER TABLE `colore`
 -- AUTO_INCREMENT per la tabella `colore_has_modello`
 --
 ALTER TABLE `colore_has_modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT per la tabella `customers`
@@ -574,19 +565,19 @@ ALTER TABLE `fornitori_has_prodotti`
 -- AUTO_INCREMENT per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT per la tabella `immagini_has_prodotti`
 --
 ALTER TABLE `immagini_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT per la tabella `modello`
 --
 ALTER TABLE `modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -598,7 +589,7 @@ ALTER TABLE `ordine`
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT per la tabella `taglia`
@@ -610,7 +601,7 @@ ALTER TABLE `taglia`
 -- AUTO_INCREMENT per la tabella `taglie_has_prodotti`
 --
 ALTER TABLE `taglie_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
