@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Creato il: Feb 15, 2025 alle 20:38
--- Versione del server: 10.4.32-MariaDB
--- Versione PHP: 8.2.12
+-- Host: localhost:3306
+-- Creato il: Feb 17, 2025 alle 19:43
+-- Versione del server: 5.7.24
+-- Versione PHP: 8.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `brand` (
   `id` int(11) NOT NULL,
   `nome` varchar(45) NOT NULL,
   `descrizione` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `brand`
@@ -54,7 +54,7 @@ CREATE TABLE `categoria` (
   `id` int(11) NOT NULL,
   `nome_categoria` varchar(45) NOT NULL,
   `target` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `categoria`
@@ -73,11 +73,29 @@ INSERT INTO `categoria` (`id`, `nome_categoria`, `target`) VALUES
 
 CREATE TABLE `codice_sconto` (
   `id` int(11) NOT NULL,
-  `id_prodotti` int(11) NOT NULL,
-  `id_ordine` int(11) NOT NULL,
   `codice` varchar(45) NOT NULL,
-  `sconto` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `valore` decimal(11,0) NOT NULL,
+  `descrizione` varchar(255) NOT NULL,
+  `tipo` enum('percentuale','fisso') NOT NULL,
+  `data_inizio` date DEFAULT NULL,
+  `data_fine` date DEFAULT NULL,
+  `uso_massimo` int(11) NOT NULL,
+  `uso_per_utente` int(11) NOT NULL,
+  `minimo_acquisto` decimal(10,0) NOT NULL,
+  `attivo` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `codice_sconto_has_categoria`
+--
+
+CREATE TABLE `codice_sconto_has_categoria` (
+  `id` int(11) NOT NULL,
+  `id_categoria` int(11) NOT NULL,
+  `id_codicesconto` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -88,7 +106,7 @@ CREATE TABLE `codice_sconto` (
 CREATE TABLE `colore` (
   `id` int(11) NOT NULL,
   `nome` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `colore`
@@ -116,14 +134,15 @@ CREATE TABLE `colore_has_modello` (
   `id` int(11) NOT NULL,
   `id_colore` int(11) NOT NULL,
   `id_modello` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `colore_has_modello`
 --
 
 INSERT INTO `colore_has_modello` (`id`, `id_colore`, `id_modello`) VALUES
-(18, 4, 25);
+(28, 4, 34),
+(29, 4, 34);
 
 -- --------------------------------------------------------
 
@@ -137,7 +156,7 @@ CREATE TABLE `customers` (
   `cognome` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `telefono` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -151,7 +170,7 @@ CREATE TABLE `dettagli_ordine` (
   `quantita` int(11) NOT NULL,
   `codice_sconto` int(11) NOT NULL,
   `spedizione` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -165,7 +184,7 @@ CREATE TABLE `fornitori` (
   `partita_iva` varchar(45) NOT NULL,
   `nome` varchar(45) NOT NULL,
   `cognome` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -180,7 +199,7 @@ CREATE TABLE `fornitori_has_prodotti` (
   `data` date NOT NULL,
   `importo` int(11) NOT NULL,
   `descrizione` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -191,7 +210,7 @@ CREATE TABLE `fornitori_has_prodotti` (
 CREATE TABLE `immagini` (
   `id` int(11) NOT NULL,
   `url` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -203,7 +222,7 @@ CREATE TABLE `immagini_has_prodotti` (
   `id` int(11) NOT NULL,
   `id_immagine` int(11) NOT NULL,
   `id_prodotto` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -218,7 +237,7 @@ CREATE TABLE `indirizzo` (
   `cap` int(11) NOT NULL,
   `indirizzo` varchar(45) NOT NULL,
   `id_customers` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -232,14 +251,15 @@ CREATE TABLE `modello` (
   `id_brand` int(11) NOT NULL,
   `nome` varchar(45) NOT NULL,
   `descrizione` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `modello`
 --
 
 INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) VALUES
-(25, 2, 1, 'Nike Air Force 1', 'Scarpe');
+(34, 2, 1, 'Nike Air Force 1', 'Scarpe da ginnastica'),
+(35, 2, 1, 'Nike Air Force 1', 'Scarpe da ginnastica');
 
 -- --------------------------------------------------------
 
@@ -254,7 +274,7 @@ CREATE TABLE `ordine` (
   `id_indirizzo` int(11) NOT NULL,
   `stato_ordine` varchar(45) NOT NULL,
   `data_ordine` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -269,7 +289,7 @@ CREATE TABLE `pagamento` (
   `data_scadenza` date NOT NULL,
   `codice_verfica` varchar(45) NOT NULL,
   `id_customers` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -282,7 +302,7 @@ CREATE TABLE `prodotti` (
   `id_modello` int(11) NOT NULL,
   `prezzo` int(11) NOT NULL,
   `stato_pubblicazione` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -295,7 +315,7 @@ CREATE TABLE `taglia` (
   `taglia_Eu` varchar(45) NOT NULL,
   `taglia_Uk` varchar(45) NOT NULL,
   `taglia_Us` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `taglia`
@@ -338,7 +358,7 @@ CREATE TABLE `taglie_has_prodotti` (
   `id_taglia` int(11) NOT NULL,
   `id_prodotto` int(11) NOT NULL,
   `quantita` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -357,7 +377,7 @@ CREATE TABLE `utenti` (
   `telefono` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `ruolo` varchar(255) NOT NULL DEFAULT 'Cliente'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `utenti`
@@ -387,8 +407,15 @@ ALTER TABLE `categoria`
 -- Indici per le tabelle `codice_sconto`
 --
 ALTER TABLE `codice_sconto`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indici per le tabelle `codice_sconto_has_categoria`
+--
+ALTER TABLE `codice_sconto_has_categoria`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_CODICE SCONTO_DETTAGLI ORDINE1` (`id_prodotti`,`id_ordine`);
+  ADD KEY `fk_CODICESCONTO_has_CATEGORIA_CODICESCONTO` (`id_codicesconto`),
+  ADD KEY `fk_CODICESCONTO_has_CATEGORIA_CATEGORIA` (`id_categoria`);
 
 --
 -- Indici per le tabelle `colore`
@@ -511,18 +538,24 @@ ALTER TABLE `utenti`
 -- AUTO_INCREMENT per la tabella `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT per la tabella `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `codice_sconto`
 --
 ALTER TABLE `codice_sconto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `codice_sconto_has_categoria`
+--
+ALTER TABLE `codice_sconto_has_categoria`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -535,7 +568,7 @@ ALTER TABLE `colore`
 -- AUTO_INCREMENT per la tabella `colore_has_modello`
 --
 ALTER TABLE `colore_has_modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT per la tabella `customers`
@@ -553,7 +586,7 @@ ALTER TABLE `dettagli_ordine`
 -- AUTO_INCREMENT per la tabella `fornitori`
 --
 ALTER TABLE `fornitori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `fornitori_has_prodotti`
@@ -565,19 +598,19 @@ ALTER TABLE `fornitori_has_prodotti`
 -- AUTO_INCREMENT per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT per la tabella `immagini_has_prodotti`
 --
 ALTER TABLE `immagini_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT per la tabella `modello`
 --
 ALTER TABLE `modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -589,7 +622,7 @@ ALTER TABLE `ordine`
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT per la tabella `taglia`
@@ -601,7 +634,7 @@ ALTER TABLE `taglia`
 -- AUTO_INCREMENT per la tabella `taglie_has_prodotti`
 --
 ALTER TABLE `taglie_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
@@ -614,10 +647,11 @@ ALTER TABLE `utenti`
 --
 
 --
--- Limiti per la tabella `codice_sconto`
+-- Limiti per la tabella `codice_sconto_has_categoria`
 --
-ALTER TABLE `codice_sconto`
-  ADD CONSTRAINT `fk_CODICE SCONTO_DETTAGLI ORDINE1` FOREIGN KEY (`id_prodotti`,`id_ordine`) REFERENCES `dettagli_ordine` (`id_prodotti`, `id_ordine`);
+ALTER TABLE `codice_sconto_has_categoria`
+  ADD CONSTRAINT `fk_CODICESCONTO_has_CATEGORIA_CATEGORIA` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`),
+  ADD CONSTRAINT `fk_CODICESCONTO_has_CATEGORIA_CODICESCONTO` FOREIGN KEY (`id_codicesconto`) REFERENCES `codice_sconto` (`id`);
 
 --
 -- Limiti per la tabella `colore_has_modello`
