@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Feb 17, 2025 alle 19:43
+-- Creato il: Feb 19, 2025 alle 20:09
 -- Versione del server: 5.7.24
 -- Versione PHP: 8.3.1
 
@@ -61,9 +61,9 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`id`, `nome_categoria`, `target`) VALUES
-(1, 'STIVALI', 'UOMO'),
+(3, 'MOCASSINI', 'UOMO'),
 (2, 'SNEAKERS', 'UOMO'),
-(3, 'MOCASSINI', 'UOMO');
+(1, 'STIVALI', 'UOMO');
 
 -- --------------------------------------------------------
 
@@ -142,7 +142,11 @@ CREATE TABLE `colore_has_modello` (
 
 INSERT INTO `colore_has_modello` (`id`, `id_colore`, `id_modello`) VALUES
 (28, 4, 34),
-(29, 4, 34);
+(29, 4, 34),
+(30, 4, 36),
+(31, 4, 37),
+(32, 10, 37),
+(33, 4, 38);
 
 -- --------------------------------------------------------
 
@@ -212,6 +216,14 @@ CREATE TABLE `immagini` (
   `url` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dump dei dati per la tabella `immagini`
+--
+
+INSERT INTO `immagini` (`id`, `url`) VALUES
+(2, 'images/Screenshot 2024-09-28 214051.png'),
+(3, 'images/jd_394104_a.jpeg');
+
 -- --------------------------------------------------------
 
 --
@@ -223,6 +235,14 @@ CREATE TABLE `immagini_has_prodotti` (
   `id_immagine` int(11) NOT NULL,
   `id_prodotto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `immagini_has_prodotti`
+--
+
+INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
+(2, 2, 2),
+(3, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -259,7 +279,10 @@ CREATE TABLE `modello` (
 
 INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) VALUES
 (34, 2, 1, 'Nike Air Force 1', 'Scarpe da ginnastica'),
-(35, 2, 1, 'Nike Air Force 1', 'Scarpe da ginnastica');
+(35, 2, 1, 'Nike Air Force 1', 'Scarpe da ginnastica'),
+(36, 2, 1, 'Nike Air Force 1', 'Scrape'),
+(37, 2, 1, 'Nike Tn', 'Dddddd'),
+(38, 2, 1, 'Nike Air Force 1', 'Scarpe');
 
 -- --------------------------------------------------------
 
@@ -303,6 +326,14 @@ CREATE TABLE `prodotti` (
   `prezzo` int(11) NOT NULL,
   `stato_pubblicazione` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `prodotti`
+--
+
+INSERT INTO `prodotti` (`id`, `id_modello`, `prezzo`, `stato_pubblicazione`) VALUES
+(2, 37, 220, 1),
+(3, 38, 200, 0);
 
 -- --------------------------------------------------------
 
@@ -360,6 +391,16 @@ CREATE TABLE `taglie_has_prodotti` (
   `quantita` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dump dei dati per la tabella `taglie_has_prodotti`
+--
+
+INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`) VALUES
+(2, 3, 2, 1),
+(3, 5, 2, 1),
+(4, 7, 2, 2),
+(5, 3, 3, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -395,13 +436,15 @@ INSERT INTO `utenti` (`id`, `nome`, `cognome`, `data_nascita`, `luogo_nascita`, 
 -- Indici per le tabelle `brand`
 --
 ALTER TABLE `brand`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_nome` (`nome`);
 
 --
 -- Indici per le tabelle `categoria`
 --
 ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_nome_categoria_target` (`nome_categoria`,`target`);
 
 --
 -- Indici per le tabelle `codice_sconto`
@@ -538,13 +581,13 @@ ALTER TABLE `utenti`
 -- AUTO_INCREMENT per la tabella `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT per la tabella `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT per la tabella `codice_sconto`
@@ -568,7 +611,7 @@ ALTER TABLE `colore`
 -- AUTO_INCREMENT per la tabella `colore_has_modello`
 --
 ALTER TABLE `colore_has_modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT per la tabella `customers`
@@ -598,19 +641,19 @@ ALTER TABLE `fornitori_has_prodotti`
 -- AUTO_INCREMENT per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `immagini_has_prodotti`
 --
 ALTER TABLE `immagini_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `modello`
 --
 ALTER TABLE `modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -622,7 +665,7 @@ ALTER TABLE `ordine`
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `taglia`
@@ -634,7 +677,7 @@ ALTER TABLE `taglia`
 -- AUTO_INCREMENT per la tabella `taglie_has_prodotti`
 --
 ALTER TABLE `taglie_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
