@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Feb 19, 2025 alle 20:09
+-- Creato il: Feb 20, 2025 alle 16:01
 -- Versione del server: 5.7.24
 -- Versione PHP: 8.3.1
 
@@ -53,7 +53,7 @@ INSERT INTO `brand` (`id`, `nome`, `descrizione`) VALUES
 CREATE TABLE `categoria` (
   `id` int(11) NOT NULL,
   `nome_categoria` varchar(45) NOT NULL,
-  `target` varchar(45) NOT NULL
+  `target` enum('UOMO','DONNA','BAMBINO','UNISEX') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -113,16 +113,16 @@ CREATE TABLE `colore` (
 --
 
 INSERT INTO `colore` (`id`, `nome`) VALUES
-(1, 'VERDE'),
-(2, 'BLU'),
-(3, 'GIALLO'),
 (4, 'BIANCO'),
-(5, 'MARRONE'),
-(6, 'NERO'),
+(2, 'BLU'),
 (7, 'CELESTE'),
-(8, 'VIOLA'),
+(3, 'GIALLO'),
+(6, 'GRIGIO'),
+(5, 'MARRONE'),
+(11, 'NERO'),
 (10, 'ROSSO'),
-(11, 'NERO');
+(1, 'VERDE'),
+(8, 'VIOLA');
 
 -- --------------------------------------------------------
 
@@ -221,8 +221,8 @@ CREATE TABLE `immagini` (
 --
 
 INSERT INTO `immagini` (`id`, `url`) VALUES
-(2, 'images/Screenshot 2024-09-28 214051.png'),
-(3, 'images/jd_394104_a.jpeg');
+(3, 'images/jd_394104_a.jpeg'),
+(2, 'images/Screenshot 2024-09-28 214051.png');
 
 -- --------------------------------------------------------
 
@@ -464,7 +464,8 @@ ALTER TABLE `codice_sconto_has_categoria`
 -- Indici per le tabelle `colore`
 --
 ALTER TABLE `colore`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_nomeColore` (`nome`);
 
 --
 -- Indici per le tabelle `colore_has_modello`
@@ -505,7 +506,8 @@ ALTER TABLE `fornitori_has_prodotti`
 -- Indici per le tabelle `immagini`
 --
 ALTER TABLE `immagini`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_url` (`url`);
 
 --
 -- Indici per le tabelle `immagini_has_prodotti`
@@ -683,7 +685,7 @@ ALTER TABLE `taglie_has_prodotti`
 -- AUTO_INCREMENT per la tabella `utenti`
 --
 ALTER TABLE `utenti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Limiti per le tabelle scaricate
