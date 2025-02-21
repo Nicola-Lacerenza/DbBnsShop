@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Feb 20, 2025 alle 16:01
+-- Creato il: Feb 21, 2025 alle 23:11
 -- Versione del server: 5.7.24
 -- Versione PHP: 8.3.1
 
@@ -42,7 +42,8 @@ INSERT INTO `brand` (`id`, `nome`, `descrizione`) VALUES
 (2, 'NEW BALANCE', 'Scarpe'),
 (3, 'JORDAN', NULL),
 (4, 'ADIDAS', NULL),
-(5, 'PUMA', NULL);
+(5, 'PUMA', NULL),
+(7, 'NIKE OFF-WHITE', 'Collaborazione tra Nike e Off-White');
 
 -- --------------------------------------------------------
 
@@ -127,26 +128,24 @@ INSERT INTO `colore` (`id`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `colore_has_modello`
+-- Struttura della tabella `colore_has_prodotti`
 --
 
-CREATE TABLE `colore_has_modello` (
+CREATE TABLE `colore_has_prodotti` (
   `id` int(11) NOT NULL,
   `id_colore` int(11) NOT NULL,
-  `id_modello` int(11) NOT NULL
+  `id_prodotto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dump dei dati per la tabella `colore_has_modello`
+-- Dump dei dati per la tabella `colore_has_prodotti`
 --
 
-INSERT INTO `colore_has_modello` (`id`, `id_colore`, `id_modello`) VALUES
-(28, 4, 34),
-(29, 4, 34),
-(30, 4, 36),
-(31, 4, 37),
-(32, 10, 37),
-(33, 4, 38);
+INSERT INTO `colore_has_prodotti` (`id`, `id_colore`, `id_prodotto`) VALUES
+(68, 1, 28),
+(69, 4, 29),
+(70, 4, 30),
+(71, 2, 30);
 
 -- --------------------------------------------------------
 
@@ -221,8 +220,9 @@ CREATE TABLE `immagini` (
 --
 
 INSERT INTO `immagini` (`id`, `url`) VALUES
-(3, 'images/jd_394104_a.jpeg'),
-(2, 'images/Screenshot 2024-09-28 214051.png');
+(28, 'images/jd_394104_a.jpeg'),
+(27, 'images/Off-White-Nike-Air-Force-1-Low-Brooklyn-DX1419-300-Release-Date.jpg'),
+(29, 'images/Screenshot 2024-09-28 214051.png');
 
 -- --------------------------------------------------------
 
@@ -241,8 +241,9 @@ CREATE TABLE `immagini_has_prodotti` (
 --
 
 INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
-(2, 2, 2),
-(3, 3, 3);
+(26, 27, 28),
+(27, 28, 29),
+(28, 29, 30);
 
 -- --------------------------------------------------------
 
@@ -278,11 +279,9 @@ CREATE TABLE `modello` (
 --
 
 INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) VALUES
-(34, 2, 1, 'Nike Air Force 1', 'Scarpe da ginnastica'),
-(35, 2, 1, 'Nike Air Force 1', 'Scarpe da ginnastica'),
-(36, 2, 1, 'Nike Air Force 1', 'Scrape'),
-(37, 2, 1, 'Nike Tn', 'Dddddd'),
-(38, 2, 1, 'Nike Air Force 1', 'Scarpe');
+(51, 2, 7, 'Nike Air Force Off White', 'Scarpe'),
+(52, 2, 1, 'Nike Air Force 1', 'Scarpe'),
+(53, 2, 1, 'Nike Tn', 'Nike');
 
 -- --------------------------------------------------------
 
@@ -332,8 +331,9 @@ CREATE TABLE `prodotti` (
 --
 
 INSERT INTO `prodotti` (`id`, `id_modello`, `prezzo`, `stato_pubblicazione`) VALUES
-(2, 37, 220, 1),
-(3, 38, 200, 0);
+(28, 51, 200, 0),
+(29, 52, 200, 0),
+(30, 53, 200, 1);
 
 -- --------------------------------------------------------
 
@@ -396,10 +396,9 @@ CREATE TABLE `taglie_has_prodotti` (
 --
 
 INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`) VALUES
-(2, 3, 2, 1),
-(3, 5, 2, 1),
-(4, 7, 2, 2),
-(5, 3, 3, 1);
+(43, 5, 28, 1),
+(44, 3, 29, 1),
+(45, 4, 30, 1);
 
 -- --------------------------------------------------------
 
@@ -468,12 +467,12 @@ ALTER TABLE `colore`
   ADD UNIQUE KEY `unique_nomeColore` (`nome`);
 
 --
--- Indici per le tabelle `colore_has_modello`
+-- Indici per le tabelle `colore_has_prodotti`
 --
-ALTER TABLE `colore_has_modello`
+ALTER TABLE `colore_has_prodotti`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_COLORE_has_MODELLO_COLORE` (`id_colore`),
-  ADD KEY `fk_COLORE_has_MODELLO_MODELLO` (`id_modello`);
+  ADD KEY `fk_COLORE_has_MODELLO_MODELLO` (`id_prodotto`);
 
 --
 -- Indici per le tabelle `customers`
@@ -583,7 +582,7 @@ ALTER TABLE `utenti`
 -- AUTO_INCREMENT per la tabella `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT per la tabella `categoria`
@@ -610,10 +609,10 @@ ALTER TABLE `colore`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT per la tabella `colore_has_modello`
+-- AUTO_INCREMENT per la tabella `colore_has_prodotti`
 --
-ALTER TABLE `colore_has_modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+ALTER TABLE `colore_has_prodotti`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT per la tabella `customers`
@@ -643,19 +642,19 @@ ALTER TABLE `fornitori_has_prodotti`
 -- AUTO_INCREMENT per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT per la tabella `immagini_has_prodotti`
 --
 ALTER TABLE `immagini_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT per la tabella `modello`
 --
 ALTER TABLE `modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -667,7 +666,7 @@ ALTER TABLE `ordine`
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT per la tabella `taglia`
@@ -679,7 +678,7 @@ ALTER TABLE `taglia`
 -- AUTO_INCREMENT per la tabella `taglie_has_prodotti`
 --
 ALTER TABLE `taglie_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
@@ -699,11 +698,11 @@ ALTER TABLE `codice_sconto_has_categoria`
   ADD CONSTRAINT `fk_CODICESCONTO_has_CATEGORIA_CODICESCONTO` FOREIGN KEY (`id_codicesconto`) REFERENCES `codice_sconto` (`id`);
 
 --
--- Limiti per la tabella `colore_has_modello`
+-- Limiti per la tabella `colore_has_prodotti`
 --
-ALTER TABLE `colore_has_modello`
-  ADD CONSTRAINT `fk_COLORE_has_MODELLO_COLORE` FOREIGN KEY (`id_colore`) REFERENCES `colore` (`id`),
-  ADD CONSTRAINT `fk_COLORE_has_MODELLO_MODELLO` FOREIGN KEY (`id_modello`) REFERENCES `modello` (`id`);
+ALTER TABLE `colore_has_prodotti`
+  ADD CONSTRAINT `fk_COLORE_has_PRODOTTI_COLORE` FOREIGN KEY (`id_colore`) REFERENCES `colore` (`id`),
+  ADD CONSTRAINT `fk_COLORE_has_PRODOTTI_PRODOTTO` FOREIGN KEY (`id_prodotto`) REFERENCES `prodotti` (`id`);
 
 --
 -- Limiti per la tabella `dettagli_ordine`
