@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Feb 21, 2025 alle 23:11
+-- Creato il: Feb 23, 2025 alle 23:19
 -- Versione del server: 5.7.24
 -- Versione PHP: 8.3.1
 
@@ -143,9 +143,13 @@ CREATE TABLE `colore_has_prodotti` (
 
 INSERT INTO `colore_has_prodotti` (`id`, `id_colore`, `id_prodotto`) VALUES
 (68, 1, 28),
-(69, 4, 29),
-(70, 4, 30),
-(71, 2, 30);
+(72, 10, 31),
+(79, 2, 35),
+(80, 1, 35),
+(81, 3, 35),
+(82, 2, 36),
+(83, 2, 37),
+(84, 4, 37);
 
 -- --------------------------------------------------------
 
@@ -220,9 +224,12 @@ CREATE TABLE `immagini` (
 --
 
 INSERT INTO `immagini` (`id`, `url`) VALUES
-(28, 'images/jd_394104_a.jpeg'),
+(35, 'images/jd_047951_a.jpeg'),
+(37, 'images/jd_394104_a.jpeg'),
+(38, 'images/nike-air-force-1-low-command-force-dr0148-100-lateral.jpeg'),
+(30, 'images/nike-air-force-1-mid-chocolate-dm0107-200-lateral.jpeg'),
 (27, 'images/Off-White-Nike-Air-Force-1-Low-Brooklyn-DX1419-300-Release-Date.jpg'),
-(29, 'images/Screenshot 2024-09-28 214051.png');
+(36, 'images/Screenshot 2024-09-28 214051.png');
 
 -- --------------------------------------------------------
 
@@ -242,8 +249,11 @@ CREATE TABLE `immagini_has_prodotti` (
 
 INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
 (26, 27, 28),
-(27, 28, 29),
-(28, 29, 30);
+(29, 30, 31),
+(34, 35, 35),
+(35, 36, 36),
+(36, 37, 37),
+(37, 38, 37);
 
 -- --------------------------------------------------------
 
@@ -271,7 +281,7 @@ CREATE TABLE `modello` (
   `id_categoria` int(11) NOT NULL,
   `id_brand` int(11) NOT NULL,
   `nome` varchar(45) NOT NULL,
-  `descrizione` varchar(45) NOT NULL
+  `descrizione` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -281,7 +291,8 @@ CREATE TABLE `modello` (
 INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) VALUES
 (51, 2, 7, 'Nike Air Force Off White', 'Scarpe'),
 (52, 2, 1, 'Nike Air Force 1', 'Scarpe'),
-(53, 2, 1, 'Nike Tn', 'Nike');
+(54, 2, 1, 'Nike Air Force 1 High', 'Scarpe'),
+(57, 3, 3, 'Nike Air Force 1', 'Scat');
 
 -- --------------------------------------------------------
 
@@ -331,9 +342,11 @@ CREATE TABLE `prodotti` (
 --
 
 INSERT INTO `prodotti` (`id`, `id_modello`, `prezzo`, `stato_pubblicazione`) VALUES
-(28, 51, 200, 0),
-(29, 52, 200, 0),
-(30, 53, 200, 1);
+(28, 51, 300, 1),
+(31, 54, 230, 0),
+(35, 57, 230, 0),
+(36, 52, 121, 1),
+(37, 52, 230, 1);
 
 -- --------------------------------------------------------
 
@@ -353,30 +366,30 @@ CREATE TABLE `taglia` (
 --
 
 INSERT INTO `taglia` (`id`, `taglia_Eu`, `taglia_Uk`, `taglia_Us`) VALUES
-(1, '35', '', ''),
-(2, '35.5', '', ''),
-(3, '36', '', ''),
-(4, '36.5', '0', ''),
-(5, '37', '0', ''),
-(6, '37.5', '0', ''),
-(7, '38', '0', ''),
-(8, '38.5', '0', ''),
-(9, '39', '0', ''),
-(10, '39.5', '0', ''),
-(11, '40', '0', ''),
-(12, '40.5', '0', ''),
-(13, '41', '0', ''),
-(14, '41.5', '0', ''),
-(15, '42', '0', ''),
-(16, '42.5', '0', ''),
-(17, '43', '0', ''),
-(18, '43.5', '0', ''),
-(19, '44', '0', ''),
-(20, '44.5', '0', ''),
-(21, '45', '0', ''),
-(22, '45.5', '0', ''),
-(23, '46', '0', ''),
-(24, '46.5', '0', '');
+(1, '35', '0', '0'),
+(2, '35.5', '0', '0'),
+(3, '36', '0', '0'),
+(4, '36.5', '0', '0'),
+(5, '37', '0', '0'),
+(6, '37.5', '0', '0'),
+(7, '38', '0', '0'),
+(8, '38.5', '0', '0'),
+(9, '39', '0', '0'),
+(10, '39.5', '0', '0'),
+(11, '40', '0', '0'),
+(12, '40.5', '0', '0'),
+(13, '41', '0', '0'),
+(14, '41.5', '0', '0'),
+(15, '42', '0', '0'),
+(16, '42.5', '0', '0'),
+(17, '43', '0', '0'),
+(18, '43.5', '0', '0'),
+(19, '44', '0', '0'),
+(20, '44.5', '0', '0'),
+(21, '45', '0', '0'),
+(22, '45.5', '0', '0'),
+(23, '46', '0', '0'),
+(24, '46.5', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -397,8 +410,19 @@ CREATE TABLE `taglie_has_prodotti` (
 
 INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`) VALUES
 (43, 5, 28, 1),
-(44, 3, 29, 1),
-(45, 4, 30, 1);
+(46, 5, 31, 1),
+(54, 3, 35, 1),
+(55, 4, 35, 1),
+(56, 5, 35, 1),
+(57, 7, 35, 1),
+(58, 8, 35, 1),
+(59, 11, 35, 3),
+(60, 13, 35, 5),
+(61, 15, 35, 3),
+(62, 20, 35, 10),
+(63, 5, 36, 1),
+(64, 5, 37, 1),
+(65, 7, 37, 1);
 
 -- --------------------------------------------------------
 
@@ -528,6 +552,7 @@ ALTER TABLE `indirizzo`
 --
 ALTER TABLE `modello`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uniq_modello` (`id_categoria`,`id_brand`,`nome`),
   ADD KEY `fk_modello_brand1` (`id_brand`),
   ADD KEY `fk_MODELLO_CATEGORIA1` (`id_categoria`);
 
@@ -588,7 +613,7 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT per la tabella `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `codice_sconto`
@@ -612,7 +637,7 @@ ALTER TABLE `colore`
 -- AUTO_INCREMENT per la tabella `colore_has_prodotti`
 --
 ALTER TABLE `colore_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT per la tabella `customers`
@@ -642,19 +667,19 @@ ALTER TABLE `fornitori_has_prodotti`
 -- AUTO_INCREMENT per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT per la tabella `immagini_has_prodotti`
 --
 ALTER TABLE `immagini_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT per la tabella `modello`
 --
 ALTER TABLE `modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -666,7 +691,7 @@ ALTER TABLE `ordine`
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT per la tabella `taglia`
@@ -678,13 +703,13 @@ ALTER TABLE `taglia`
 -- AUTO_INCREMENT per la tabella `taglie_has_prodotti`
 --
 ALTER TABLE `taglie_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
 --
 ALTER TABLE `utenti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Limiti per le tabelle scaricate
