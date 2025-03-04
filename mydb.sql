@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Mar 03, 2025 alle 19:13
+-- Creato il: Mar 04, 2025 alle 16:45
 -- Versione del server: 5.7.24
 -- Versione PHP: 8.3.1
 
@@ -154,8 +154,9 @@ INSERT INTO `colore_has_prodotti` (`id`, `id_colore`, `id_prodotto`) VALUES
 (160, 2, 53),
 (161, 11, 53),
 (162, 6, 36),
-(163, 11, 41),
-(164, 12, 41);
+(167, 1, 56),
+(168, 11, 41),
+(169, 12, 41);
 
 -- --------------------------------------------------------
 
@@ -232,6 +233,12 @@ CREATE TABLE `immagini` (
 INSERT INTO `immagini` (`id`, `url`) VALUES
 (35, 'images/jd_047951_a.jpeg'),
 (41, 'images/jd_394104_a.jpeg'),
+(77, 'images/JORDAN-4-ABUNDANCE (1).jpg'),
+(78, 'images/JORDAN-4-ABUNDANCE (2).jpg'),
+(79, 'images/JORDAN-4-ABUNDANCE (3).jpg'),
+(80, 'images/JORDAN-4-ABUNDANCE (4).jpg'),
+(81, 'images/JORDAN-4-ABUNDANCE (5).jpg'),
+(82, 'images/JORDAN-4-ABUNDANCE (6).jpg'),
 (64, 'images/NIKE+AIR+MAX+PLUS+ (GS) (1).png'),
 (65, 'images/NIKE+AIR+MAX+PLUS+ (GS) (2).png'),
 (66, 'images/NIKE+AIR+MAX+PLUS+ (GS) (3).png'),
@@ -291,7 +298,13 @@ INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
 (54, 66, 53),
 (55, 67, 53),
 (56, 68, 53),
-(57, 69, 53);
+(57, 69, 53),
+(64, 77, 56),
+(65, 78, 56),
+(66, 79, 56),
+(67, 80, 56),
+(68, 81, 56),
+(69, 82, 56);
 
 -- --------------------------------------------------------
 
@@ -329,9 +342,11 @@ CREATE TABLE `modello` (
 INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) VALUES
 (52, 2, 1, 'Nike Air Force 1', 'Scarpe'),
 (71, 2, 1, 'NIKE AIR MAX PLUS', 'Scopri la leggendaria tecnologia Tuned Air con queste scarpe confortevoli. Con l\'iconica gabbia a forma di fiamma e la coda di balena vicino all\'arco plantare, questa Air Max Plus sfoggia vivaci tocchi di colore per un look che non passa inosservato nel tempo libero.'),
+(82, 2, 3, 'Air Jordan 4 Abundance', 'Sempre guadagnata, mai data. La AJ4 \'Abundance\' e un omaggio all\'atteggiamento e alla determinazione che la prossima generazione di grandi porta in ogni mossa che fa, sia dentro che fuori dal campo. Questa edizione omaggia l\'iconica AJ4 \'Pure Money\' con finiture Metallic Silver per completare il tuo stile moderno e una colorazione Seafoam e Sail per un tocco morbido.'),
 (65, 2, 3, 'Nike Air Force 1', 'Scat'),
 (51, 2, 7, 'Nike Air Force Off White', 'Scarpe'),
-(69, 4, 1, 'Nike Air Force 1 High', 'Scarpe');
+(69, 4, 1, 'Nike Air Force 1 High', 'Scarpe'),
+(80, 4, 3, 'Air Jordan 4 Abundance', 'Sempre guadagnata, mai data. La AJ4 \'Abundance\' è un omaggio all\'atteggiamento e alla determinazione che la prossima generazione di grandi porta in ogni mossa che fa, sia dentro che fuori dal campo. Questa edizione omaggia l\'iconica AJ4 \'Pure Money\' con finiture Metallic Silver per completare il tuo stile moderno e una colorazione Seafoam e Sail per un tocco morbido.');
 
 -- --------------------------------------------------------
 
@@ -387,8 +402,9 @@ INSERT INTO `prodotti` (`id`, `id_modello`, `prezzo`, `stato_pubblicazione`) VAL
 (36, 52, 121, 0),
 (39, 52, 120, 1),
 (40, 71, 180, 1),
-(41, 71, 180, 1),
-(53, 71, 180, 1);
+(41, 71, 180, 0),
+(53, 71, 180, 1),
+(56, 82, 400, 1);
 
 -- --------------------------------------------------------
 
@@ -482,8 +498,9 @@ INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`)
 (229, 5, 53, 3),
 (230, 7, 53, 2),
 (231, 5, 36, 1),
-(232, 3, 41, 1),
-(233, 5, 41, 1);
+(236, 5, 56, 1),
+(237, 3, 41, 1),
+(238, 5, 41, 1);
 
 -- --------------------------------------------------------
 
@@ -698,7 +715,7 @@ ALTER TABLE `colore`
 -- AUTO_INCREMENT per la tabella `colore_has_prodotti`
 --
 ALTER TABLE `colore_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
 
 --
 -- AUTO_INCREMENT per la tabella `customers`
@@ -728,19 +745,19 @@ ALTER TABLE `fornitori_has_prodotti`
 -- AUTO_INCREMENT per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT per la tabella `immagini_has_prodotti`
 --
 ALTER TABLE `immagini_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT per la tabella `modello`
 --
 ALTER TABLE `modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -752,7 +769,7 @@ ALTER TABLE `ordine`
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT per la tabella `taglia`
@@ -764,7 +781,7 @@ ALTER TABLE `taglia`
 -- AUTO_INCREMENT per la tabella `taglie_has_prodotti`
 --
 ALTER TABLE `taglie_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=234;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=239;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
