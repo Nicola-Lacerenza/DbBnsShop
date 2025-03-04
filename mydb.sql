@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Mar 04, 2025 alle 16:45
+-- Creato il: Mar 04, 2025 alle 22:39
 -- Versione del server: 5.7.24
 -- Versione PHP: 8.3.1
 
@@ -39,12 +39,10 @@ CREATE TABLE `brand` (
 
 INSERT INTO `brand` (`id`, `nome`, `descrizione`) VALUES
 (1, 'NIKE', 'Brand di Scarpe da ginnastica'),
-(2, 'NEW BALANCE', 'Scarpe'),
-(3, 'JORDAN', NULL),
-(4, 'ADIDAS', NULL),
-(5, 'PUMA', NULL),
-(7, 'NIKE OFF-WHITE', 'Collaborazione tra Nike e Off-White'),
-(8, 'NIKE AIR MAX', 'CC');
+(2, 'NEW BALANCE', 'Brand di Scarpe da ginnastica'),
+(3, 'JORDAN', 'Brand di Scarpe da ginnastica'),
+(4, 'ADIDAS', 'Brand di Scarpe da ginnastica'),
+(5, 'PUMA', 'Brand di Scarpe da ginnastica');
 
 -- --------------------------------------------------------
 
@@ -124,6 +122,7 @@ INSERT INTO `colore` (`id`, `nome`) VALUES
 (6, 'GRIGIO'),
 (5, 'MARRONE'),
 (11, 'NERO'),
+(13, 'ROSA'),
 (10, 'ROSSO'),
 (1, 'VERDE'),
 (8, 'VIOLA');
@@ -145,18 +144,21 @@ CREATE TABLE `colore_has_prodotti` (
 --
 
 INSERT INTO `colore_has_prodotti` (`id`, `id_colore`, `id_prodotto`) VALUES
-(121, 1, 28),
-(122, 11, 35),
-(125, 5, 31),
-(126, 4, 39),
 (131, 3, 40),
 (132, 11, 40),
 (160, 2, 53),
 (161, 11, 53),
-(162, 6, 36),
-(167, 1, 56),
 (168, 11, 41),
-(169, 12, 41);
+(169, 12, 41),
+(171, 11, 57),
+(172, 4, 58),
+(173, 4, 59),
+(175, 1, 56),
+(176, 4, 60),
+(177, 11, 60),
+(178, 13, 61),
+(179, 11, 62),
+(180, 4, 62);
 
 -- --------------------------------------------------------
 
@@ -231,8 +233,24 @@ CREATE TABLE `immagini` (
 --
 
 INSERT INTO `immagini` (`id`, `url`) VALUES
-(35, 'images/jd_047951_a.jpeg'),
-(41, 'images/jd_394104_a.jpeg'),
+(89, 'images/AIR+MAX+DN (1).png'),
+(90, 'images/AIR+MAX+DN (2).png'),
+(91, 'images/AIR+MAX+DN (3).png'),
+(92, 'images/AIR+MAX+DN (4).png'),
+(93, 'images/AIR+MAX+DN (5).png'),
+(94, 'images/AIR+MAX+DN (6).png'),
+(95, 'images/AIR+MAX+DN W (1).png'),
+(96, 'images/AIR+MAX+DN W (2).png'),
+(97, 'images/AIR+MAX+DN W (3).png'),
+(98, 'images/AIR+MAX+DN W (4).png'),
+(99, 'images/AIR+MAX+DN W (5).png'),
+(100, 'images/AIR+MAX+DN W (6).png'),
+(83, 'images/AIR+MAX+PLUS (1).jpeg'),
+(84, 'images/AIR+MAX+PLUS (2).jpeg'),
+(85, 'images/AIR+MAX+PLUS (3).jpeg'),
+(86, 'images/AIR+MAX+PLUS (4).jpeg'),
+(87, 'images/AIR+MAX+PLUS (5).jpeg'),
+(88, 'images/AIR+MAX+PLUS (6).jpeg'),
 (77, 'images/JORDAN-4-ABUNDANCE (1).jpg'),
 (78, 'images/JORDAN-4-ABUNDANCE (2).jpg'),
 (79, 'images/JORDAN-4-ABUNDANCE (3).jpg'),
@@ -256,9 +274,24 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (45, 'images/NIKE+AIR+MAX+PLUS+GS (4).png'),
 (46, 'images/NIKE+AIR+MAX+PLUS+GS (5).png'),
 (47, 'images/NIKE+AIR+MAX+PLUS+GS (6).png'),
-(30, 'images/nike-air-force-1-mid-chocolate-dm0107-200-lateral.jpeg'),
-(27, 'images/Off-White-Nike-Air-Force-1-Low-Brooklyn-DX1419-300-Release-Date.jpg'),
-(36, 'images/Screenshot 2024-09-28 214051.png');
+(101, 'images/NIKE+SB+DUNK+LOW+PRO (1).png'),
+(102, 'images/NIKE+SB+DUNK+LOW+PRO (2).png'),
+(103, 'images/NIKE+SB+DUNK+LOW+PRO (3).png'),
+(104, 'images/NIKE+SB+DUNK+LOW+PRO (4).png'),
+(105, 'images/NIKE+SB+DUNK+LOW+PRO (5).png'),
+(106, 'images/NIKE+SB+DUNK+LOW+PRO (6).png'),
+(107, 'images/W+NIKE+DUNK+LOW (1).png'),
+(108, 'images/W+NIKE+DUNK+LOW (2).png'),
+(109, 'images/W+NIKE+DUNK+LOW (3).png'),
+(110, 'images/W+NIKE+DUNK+LOW (4).png'),
+(111, 'images/W+NIKE+DUNK+LOW (5).png'),
+(112, 'images/W+NIKE+DUNK+LOW (6).png'),
+(113, 'images/W+NIKE+DUNK+LOW+NEXT+NATURE (1).png'),
+(114, 'images/W+NIKE+DUNK+LOW+NEXT+NATURE (2).png'),
+(115, 'images/W+NIKE+DUNK+LOW+NEXT+NATURE (3).png'),
+(116, 'images/W+NIKE+DUNK+LOW+NEXT+NATURE (4).png'),
+(117, 'images/W+NIKE+DUNK+LOW+NEXT+NATURE (5).png'),
+(118, 'images/W+NIKE+DUNK+LOW+NEXT+NATURE (6).png');
 
 -- --------------------------------------------------------
 
@@ -277,11 +310,6 @@ CREATE TABLE `immagini_has_prodotti` (
 --
 
 INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
-(26, 27, 28),
-(29, 30, 31),
-(34, 35, 35),
-(35, 36, 36),
-(40, 41, 39),
 (41, 42, 40),
 (42, 43, 40),
 (43, 44, 40),
@@ -304,7 +332,43 @@ INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
 (66, 79, 56),
 (67, 80, 56),
 (68, 81, 56),
-(69, 82, 56);
+(69, 82, 56),
+(70, 83, 57),
+(71, 84, 57),
+(72, 85, 57),
+(73, 86, 57),
+(74, 87, 57),
+(75, 88, 57),
+(76, 89, 58),
+(77, 90, 58),
+(78, 91, 58),
+(79, 92, 58),
+(80, 93, 58),
+(81, 94, 58),
+(82, 95, 59),
+(83, 96, 59),
+(84, 97, 59),
+(85, 98, 59),
+(86, 99, 59),
+(87, 100, 59),
+(88, 101, 60),
+(89, 102, 60),
+(90, 103, 60),
+(91, 104, 60),
+(92, 105, 60),
+(93, 106, 60),
+(94, 107, 61),
+(95, 108, 61),
+(96, 109, 61),
+(97, 110, 61),
+(98, 111, 61),
+(99, 112, 61),
+(100, 113, 62),
+(101, 114, 62),
+(102, 115, 62),
+(103, 116, 62),
+(104, 117, 62),
+(105, 118, 62);
 
 -- --------------------------------------------------------
 
@@ -340,13 +404,12 @@ CREATE TABLE `modello` (
 --
 
 INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) VALUES
-(52, 2, 1, 'Nike Air Force 1', 'Scarpe'),
-(71, 2, 1, 'NIKE AIR MAX PLUS', 'Scopri la leggendaria tecnologia Tuned Air con queste scarpe confortevoli. Con l\'iconica gabbia a forma di fiamma e la coda di balena vicino all\'arco plantare, questa Air Max Plus sfoggia vivaci tocchi di colore per un look che non passa inosservato nel tempo libero.'),
-(82, 2, 3, 'Air Jordan 4 Abundance', 'Sempre guadagnata, mai data. La AJ4 \'Abundance\' e un omaggio all\'atteggiamento e alla determinazione che la prossima generazione di grandi porta in ogni mossa che fa, sia dentro che fuori dal campo. Questa edizione omaggia l\'iconica AJ4 \'Pure Money\' con finiture Metallic Silver per completare il tuo stile moderno e una colorazione Seafoam e Sail per un tocco morbido.'),
-(65, 2, 3, 'Nike Air Force 1', 'Scat'),
-(51, 2, 7, 'Nike Air Force Off White', 'Scarpe'),
-(69, 4, 1, 'Nike Air Force 1 High', 'Scarpe'),
-(80, 4, 3, 'Air Jordan 4 Abundance', 'Sempre guadagnata, mai data. La AJ4 \'Abundance\' è un omaggio all\'atteggiamento e alla determinazione che la prossima generazione di grandi porta in ogni mossa che fa, sia dentro che fuori dal campo. Questa edizione omaggia l\'iconica AJ4 \'Pure Money\' con finiture Metallic Silver per completare il tuo stile moderno e una colorazione Seafoam e Sail per un tocco morbido.');
+(85, 2, 1, 'NIKE AIR MAX DN', 'Dai il benvenuto alla nuova generazione della tecnologia Air. Air Max Dn integra la nostra unita Dynamic Air con sistema di tubi a doppia pressione, per offrire reattivita a ogni passo. Il risultato e un design futuristico, abbastanza comodo da essere indossato tutto il giorno. Feel the Unreal.'),
+(71, 2, 1, 'NIKE AIR MAX PLUS', 'Scopri la leggendaria tecnologia Tuned Air con queste scarpe confortevoli. Con l\'iconica gabbia a forma di fiamma e la coda di balena vicino all\'arco plantare, questa Air Max Plus sfoggia vivaci tocchi di colore per un look che non passa inosservato nel tempo libero. '),
+(89, 4, 1, 'NIKE DUNK LOW', 'Creata per il parquet, ma ideale per la citta, torna l icona del basket degli anni Ottanta con strati esterni perfettamente lucidati e colori classici della squadra. Con un iconico design da basket, Nike Dunk Low riporta in strada lo stile vintage degli anni Ottanta, mentre il collare ammortizzato a taglio basso ti fara sentire al meglio ovunque e con il massimo comfort.'),
+(90, 4, 1, 'NIKE DUNK LOW NEXT NATURE', 'Puoi sempre contare su un classico. Dunk Low unisce l\'iconico design in blocchi di colore, materiali pregiati e un\'imbottitura morbida per un comfort rivoluzionario che dura nel tempo. Le possibilita di styling sono infinite: come indosserai le tue Dunk?'),
+(88, 4, 1, 'NIKE SB DUNK LOW PRO', 'Una scarpa da skateboard classica, perfetta sulla tavola e per qualsiasi occasione. Questa versione esclusiva di Dunk Low e realizzata in pelle e presenta un battistrada in gomma per un tocco di fascino in piu a ogni trick. Inoltre, la traspirante linguetta in tessuto e l ammortizzazione Zoom Air sotto il piede regalano leggerezza anche durante le session piu lunghe sullo skate. E poi ce lo Swoosh, per un tocco di contrasto in piu. E uno stile ancora piu d\'impatto.'),
+(86, 4, 3, 'AIR JORDAN 4 ABUNDANCE', 'Sempre guadagnata, mai data. La AJ4 \'Abundance\' e un omaggio all\'atteggiamento e alla determinazione che la prossima generazione di grandi porta in ogni mossa che fa, sia dentro che fuori dal campo. Questa edizione omaggia l\'iconica AJ4 \'Pure Money\' con finiture Metallic Silver per completare il tuo stile moderno e una colorazione Seafoam e Sail per un tocco morbido.');
 
 -- --------------------------------------------------------
 
@@ -396,15 +459,16 @@ CREATE TABLE `prodotti` (
 --
 
 INSERT INTO `prodotti` (`id`, `id_modello`, `prezzo`, `stato_pubblicazione`) VALUES
-(28, 51, 300, 1),
-(31, 69, 230, 1),
-(35, 65, 230, 1),
-(36, 52, 121, 0),
-(39, 52, 120, 1),
 (40, 71, 180, 1),
 (41, 71, 180, 0),
 (53, 71, 180, 1),
-(56, 82, 400, 1);
+(56, 86, 400, 1),
+(57, 71, 180, 1),
+(58, 85, 200, 1),
+(59, 85, 180, 1),
+(60, 88, 150, 1),
+(61, 89, 120, 1),
+(62, 90, 130, 1);
 
 -- --------------------------------------------------------
 
@@ -467,24 +531,6 @@ CREATE TABLE `taglie_has_prodotti` (
 --
 
 INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`) VALUES
-(145, 3, 28, 1),
-(146, 5, 28, 1),
-(147, 7, 28, 1),
-(148, 20, 28, 1),
-(149, 21, 28, 1),
-(150, 22, 28, 1),
-(151, 4, 35, 1),
-(152, 5, 35, 1),
-(153, 7, 35, 1),
-(154, 8, 35, 1),
-(155, 11, 35, 3),
-(156, 13, 35, 5),
-(157, 15, 35, 3),
-(158, 20, 35, 10),
-(160, 3, 31, 1),
-(161, 5, 31, 1),
-(162, 7, 31, 1),
-(163, 5, 39, 1),
 (182, 3, 40, 1),
 (183, 4, 40, 1),
 (184, 5, 40, 1),
@@ -497,10 +543,20 @@ INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`)
 (228, 3, 53, 1),
 (229, 5, 53, 3),
 (230, 7, 53, 2),
-(231, 5, 36, 1),
-(236, 5, 56, 1),
 (237, 3, 41, 1),
-(238, 5, 41, 1);
+(238, 5, 41, 1),
+(240, 11, 57, 1),
+(241, 13, 57, 1),
+(242, 3, 58, 1),
+(243, 5, 58, 1),
+(244, 7, 58, 2),
+(245, 5, 59, 1),
+(246, 7, 59, 1),
+(248, 5, 56, 1),
+(249, 3, 60, 1),
+(250, 5, 60, 1),
+(251, 5, 61, 1),
+(252, 5, 62, 1);
 
 -- --------------------------------------------------------
 
@@ -709,13 +765,13 @@ ALTER TABLE `codice_sconto_has_categoria`
 -- AUTO_INCREMENT per la tabella `colore`
 --
 ALTER TABLE `colore`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT per la tabella `colore_has_prodotti`
 --
 ALTER TABLE `colore_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
 
 --
 -- AUTO_INCREMENT per la tabella `customers`
@@ -745,19 +801,19 @@ ALTER TABLE `fornitori_has_prodotti`
 -- AUTO_INCREMENT per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT per la tabella `immagini_has_prodotti`
 --
 ALTER TABLE `immagini_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT per la tabella `modello`
 --
 ALTER TABLE `modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -769,7 +825,7 @@ ALTER TABLE `ordine`
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT per la tabella `taglia`
@@ -781,7 +837,7 @@ ALTER TABLE `taglia`
 -- AUTO_INCREMENT per la tabella `taglie_has_prodotti`
 --
 ALTER TABLE `taglie_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=239;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
