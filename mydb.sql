@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Mar 10, 2025 alle 22:18
+-- Creato il: Mar 11, 2025 alle 22:49
 -- Versione del server: 5.7.24
 -- Versione PHP: 8.3.1
 
@@ -145,7 +145,6 @@ CREATE TABLE `colore_has_prodotti` (
 --
 
 INSERT INTO `colore_has_prodotti` (`id`, `id_colore`, `id_prodotto`) VALUES
-(239, 13, 65),
 (240, 4, 66),
 (241, 12, 66),
 (242, 11, 67),
@@ -153,9 +152,6 @@ INSERT INTO `colore_has_prodotti` (`id`, `id_colore`, `id_prodotto`) VALUES
 (245, 11, 69),
 (247, 4, 68),
 (248, 11, 70),
-(249, 4, 71),
-(250, 4, 72),
-(251, 11, 72),
 (252, 11, 73),
 (253, 12, 73),
 (254, 4, 73),
@@ -181,7 +177,19 @@ INSERT INTO `colore_has_prodotti` (`id`, `id_colore`, `id_prodotto`) VALUES
 (276, 11, 83),
 (277, 4, 83),
 (278, 4, 84),
-(279, 13, 84);
+(279, 13, 84),
+(283, 13, 65),
+(284, 4, 72),
+(285, 11, 72),
+(287, 4, 71),
+(288, 4, 86),
+(289, 3, 87),
+(290, 1, 88),
+(291, 4, 88),
+(292, 7, 89),
+(293, 4, 89),
+(294, 4, 90),
+(295, 13, 90);
 
 -- --------------------------------------------------------
 
@@ -259,9 +267,11 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (152, 'images/0223ac22-0bc1-4a23-9d69-29b95964d3e5.png'),
 (159, 'images/0397e6bd-4f33-4ea4-bbeb-7d156baf1ac8.png'),
 (167, 'images/06e7e8cd-e263-433d-9b75-e236d39d75d8.png'),
+(261, 'images/07f8d607-b183-4e4a-bc20-e224e6bc1154.png'),
 (206, 'images/0bded708-c8a9-4907-abc7-2ce70ad89c19.jpeg'),
 (164, 'images/115d7358-4c5c-4752-acf3-84c52e7512e2.png'),
 (170, 'images/12aefe28-20cc-4974-b723-bd1d6e17123b.png'),
+(262, 'images/13daea38-474f-47f8-8e67-97af9502273a.png'),
 (192, 'images/15d1fd3f-f4fc-4c88-ab6a-325b7e48544c.png'),
 (186, 'images/1701e614-6828-4eae-ba23-21321c1b99bf.png'),
 (205, 'images/17a36a05-97a8-4649-bc21-e024cd3b913b.jpeg'),
@@ -270,6 +280,8 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (139, 'images/1e2319c8-8174-4bcd-881f-eddda222bc28.png'),
 (245, 'images/1f07b1cf-e46d-405c-aec0-d89890964a26.jpeg'),
 (213, 'images/1f90c784-02ad-4e5a-99fb-836be52a7fd1.png'),
+(278, 'images/2006d67f-8eeb-491a-8e86-a989dcba94a1.png'),
+(286, 'images/20cdadb0-f873-4a5b-a3ae-6fc45ecd2835.png'),
 (221, 'images/23b9b242-40b0-4969-9d71-521233fd7ba6.png'),
 (142, 'images/2a097e2f-3ea3-477f-a5fb-ebd246be0439.png'),
 (239, 'images/2ce92aa0-a262-48a8-b48d-bfe5fa77e620.jpeg'),
@@ -277,40 +289,56 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (168, 'images/2f8ae4b4-daf1-495c-9909-dadbfb675baa.png'),
 (178, 'images/2f93e58f-d858-4be9-a3a2-a29e47b88674.png'),
 (184, 'images/325babfe-c28c-437d-a2c9-53730371fb94.png'),
+(259, 'images/32b2a778-9117-4ec2-b2eb-e767c6fdd1dd.png'),
 (135, 'images/354267c0-fa7b-4956-a8b0-e99953157a53.png'),
+(279, 'images/37b8d03b-a7ff-4741-ac26-17481532e0a9.png'),
 (207, 'images/37fd4704-5cec-4e1f-a16a-9277a97581f7.jpeg'),
 (131, 'images/39005b87-170c-4cd2-a3ed-e5b129e1d188.png'),
 (181, 'images/3a4447ed-d79d-4ac4-9f78-ac0d193d076b.png'),
 (154, 'images/3a7f35b4-9dc8-4760-bb32-bc310423330a.png'),
 (160, 'images/3ae753b4-4fed-4293-924d-a0b4a8cdeba0.png'),
+(271, 'images/3bcd67c8-11f3-40c3-8eee-3f827ad7ecae.png'),
 (177, 'images/3cb29dc3-99f1-4a27-b06b-efafe367409d.png'),
 (191, 'images/3cfca509-f0d5-4b87-abb2-6918108ba767.png'),
 (227, 'images/3f8258cd-9bfd-41e7-a545-77dd4dac23b7.png'),
+(266, 'images/41921036-0423-4e16-9355-c6a399321daa.png'),
 (237, 'images/44295637-d29f-4183-a846-84a76b61aae4.png'),
+(268, 'images/4523af16-c13c-4698-9406-45d65c5a90b4.png'),
 (165, 'images/455dd021-35ea-4a47-8f5a-76999cb69ac6.png'),
+(263, 'images/46e2cc72-66d8-4c0b-89f4-2ca9faabbfbd.png'),
 (231, 'images/4a708182-bc80-4448-b095-3a72d3491a40.png'),
 (140, 'images/4b971c00-d30c-4f11-99a4-5a1a0a69275d.png'),
 (157, 'images/4e1d5f19-2d9f-4cee-b5ba-409f9080ceec.png'),
+(276, 'images/4edaacc2-f953-4c8b-a3da-7afe01bf8755.png'),
 (163, 'images/516708df-0bfc-44e0-86e0-d69df5f30efa.png'),
 (137, 'images/55d69856-d189-41eb-ac6d-4d7c36a99b8f.png'),
 (218, 'images/55db4a75-8226-4408-a3bf-28e39f1fd30c.png'),
+(265, 'images/56819174-09fa-4dd6-b5ff-e1eedff99ba3.png'),
 (234, 'images/5e03f8f3-13d6-465a-ac48-73f25759d18c.jpeg'),
 (222, 'images/5eff62e8-1f2d-4454-8a22-faa28ed78377.png'),
+(267, 'images/5f3e446b-0e1d-4b48-8e2e-c02060cfbeb9.png'),
 (248, 'images/600b6229-0366-4ed0-aa34-be2605b0afcf.png'),
+(283, 'images/60139a60-9138-4fef-a3bd-26d38cb4078b.png'),
 (201, 'images/607b4764-06bb-4c43-84f6-547261340439.png'),
 (243, 'images/6243410a-c40b-44ce-9c13-771ab76e63d7.png'),
 (211, 'images/64dc51bf-caeb-4368-8789-e001a30a63d4.png'),
 (190, 'images/6637413d-9313-4dea-966a-597c30ad2576.png'),
 (235, 'images/68126a92-cdce-4bd2-8921-144a8f4be170.png'),
+(253, 'images/686c4424-2f81-47c9-a6df-efa961aa0554.png'),
 (250, 'images/68e1243c-0fa6-433e-bbca-29710361d93b.png'),
 (244, 'images/6f20fd1b-3a37-4387-a9ed-a470ed06744a.png'),
 (215, 'images/6f6095ca-177b-4ab9-a1ea-a55af08d9cc7.png'),
+(258, 'images/7118d595-28a7-476e-a9c5-df4a35670393.png'),
 (176, 'images/7254ec03-0c9e-4ef2-a111-d4e5cde1ae7e.png'),
 (209, 'images/73690ae4-0664-4461-ab8a-374baf547afc.png'),
+(284, 'images/74e5ca06-7bfa-494e-af8a-01d71ea270fd.png'),
 (146, 'images/74f056e4-c2ad-4325-919f-e909737eb063.png'),
+(270, 'images/7536bff4-85bd-433d-8bd2-3ec9b267871b.png'),
 (225, 'images/76c62fcc-1eb4-4b9b-aa62-7f617f98a4ab.png'),
 (145, 'images/76cdaf0e-867a-4ea2-a19e-3760fa7f4f40.png'),
+(272, 'images/787cb423-3967-48cb-b2e5-441e73561cfa.png'),
 (174, 'images/7f0c37cb-5fa5-4c1f-a958-c3c28b676a1a.png'),
+(274, 'images/7ff63029-7e64-49bd-8dc1-c4a17cbc39d4.png'),
 (158, 'images/80081115-e8a0-420b-b65d-4580eaa9a138.png'),
 (242, 'images/81d9d811-c2c1-4f25-870a-923696cdddb5.jpeg'),
 (214, 'images/86113245-090d-499a-baf4-9f6067effc6f.png'),
@@ -327,8 +355,12 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (228, 'images/96635af4-fe5b-45b3-8d56-1402d238525b.png'),
 (210, 'images/994be2e8-bb06-4bed-bcb3-1fe12d7748d0.png'),
 (151, 'images/99dc1977-7c1f-47d0-adff-9baa23909830.png'),
+(269, 'images/9a5e0129-96c0-468c-beb2-ddc514dfe833.png'),
 (155, 'images/9b02c0ed-9c69-4405-8049-db3cf672d8d2.png'),
 (194, 'images/9b687ee9-7237-4d94-9082-2c148e886ee6.png'),
+(282, 'images/9d221c45-1b50-469f-88a0-b4a70360811e.png'),
+(275, 'images/a226fb1d-1810-41f8-8a66-9f7b59266b3e.png'),
+(273, 'images/a36d832e-e579-4b33-ac03-0de655eeda93.png'),
 (199, 'images/a512b904-17c0-4102-b402-34313c8610ff.png'),
 (147, 'images/a5227972-a389-4ff4-b9ec-15ed5ae08d0e.png'),
 (220, 'images/a56ab9b1-d45b-4573-afcf-c3e37992ef6f.png'),
@@ -341,18 +373,25 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (247, 'images/b14eb96a-6269-48ba-89c5-e20ab7d960ab.png'),
 (166, 'images/b156a4b7-9cd2-4163-892b-f9390e70cc60.png'),
 (132, 'images/b17d7a98-7095-461e-be2d-d7d75e24d2d8.png'),
+(260, 'images/b4e0f947-6999-4255-8e60-49b7cfbe6662.png'),
 (223, 'images/b5b6a715-6c6d-40a9-acb4-6907ab41f897.png'),
+(256, 'images/b5dd06b6-2c36-4433-a8af-b38292620dab.png'),
 (193, 'images/b6af99ae-30f2-43d0-8751-b4cbc6e50cb7.png'),
 (197, 'images/b85dd5cf-5d23-47c2-9428-95a465a976bc.png'),
 (233, 'images/b91e2a44-8ca7-4071-b02f-3cf440c0f44e.jpeg'),
+(277, 'images/b94a68c2-2936-4678-b747-bb7600ba56e2.png'),
 (143, 'images/bc9dbd77-f6f2-4a52-8bd5-835ea24d25e8.png'),
 (172, 'images/bffab1d2-a797-4ed4-bcd3-4655a4dded39.png'),
+(264, 'images/c09d3d5c-50f6-4c87-b084-a6f8f14b32f6.png'),
 (185, 'images/c3079851-c69d-4816-9929-4a2c3a81561a.png'),
 (133, 'images/c5bc838c-6ff3-4b85-8f3d-475d633dd615.png'),
 (144, 'images/c822f382-332d-4fc7-ad82-76d6b64985ca.png'),
+(257, 'images/cac283da-ae4d-4bb3-843a-1cb1ac797e22.png'),
+(285, 'images/cadd2a7b-2b87-4570-b524-bd227d90806f.png'),
 (219, 'images/cee7216e-8642-4aa5-a657-fecc6f32d398.png'),
 (241, 'images/d01c1638-4364-4917-894f-1dc90e17f4bc.jpeg'),
 (136, 'images/d17d3dca-0102-4363-b9d4-398fc4f8ccf1.png'),
+(254, 'images/d232caec-5b84-497b-818e-716c8c712eb9.png'),
 (175, 'images/d7b25a15-dcaf-488b-95b9-94074c160427.png'),
 (240, 'images/d88e2a36-199d-4210-bc21-edb2355839e2.png'),
 (179, 'images/daf9f058-116f-4214-994e-aa7c4da5d298.png'),
@@ -361,7 +400,9 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (138, 'images/e0996df4-c13a-4b29-b20e-f011136f556d.png'),
 (229, 'images/e49f45bb-519c-4ef9-b4c5-d793466ab4ca.png'),
 (246, 'images/e50bdca9-8345-421b-a5ff-26b691cd0185.jpeg'),
+(280, 'images/e76a01b7-283e-4514-a258-14403bc16127.png'),
 (249, 'images/e862a865-513b-42c1-b27d-5858b2497d75.png'),
+(281, 'images/eaa8755a-176b-479c-8840-18bfa21e8540.png'),
 (204, 'images/ec45a13f-d017-49a5-911f-a061f2ed2a21.jpeg'),
 (171, 'images/ed0b7da6-da5e-4260-8e63-42deaa312eb2.png'),
 (226, 'images/ed0fed34-6aa5-4c3d-80c9-d4d43ec84c3f.png'),
@@ -371,10 +412,12 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (189, 'images/f057ff66-8228-45e3-afec-47f7f395ea70.png'),
 (195, 'images/f452dddc-2ace-4777-b95e-d3b6ef2c6e98.png'),
 (196, 'images/f5997997-8302-44ed-8c5d-d8777ceb52fd.png'),
+(252, 'images/f6b32138-c91f-444a-b235-56070a852160.png'),
 (203, 'images/f7c14e33-5fca-417f-9921-412f19fef369.jpeg'),
 (200, 'images/fa9e602c-fb1d-4a8f-b6f8-6e61b151bed8.png'),
 (161, 'images/faeb2d95-a5e6-4cdc-9050-32063c5f86f8.png'),
 (238, 'images/fb2f6295-7113-402d-b3e8-b7d8b25e48c1.jpeg'),
+(255, 'images/fc9a410e-0276-4d24-9851-a26e7c2a16be.png'),
 (182, 'images/ff63222d-f888-4d0a-b3d6-26f92d401efb.png');
 
 -- --------------------------------------------------------
@@ -513,7 +556,42 @@ INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
 (234, 247, 84),
 (235, 248, 84),
 (236, 249, 84),
-(237, 250, 84);
+(237, 250, 84),
+(239, 252, 86),
+(240, 253, 86),
+(241, 254, 86),
+(242, 255, 86),
+(243, 256, 86),
+(244, 257, 86),
+(245, 258, 86),
+(246, 259, 87),
+(247, 260, 87),
+(248, 261, 87),
+(249, 262, 87),
+(250, 263, 87),
+(251, 264, 87),
+(252, 265, 87),
+(253, 266, 88),
+(254, 267, 88),
+(255, 268, 88),
+(256, 269, 88),
+(257, 270, 88),
+(258, 271, 88),
+(259, 272, 88),
+(260, 273, 89),
+(261, 274, 89),
+(262, 275, 89),
+(263, 276, 89),
+(264, 277, 89),
+(265, 278, 89),
+(266, 279, 89),
+(267, 280, 90),
+(268, 281, 90),
+(269, 282, 90),
+(270, 283, 90),
+(271, 284, 90),
+(272, 285, 90),
+(273, 286, 90);
 
 -- --------------------------------------------------------
 
@@ -553,9 +631,12 @@ INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) 
 (103, 2, 1, 'NIKE AIR MAX DN', 'DDDSD'),
 (71, 2, 1, 'NIKE AIR MAX PLUS', 'Scopri la leggendaria tecnologia Tuned Air con queste scarpe confortevoli. Con l\'iconica gabbia a forma di fiamma e la coda di balena vicino all\'arco plantare, questa Air Max Plus sfoggia vivaci tocchi di colore per un look che non passa inosservato nel tempo libero. '),
 (102, 2, 1, 'NIKE DUNK SB LOW PRO', 'Una scarpa da skateboard classica, perfetta sulla tavola e per qualsiasi occasione. Questa versione esclusiva di Dunk Low e realizzata in pelle e presenta un battistrada in gomma per un tocco di fascino in piu a ogni trick. Inoltre, la traspirante linguetta in tessuto e l ammortizzazione Zoom Air sotto il piede regalano leggerezza anche durante le session piu lunghe sullo skate. E poi ce lo Swoosh, per un tocco di contrasto in piu. E uno stile ancora piu d\'impatto.'),
+(116, 2, 1, 'NOCTA AIR FORCE 1 LOW', 'Qual e\' il tuo libro per bambini preferito? Nate per rendere omaggio all\'amore dei genitori e alla storia che la madre di Drake leggeva a suo figlio, NOCTA Air Force 1 Low arricchisce l\'iconico stile da basket con dettagli tratti dalle classiche storie per bambini. Sull\'intersuola e\' presente la scritta \'Love you forever\' e comprende un set di perline (realizzate in NOCTA blu) con cui puoi scrivere la tua ninna nanna sui lacci.'),
 (106, 4, 1, 'AIR JORDAN 1 LOW G', 'Dai il massimo dalla prima all\'ultima buca. Ispirata a una delle sneakers piu\' iconiche di tutti i tempi, Air Jordan 1 G e subito un classico sul green. Dotata di ammortizzazione Air sotto il piede, con il logo Wings sul tallone e una struttura a trazione integrata per offrire il massimo della potenza a ogni swing, la scarpa ha il classico stile da circolo sportivo della AJ1 originale e tutto quel che serve per giocare nel massimo comfort fino alla diciottesima buca.'),
+(117, 4, 1, 'Nike AIR FORCE 1 07', 'La leggenda continua a risplendere con Nike Air Force 1 \'07. Questo modello originale da basket rivisita tutto cio\' che ami di AF1 con pelle, dettagli d\'impatto e il giusto tocco di visibilita\'. I dettagli lucidi in pelle verniciata e le tonalita\' blu creano un look e una calzata eccezionali, mentre l\'ammortizzazione Air ti dara\' la sensazione di camminare sulle nuvole.'),
 (89, 4, 1, 'NIKE DUNK LOW', 'Creata per il parquet, ma ideale per la citta, torna l icona del basket degli anni Ottanta con strati esterni perfettamente lucidati e colori classici della squadra. Con un iconico design da basket, Nike Dunk Low riporta in strada lo stile vintage degli anni Ottanta, mentre il collare ammortizzato a taglio basso ti fara sentire al meglio ovunque e con il massimo comfort.'),
 (90, 4, 1, 'NIKE DUNK LOW NEXT NATURE', 'Puoi sempre contare su un classico. Dunk Low unisce l\'iconico design in blocchi di colore, materiali pregiati e un\'imbottitura morbida per un comfort rivoluzionario che dura nel tempo. Le possibilita di styling sono infinite: come indosserai le tue Dunk?'),
+(118, 4, 3, 'AIR JORDAN 1 MID', 'Air Jordan 1 Mid combina stile pensato per il campo, comfort eccezionale e look iconico. L\'unita\' Air-Sole ammortizza il passo sul parquet, mentre il collare imbottito assicura il massimo supporto.'),
 (107, 4, 3, 'AIR JORDAN 4 RM', 'Il modello remixato di cui non sapevi di aver bisogno. Pensata per una vita in movimento, questa sneaker reinterpreta AJ4 per offrirti comfort e resistenza. Max Air ammortizza ogni tuo passo. In piu\', abbiamo fuso alcune parti della tomaia in una gabbia robusta e flessibile, che avvolge la scarpa per donare ancora piu\' resistenza ogni giorno.'),
 (108, 5, 3, 'AIR JORDAN 1 LOW', 'Non si puo\' negare che AJ1 sia un classico. Ora torna in auge con pelle, tocchi di colore e classica ammortizzazione Air per uno stile attuale e un comfort costante. Il logo Wings impresso e il Jumpman ricamato aggiungono un tocco di stile ispirato alla leggenda di Jordan che non potrai fare a meno di mettere in mostra.');
 
@@ -626,7 +707,12 @@ INSERT INTO `prodotti` (`id`, `id_modello`, `prezzo`, `stato_pubblicazione`) VAL
 (81, 107, 150, 1),
 (82, 107, 150, 1),
 (83, 108, 70, 1),
-(84, 108, 70, 1);
+(84, 108, 70, 1),
+(86, 116, 150, 1),
+(87, 116, 150, 1),
+(88, 117, 120, 1),
+(89, 118, 130, 1),
+(90, 118, 120, 1);
 
 -- --------------------------------------------------------
 
@@ -689,7 +775,6 @@ CREATE TABLE `taglie_has_prodotti` (
 --
 
 INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`) VALUES
-(458, 5, 65, 1),
 (459, 3, 66, 1),
 (460, 5, 67, 1),
 (462, 5, 69, 1),
@@ -700,11 +785,6 @@ INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`)
 (471, 3, 70, 1),
 (472, 4, 70, 1),
 (473, 14, 70, 1),
-(474, 3, 71, 1),
-(475, 13, 71, 1),
-(476, 3, 72, 1),
-(477, 5, 72, 1),
-(478, 7, 72, 1),
 (479, 2, 73, 1),
 (480, 3, 73, 1),
 (481, 4, 73, 1),
@@ -746,7 +826,23 @@ INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`)
 (519, 4, 83, 1),
 (520, 5, 83, 1),
 (521, 6, 83, 1),
-(522, 3, 84, 1);
+(522, 3, 84, 1),
+(528, 5, 65, 1),
+(529, 7, 65, 1),
+(530, 3, 72, 1),
+(531, 5, 72, 1),
+(532, 7, 72, 1),
+(535, 3, 71, 1),
+(536, 13, 71, 1),
+(537, 13, 86, 2),
+(538, 15, 86, 1),
+(539, 19, 87, 2),
+(540, 5, 88, 1),
+(541, 7, 88, 1),
+(542, 9, 88, 1),
+(543, 3, 89, 1),
+(544, 3, 90, 1),
+(545, 5, 90, 1);
 
 -- --------------------------------------------------------
 
@@ -961,7 +1057,7 @@ ALTER TABLE `colore`
 -- AUTO_INCREMENT per la tabella `colore_has_prodotti`
 --
 ALTER TABLE `colore_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=280;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=296;
 
 --
 -- AUTO_INCREMENT per la tabella `customers`
@@ -991,19 +1087,19 @@ ALTER TABLE `fornitori_has_prodotti`
 -- AUTO_INCREMENT per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=251;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=287;
 
 --
 -- AUTO_INCREMENT per la tabella `immagini_has_prodotti`
 --
 ALTER TABLE `immagini_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=238;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=274;
 
 --
 -- AUTO_INCREMENT per la tabella `modello`
 --
 ALTER TABLE `modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -1015,7 +1111,7 @@ ALTER TABLE `ordine`
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT per la tabella `taglia`
@@ -1027,7 +1123,7 @@ ALTER TABLE `taglia`
 -- AUTO_INCREMENT per la tabella `taglie_has_prodotti`
 --
 ALTER TABLE `taglie_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=523;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=546;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
