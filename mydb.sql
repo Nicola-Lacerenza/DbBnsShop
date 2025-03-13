@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Mar 11, 2025 alle 22:49
+-- Creato il: Mar 13, 2025 alle 22:44
 -- Versione del server: 5.7.24
 -- Versione PHP: 8.3.1
 
@@ -184,26 +184,13 @@ INSERT INTO `colore_has_prodotti` (`id`, `id_colore`, `id_prodotto`) VALUES
 (287, 4, 71),
 (288, 4, 86),
 (289, 3, 87),
-(290, 1, 88),
-(291, 4, 88),
 (292, 7, 89),
 (293, 4, 89),
 (294, 4, 90),
-(295, 13, 90);
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `customers`
---
-
-CREATE TABLE `customers` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(45) NOT NULL,
-  `cognome` varchar(45) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `telefono` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+(295, 13, 90),
+(298, 1, 88),
+(299, 4, 88),
+(300, 4, 91);
 
 -- --------------------------------------------------------
 
@@ -264,6 +251,7 @@ CREATE TABLE `immagini` (
 --
 
 INSERT INTO `immagini` (`id`, `url`) VALUES
+(290, 'images/00a83ce4-e272-45c4-9739-2d30df90e17a.jpeg'),
 (152, 'images/0223ac22-0bc1-4a23-9d69-29b95964d3e5.png'),
 (159, 'images/0397e6bd-4f33-4ea4-bbeb-7d156baf1ac8.png'),
 (167, 'images/06e7e8cd-e263-433d-9b75-e236d39d75d8.png'),
@@ -320,6 +308,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (248, 'images/600b6229-0366-4ed0-aa34-be2605b0afcf.png'),
 (283, 'images/60139a60-9138-4fef-a3bd-26d38cb4078b.png'),
 (201, 'images/607b4764-06bb-4c43-84f6-547261340439.png'),
+(288, 'images/610d88d3-84cb-4b0b-a9d0-c9222bf67277.png'),
 (243, 'images/6243410a-c40b-44ce-9c13-771ab76e63d7.png'),
 (211, 'images/64dc51bf-caeb-4368-8789-e001a30a63d4.png'),
 (190, 'images/6637413d-9313-4dea-966a-597c30ad2576.png'),
@@ -349,10 +338,12 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (202, 'images/8c5e3b9b-5dae-4117-924d-67f58d92fccd.jpeg'),
 (150, 'images/8c805ed6-c47c-48b5-b13c-42a52372c9d5.png'),
 (198, 'images/8f379d39-ed60-4b39-905f-0fdec821a51e.png'),
+(287, 'images/915520a3-28f5-4044-a4a7-36c34446930b.png'),
 (141, 'images/92095959-7a86-4080-98ef-b810970c6814.png'),
 (217, 'images/92773a65-42d4-43af-bbf0-02873c0f566d.png'),
 (173, 'images/940731ea-b9bd-4e04-b4cd-e57a830db453.png'),
 (228, 'images/96635af4-fe5b-45b3-8d56-1402d238525b.png'),
+(292, 'images/9667b7dc-a403-4e66-bc1b-64126022465f.png'),
 (210, 'images/994be2e8-bb06-4bed-bcb3-1fe12d7748d0.png'),
 (151, 'images/99dc1977-7c1f-47d0-adff-9baa23909830.png'),
 (269, 'images/9a5e0129-96c0-468c-beb2-ddc514dfe833.png'),
@@ -368,7 +359,9 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (162, 'images/abdd36ad-42a3-4bea-85d9-55fe67b72935.png'),
 (232, 'images/ac388828-bef8-4f87-89f2-3a098185f78e.jpeg'),
 (212, 'images/ac3a8b5e-166d-4581-8ccd-aafd97286410.png'),
+(291, 'images/acaa8faa-06d0-4eb7-a360-764168ae2136.png'),
 (169, 'images/adc086b7-779b-4738-9ba7-045a4310da49.png'),
+(289, 'images/adfbdcb5-c35c-4f19-beb3-c41954d903b9.png'),
 (149, 'images/afad54a0-bacf-419f-97ba-cd263506d2e3.png'),
 (247, 'images/b14eb96a-6269-48ba-89c5-e20ab7d960ab.png'),
 (166, 'images/b156a4b7-9cd2-4163-892b-f9390e70cc60.png'),
@@ -591,21 +584,43 @@ INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
 (270, 283, 90),
 (271, 284, 90),
 (272, 285, 90),
-(273, 286, 90);
+(273, 286, 90),
+(274, 287, 91),
+(275, 288, 91),
+(276, 289, 91),
+(277, 290, 91),
+(278, 291, 91),
+(279, 292, 91);
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `indirizzo`
+-- Struttura della tabella `indirizzi`
 --
 
-CREATE TABLE `indirizzo` (
+CREATE TABLE `indirizzi` (
   `id` int(11) NOT NULL,
+  `id_utente` int(11) NOT NULL,
+  `nome` varchar(45) NOT NULL,
+  `cognome` varchar(45) NOT NULL,
   `citta` varchar(45) NOT NULL,
   `stato` varchar(45) NOT NULL,
   `cap` int(11) NOT NULL,
   `indirizzo` varchar(45) NOT NULL,
-  `id_customers` int(11) NOT NULL
+  `email` varchar(45) NOT NULL,
+  `numero_telefono` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `indirizzi_has_utenti`
+--
+
+CREATE TABLE `indirizzi_has_utenti` (
+  `id` int(11) NOT NULL,
+  `id_utente` int(11) NOT NULL,
+  `id_indirizzo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -628,6 +643,7 @@ CREATE TABLE `modello` (
 
 INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) VALUES
 (104, 2, 1, 'Nike AIR FORCE 1 07', 'Confortevole, resistente e intramontabile: e la numero 1 per una ragione. La classica fattura anni Ottanta si unisce alla morbida pelle e ai dettagli d\'impatto per uno stile che lascia il segno in campo e nel tempo libero.'),
+(121, 2, 1, 'NIKE AIR MAX 270', 'Nike Air Max 270, la prima Nike Air Max di Nike per il tempo libero, offre stile, comfort e carattere. Il design, ispirato alle icone Air Max, rende visibile l\'innovativa tecnologia Nike con un\'ampia finestra e una nuova gamma di colori.'),
 (103, 2, 1, 'NIKE AIR MAX DN', 'DDDSD'),
 (71, 2, 1, 'NIKE AIR MAX PLUS', 'Scopri la leggendaria tecnologia Tuned Air con queste scarpe confortevoli. Con l\'iconica gabbia a forma di fiamma e la coda di balena vicino all\'arco plantare, questa Air Max Plus sfoggia vivaci tocchi di colore per un look che non passa inosservato nel tempo libero. '),
 (102, 2, 1, 'NIKE DUNK SB LOW PRO', 'Una scarpa da skateboard classica, perfetta sulla tavola e per qualsiasi occasione. Questa versione esclusiva di Dunk Low e realizzata in pelle e presenta un battistrada in gomma per un tocco di fascino in piu a ogni trick. Inoltre, la traspirante linguetta in tessuto e l ammortizzazione Zoom Air sotto il piede regalano leggerezza anche durante le session piu lunghe sullo skate. E poi ce lo Swoosh, per un tocco di contrasto in piu. E uno stile ancora piu d\'impatto.'),
@@ -648,7 +664,7 @@ INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) 
 
 CREATE TABLE `ordine` (
   `id` int(11) NOT NULL,
-  `id_customers` int(11) NOT NULL,
+  `id_utente` int(11) NOT NULL,
   `id_pagamento` int(11) NOT NULL,
   `id_indirizzo` int(11) NOT NULL,
   `stato_ordine` varchar(45) NOT NULL,
@@ -658,16 +674,28 @@ CREATE TABLE `ordine` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `pagamento`
+-- Struttura della tabella `pagamenti`
 --
 
-CREATE TABLE `pagamento` (
+CREATE TABLE `pagamenti` (
   `id` int(11) NOT NULL,
+  `id_utente` int(11) NOT NULL,
   `nome_titolare` varchar(45) NOT NULL,
   `numero_carta` int(11) NOT NULL,
   `data_scadenza` date NOT NULL,
-  `codice_verfica` varchar(45) NOT NULL,
-  `id_customers` int(11) NOT NULL
+  `codice_verfica` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `pagamenti_has_utenti`
+--
+
+CREATE TABLE `pagamenti_has_utenti` (
+  `id` int(11) NOT NULL,
+  `id_utente` int(11) NOT NULL,
+  `id_pagamento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -712,7 +740,8 @@ INSERT INTO `prodotti` (`id`, `id_modello`, `prezzo`, `stato_pubblicazione`) VAL
 (87, 116, 150, 1),
 (88, 117, 120, 1),
 (89, 118, 130, 1),
-(90, 118, 120, 1);
+(90, 118, 120, 1),
+(91, 121, 150, 1);
 
 -- --------------------------------------------------------
 
@@ -837,12 +866,13 @@ INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`)
 (537, 13, 86, 2),
 (538, 15, 86, 1),
 (539, 19, 87, 2),
-(540, 5, 88, 1),
-(541, 7, 88, 1),
-(542, 9, 88, 1),
 (543, 3, 89, 1),
 (544, 3, 90, 1),
-(545, 5, 90, 1);
+(545, 5, 90, 1),
+(549, 5, 88, 1),
+(550, 7, 88, 1),
+(551, 9, 88, 1),
+(552, 5, 91, 1);
 
 -- --------------------------------------------------------
 
@@ -919,12 +949,6 @@ ALTER TABLE `colore_has_prodotti`
   ADD KEY `fk_COLORE_has_MODELLO_MODELLO` (`id_prodotto`);
 
 --
--- Indici per le tabelle `customers`
---
-ALTER TABLE `customers`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indici per le tabelle `dettagli_ordine`
 --
 ALTER TABLE `dettagli_ordine`
@@ -961,11 +985,19 @@ ALTER TABLE `immagini_has_prodotti`
   ADD KEY `fk_IMMAGINI_has_PRODOTTI_PRODOTTI1` (`id_prodotto`);
 
 --
--- Indici per le tabelle `indirizzo`
+-- Indici per le tabelle `indirizzi`
 --
-ALTER TABLE `indirizzo`
+ALTER TABLE `indirizzi`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_INDIRIZZO_CUSTOMERS1` (`id_customers`);
+  ADD KEY `fk_INDIRIZZO_UTENTI` (`id_utente`);
+
+--
+-- Indici per le tabelle `indirizzi_has_utenti`
+--
+ALTER TABLE `indirizzi_has_utenti`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_INDIRIZZI_has_UTENTI_INDIRIZZO` (`id_indirizzo`),
+  ADD KEY `fk_INDIRIZZI_has_UTENTI_UTENTE` (`id_utente`);
 
 --
 -- Indici per le tabelle `modello`
@@ -981,16 +1013,24 @@ ALTER TABLE `modello`
 --
 ALTER TABLE `ordine`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_ORDINE_CUSTOMERS1` (`id_customers`),
+  ADD KEY `fk_ORDINE_CUSTOMERS1` (`id_utente`),
   ADD KEY `fk_ORDINE_INDIRIZZO1` (`id_indirizzo`),
   ADD KEY `fk_ORDINE_PAGAMENTO1` (`id_pagamento`);
 
 --
--- Indici per le tabelle `pagamento`
+-- Indici per le tabelle `pagamenti`
 --
-ALTER TABLE `pagamento`
+ALTER TABLE `pagamenti`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_PAGAMENTO_CUSTOMERS1` (`id_customers`);
+  ADD KEY `fk_PAGAMENTO_CUSTOMERS1` (`id_utente`);
+
+--
+-- Indici per le tabelle `pagamenti_has_utenti`
+--
+ALTER TABLE `pagamenti_has_utenti`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_PAGAMENTI_has_UTENTI_PAGAMENTO` (`id_pagamento`),
+  ADD KEY `fk_PAGAMENTI_has_UTENTI_UTENTE` (`id_utente`);
 
 --
 -- Indici per le tabelle `prodotti`
@@ -1057,13 +1097,7 @@ ALTER TABLE `colore`
 -- AUTO_INCREMENT per la tabella `colore_has_prodotti`
 --
 ALTER TABLE `colore_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=296;
-
---
--- AUTO_INCREMENT per la tabella `customers`
---
-ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=301;
 
 --
 -- AUTO_INCREMENT per la tabella `dettagli_ordine`
@@ -1087,19 +1121,25 @@ ALTER TABLE `fornitori_has_prodotti`
 -- AUTO_INCREMENT per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=287;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=293;
 
 --
 -- AUTO_INCREMENT per la tabella `immagini_has_prodotti`
 --
 ALTER TABLE `immagini_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=274;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=280;
+
+--
+-- AUTO_INCREMENT per la tabella `indirizzi_has_utenti`
+--
+ALTER TABLE `indirizzi_has_utenti`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `modello`
 --
 ALTER TABLE `modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -1108,10 +1148,16 @@ ALTER TABLE `ordine`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT per la tabella `pagamenti_has_utenti`
+--
+ALTER TABLE `pagamenti_has_utenti`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT per la tabella `taglia`
@@ -1123,7 +1169,7 @@ ALTER TABLE `taglia`
 -- AUTO_INCREMENT per la tabella `taglie_has_prodotti`
 --
 ALTER TABLE `taglie_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=546;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=553;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
@@ -1172,10 +1218,17 @@ ALTER TABLE `immagini_has_prodotti`
   ADD CONSTRAINT `fk_IMMAGINI_has_PRODOTTI_PRODOTTI1` FOREIGN KEY (`id_prodotto`) REFERENCES `prodotti` (`id`);
 
 --
--- Limiti per la tabella `indirizzo`
+-- Limiti per la tabella `indirizzi`
 --
-ALTER TABLE `indirizzo`
-  ADD CONSTRAINT `fk_INDIRIZZO_CUSTOMERS1` FOREIGN KEY (`id_customers`) REFERENCES `customers` (`id`);
+ALTER TABLE `indirizzi`
+  ADD CONSTRAINT `fk_INDIRIZZO_UTENTI` FOREIGN KEY (`id_utente`) REFERENCES `utenti` (`id`);
+
+--
+-- Limiti per la tabella `indirizzi_has_utenti`
+--
+ALTER TABLE `indirizzi_has_utenti`
+  ADD CONSTRAINT `fk_INDIRIZZI_has_UTENTI_INDIRIZZO` FOREIGN KEY (`id_indirizzo`) REFERENCES `indirizzi` (`id`),
+  ADD CONSTRAINT `fk_INDIRIZZI_has_UTENTI_UTENTE` FOREIGN KEY (`id_utente`) REFERENCES `utenti` (`id`);
 
 --
 -- Limiti per la tabella `modello`
@@ -1188,15 +1241,22 @@ ALTER TABLE `modello`
 -- Limiti per la tabella `ordine`
 --
 ALTER TABLE `ordine`
-  ADD CONSTRAINT `fk_ORDINE_CUSTOMERS1` FOREIGN KEY (`id_customers`) REFERENCES `customers` (`id`),
-  ADD CONSTRAINT `fk_ORDINE_INDIRIZZO1` FOREIGN KEY (`id_indirizzo`) REFERENCES `indirizzo` (`id`),
-  ADD CONSTRAINT `fk_ORDINE_PAGAMENTO1` FOREIGN KEY (`id_pagamento`) REFERENCES `pagamento` (`id`);
+  ADD CONSTRAINT `fk_ORDINE_CUSTOMERS1` FOREIGN KEY (`id_utente`) REFERENCES `utenti` (`id`),
+  ADD CONSTRAINT `fk_ORDINE_INDIRIZZO1` FOREIGN KEY (`id_indirizzo`) REFERENCES `indirizzi` (`id`),
+  ADD CONSTRAINT `fk_ORDINE_PAGAMENTO1` FOREIGN KEY (`id_pagamento`) REFERENCES `pagamenti` (`id`);
 
 --
--- Limiti per la tabella `pagamento`
+-- Limiti per la tabella `pagamenti`
 --
-ALTER TABLE `pagamento`
-  ADD CONSTRAINT `fk_PAGAMENTO_CUSTOMERS1` FOREIGN KEY (`id_customers`) REFERENCES `customers` (`id`);
+ALTER TABLE `pagamenti`
+  ADD CONSTRAINT `fk_PAGAMENTO_CUSTOMERS1` FOREIGN KEY (`id_utente`) REFERENCES `utenti` (`id`);
+
+--
+-- Limiti per la tabella `pagamenti_has_utenti`
+--
+ALTER TABLE `pagamenti_has_utenti`
+  ADD CONSTRAINT `fk_PAGAMENTI_has_UTENTI_PAGAMENTO` FOREIGN KEY (`id_pagamento`) REFERENCES `pagamenti` (`id`),
+  ADD CONSTRAINT `fk_PAGAMENTI_has_UTENTI_UTENTE` FOREIGN KEY (`id_utente`) REFERENCES `utenti` (`id`);
 
 --
 -- Limiti per la tabella `prodotti`
