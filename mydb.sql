@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Mar 13, 2025 alle 22:44
+-- Creato il: Mar 15, 2025 alle 19:46
 -- Versione del server: 5.7.24
 -- Versione PHP: 8.3.1
 
@@ -190,7 +190,9 @@ INSERT INTO `colore_has_prodotti` (`id`, `id_colore`, `id_prodotto`) VALUES
 (295, 13, 90),
 (298, 1, 88),
 (299, 4, 88),
-(300, 4, 91);
+(300, 4, 91),
+(301, 1, 92),
+(302, 11, 93);
 
 -- --------------------------------------------------------
 
@@ -199,11 +201,11 @@ INSERT INTO `colore_has_prodotti` (`id`, `id_colore`, `id_prodotto`) VALUES
 --
 
 CREATE TABLE `dettagli_ordine` (
-  `id_prodotti` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `id_ordine` int(11) NOT NULL,
+  `id_prodotto` int(11) NOT NULL,
   `quantita` int(11) NOT NULL,
-  `codice_sconto` int(11) NOT NULL,
-  `spedizione` varchar(45) NOT NULL
+  `codice_sconto` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -256,11 +258,14 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (159, 'images/0397e6bd-4f33-4ea4-bbeb-7d156baf1ac8.png'),
 (167, 'images/06e7e8cd-e263-433d-9b75-e236d39d75d8.png'),
 (261, 'images/07f8d607-b183-4e4a-bc20-e224e6bc1154.png'),
+(300, 'images/08f74ad5-aea1-4b46-a686-7a4659588ee6.png'),
 (206, 'images/0bded708-c8a9-4907-abc7-2ce70ad89c19.jpeg'),
 (164, 'images/115d7358-4c5c-4752-acf3-84c52e7512e2.png'),
 (170, 'images/12aefe28-20cc-4974-b723-bd1d6e17123b.png'),
 (262, 'images/13daea38-474f-47f8-8e67-97af9502273a.png'),
+(297, 'images/1457a357-d2f0-4c4c-bb8e-8e6333aef059.jpg'),
 (192, 'images/15d1fd3f-f4fc-4c88-ab6a-325b7e48544c.png'),
+(299, 'images/16a2443d-6bc0-4805-a888-af1c3fad6a94.png'),
 (186, 'images/1701e614-6828-4eae-ba23-21321c1b99bf.png'),
 (205, 'images/17a36a05-97a8-4649-bc21-e024cd3b913b.jpeg'),
 (148, 'images/1caa3950-412c-4cf3-9057-2fc43757a8dc.png'),
@@ -289,10 +294,12 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (177, 'images/3cb29dc3-99f1-4a27-b06b-efafe367409d.png'),
 (191, 'images/3cfca509-f0d5-4b87-abb2-6918108ba767.png'),
 (227, 'images/3f8258cd-9bfd-41e7-a545-77dd4dac23b7.png'),
+(295, 'images/402d4020-3989-4de6-bce1-c10589a23d1a.jpg'),
 (266, 'images/41921036-0423-4e16-9355-c6a399321daa.png'),
 (237, 'images/44295637-d29f-4183-a846-84a76b61aae4.png'),
 (268, 'images/4523af16-c13c-4698-9406-45d65c5a90b4.png'),
 (165, 'images/455dd021-35ea-4a47-8f5a-76999cb69ac6.png'),
+(298, 'images/45d733ac-7d1e-44af-9390-377b69db0ccc.png'),
 (263, 'images/46e2cc72-66d8-4c0b-89f4-2ca9faabbfbd.png'),
 (231, 'images/4a708182-bc80-4448-b095-3a72d3491a40.png'),
 (140, 'images/4b971c00-d30c-4f11-99a4-5a1a0a69275d.png'),
@@ -303,6 +310,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (218, 'images/55db4a75-8226-4408-a3bf-28e39f1fd30c.png'),
 (265, 'images/56819174-09fa-4dd6-b5ff-e1eedff99ba3.png'),
 (234, 'images/5e03f8f3-13d6-465a-ac48-73f25759d18c.jpeg'),
+(293, 'images/5e9958d3-220a-4326-a133-b0e1f6f49646.jpg'),
 (222, 'images/5eff62e8-1f2d-4454-8a22-faa28ed78377.png'),
 (267, 'images/5f3e446b-0e1d-4b48-8e2e-c02060cfbeb9.png'),
 (248, 'images/600b6229-0366-4ed0-aa34-be2605b0afcf.png'),
@@ -319,6 +327,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (215, 'images/6f6095ca-177b-4ab9-a1ea-a55af08d9cc7.png'),
 (258, 'images/7118d595-28a7-476e-a9c5-df4a35670393.png'),
 (176, 'images/7254ec03-0c9e-4ef2-a111-d4e5cde1ae7e.png'),
+(303, 'images/72ed1a68-ad8d-484d-a0f3-4d6f080fa24d.png'),
 (209, 'images/73690ae4-0664-4461-ab8a-374baf547afc.png'),
 (284, 'images/74e5ca06-7bfa-494e-af8a-01d71ea270fd.png'),
 (146, 'images/74f056e4-c2ad-4325-919f-e909737eb063.png'),
@@ -329,6 +338,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (174, 'images/7f0c37cb-5fa5-4c1f-a958-c3c28b676a1a.png'),
 (274, 'images/7ff63029-7e64-49bd-8dc1-c4a17cbc39d4.png'),
 (158, 'images/80081115-e8a0-420b-b65d-4580eaa9a138.png'),
+(302, 'images/804dbdbf-590b-4585-9266-1539a3f35fd7.png'),
 (242, 'images/81d9d811-c2c1-4f25-870a-923696cdddb5.jpeg'),
 (214, 'images/86113245-090d-499a-baf4-9f6067effc6f.png'),
 (180, 'images/86dcdbe6-b2c9-420f-bc18-2502eabf7bb1.png'),
@@ -344,6 +354,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (173, 'images/940731ea-b9bd-4e04-b4cd-e57a830db453.png'),
 (228, 'images/96635af4-fe5b-45b3-8d56-1402d238525b.png'),
 (292, 'images/9667b7dc-a403-4e66-bc1b-64126022465f.png'),
+(296, 'images/98c0b42b-76ed-4f87-9f98-800c2bb4efea.jpg'),
 (210, 'images/994be2e8-bb06-4bed-bcb3-1fe12d7748d0.png'),
 (151, 'images/99dc1977-7c1f-47d0-adff-9baa23909830.png'),
 (269, 'images/9a5e0129-96c0-468c-beb2-ddc514dfe833.png'),
@@ -377,6 +388,8 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (172, 'images/bffab1d2-a797-4ed4-bcd3-4655a4dded39.png'),
 (264, 'images/c09d3d5c-50f6-4c87-b084-a6f8f14b32f6.png'),
 (185, 'images/c3079851-c69d-4816-9929-4a2c3a81561a.png'),
+(301, 'images/c349d9d2-5b8f-4cba-b9e3-2da143cddc00.png'),
+(294, 'images/c3bd2e81-6a65-45dd-9de3-58a884d52026.jpg'),
 (133, 'images/c5bc838c-6ff3-4b85-8f3d-475d633dd615.png'),
 (144, 'images/c822f382-332d-4fc7-ad82-76d6b64985ca.png'),
 (257, 'images/cac283da-ae4d-4bb3-843a-1cb1ac797e22.png'),
@@ -590,7 +603,18 @@ INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
 (276, 289, 91),
 (277, 290, 91),
 (278, 291, 91),
-(279, 292, 91);
+(279, 292, 91),
+(280, 293, 92),
+(281, 294, 92),
+(282, 295, 92),
+(283, 296, 92),
+(284, 297, 92),
+(285, 298, 93),
+(286, 299, 93),
+(287, 300, 93),
+(288, 301, 93),
+(289, 302, 93),
+(290, 303, 93);
 
 -- --------------------------------------------------------
 
@@ -648,6 +672,8 @@ INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) 
 (71, 2, 1, 'NIKE AIR MAX PLUS', 'Scopri la leggendaria tecnologia Tuned Air con queste scarpe confortevoli. Con l\'iconica gabbia a forma di fiamma e la coda di balena vicino all\'arco plantare, questa Air Max Plus sfoggia vivaci tocchi di colore per un look che non passa inosservato nel tempo libero. '),
 (102, 2, 1, 'NIKE DUNK SB LOW PRO', 'Una scarpa da skateboard classica, perfetta sulla tavola e per qualsiasi occasione. Questa versione esclusiva di Dunk Low e realizzata in pelle e presenta un battistrada in gomma per un tocco di fascino in piu a ogni trick. Inoltre, la traspirante linguetta in tessuto e l ammortizzazione Zoom Air sotto il piede regalano leggerezza anche durante le session piu lunghe sullo skate. E poi ce lo Swoosh, per un tocco di contrasto in piu. E uno stile ancora piu d\'impatto.'),
 (116, 2, 1, 'NOCTA AIR FORCE 1 LOW', 'Qual e\' il tuo libro per bambini preferito? Nate per rendere omaggio all\'amore dei genitori e alla storia che la madre di Drake leggeva a suo figlio, NOCTA Air Force 1 Low arricchisce l\'iconico stile da basket con dettagli tratti dalle classiche storie per bambini. Sull\'intersuola e\' presente la scritta \'Love you forever\' e comprende un set di perline (realizzate in NOCTA blu) con cui puoi scrivere la tua ninna nanna sui lacci.'),
+(122, 2, 3, 'AIR JORDAN 4 ABUNDANCE', 'I risultati non arrivano da soli, bisogna conquistarli. AJ4 \"Abundance\" e\' un omaggio alla grinta e al duro lavoro che la nuova generazione di talenti mette in ogni cosa che fa, dentro e fuori dal campo. Questa edizione richiama l\'iconica AJ4 \'\'Pure Money\'\' attraverso finiture color argento metallizzato, perfette per un look moderno, e una colorway in Seafoam e Sail, che offre un tocco di stile discreto.'),
+(123, 2, 3, 'AIR JORDAN 4 NET', 'Questo aggiornamento in grande stile di AJ4 trasforma un classico in un vero e proprio spettacolo. Materiali pregiati come la morbida pelle, donano a questa scarpa un look e una calzata di lusso. I dettagli dorati, come la targhetta staccabile Jumpman, spiccano sulla tomaia Triple White e attirano tutti gli sguardi su di te. Indossala e sfoggia uno stile che non passa inosservato.'),
 (106, 4, 1, 'AIR JORDAN 1 LOW G', 'Dai il massimo dalla prima all\'ultima buca. Ispirata a una delle sneakers piu\' iconiche di tutti i tempi, Air Jordan 1 G e subito un classico sul green. Dotata di ammortizzazione Air sotto il piede, con il logo Wings sul tallone e una struttura a trazione integrata per offrire il massimo della potenza a ogni swing, la scarpa ha il classico stile da circolo sportivo della AJ1 originale e tutto quel che serve per giocare nel massimo comfort fino alla diciottesima buca.'),
 (117, 4, 1, 'Nike AIR FORCE 1 07', 'La leggenda continua a risplendere con Nike Air Force 1 \'07. Questo modello originale da basket rivisita tutto cio\' che ami di AF1 con pelle, dettagli d\'impatto e il giusto tocco di visibilita\'. I dettagli lucidi in pelle verniciata e le tonalita\' blu creano un look e una calzata eccezionali, mentre l\'ammortizzazione Air ti dara\' la sensazione di camminare sulle nuvole.'),
 (89, 4, 1, 'NIKE DUNK LOW', 'Creata per il parquet, ma ideale per la citta, torna l icona del basket degli anni Ottanta con strati esterni perfettamente lucidati e colori classici della squadra. Con un iconico design da basket, Nike Dunk Low riporta in strada lo stile vintage degli anni Ottanta, mentre il collare ammortizzato a taglio basso ti fara sentire al meglio ovunque e con il massimo comfort.'),
@@ -679,7 +705,7 @@ CREATE TABLE `ordine` (
 
 CREATE TABLE `pagamenti` (
   `id` int(11) NOT NULL,
-  `id_utente` int(11) NOT NULL,
+  `id_utente` int(11) DEFAULT NULL,
   `nome_titolare` varchar(45) NOT NULL,
   `numero_carta` int(11) NOT NULL,
   `data_scadenza` date NOT NULL,
@@ -741,7 +767,9 @@ INSERT INTO `prodotti` (`id`, `id_modello`, `prezzo`, `stato_pubblicazione`) VAL
 (88, 117, 120, 1),
 (89, 118, 130, 1),
 (90, 118, 120, 1),
-(91, 121, 150, 1);
+(91, 121, 150, 1),
+(92, 122, 250, 1),
+(93, 123, 250, 1);
 
 -- --------------------------------------------------------
 
@@ -872,7 +900,11 @@ INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`)
 (549, 5, 88, 1),
 (550, 7, 88, 1),
 (551, 9, 88, 1),
-(552, 5, 91, 1);
+(552, 5, 91, 1),
+(553, 5, 92, 1),
+(554, 7, 92, 1),
+(555, 3, 93, 1),
+(556, 5, 93, 1);
 
 -- --------------------------------------------------------
 
@@ -952,8 +984,9 @@ ALTER TABLE `colore_has_prodotti`
 -- Indici per le tabelle `dettagli_ordine`
 --
 ALTER TABLE `dettagli_ordine`
-  ADD PRIMARY KEY (`id_prodotti`,`id_ordine`),
-  ADD KEY `fk_DETTAGLI ORDINE_ORDINE1` (`id_ordine`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_DETTAGLI ORDINE_PRODOTTI` (`id_prodotto`),
+  ADD KEY `fk_DETTAGLI ORDINE_ORDINE` (`id_ordine`);
 
 --
 -- Indici per le tabelle `fornitori`
@@ -1013,9 +1046,9 @@ ALTER TABLE `modello`
 --
 ALTER TABLE `ordine`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_ORDINE_CUSTOMERS1` (`id_utente`),
-  ADD KEY `fk_ORDINE_INDIRIZZO1` (`id_indirizzo`),
-  ADD KEY `fk_ORDINE_PAGAMENTO1` (`id_pagamento`);
+  ADD KEY `fk_ORDINE_INDIRIZZO` (`id_indirizzo`),
+  ADD KEY `fk_ORDINE_UTENTE` (`id_utente`),
+  ADD KEY `fk_ORDINE_PAGAMENTO` (`id_pagamento`);
 
 --
 -- Indici per le tabelle `pagamenti`
@@ -1097,13 +1130,13 @@ ALTER TABLE `colore`
 -- AUTO_INCREMENT per la tabella `colore_has_prodotti`
 --
 ALTER TABLE `colore_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=301;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=303;
 
 --
 -- AUTO_INCREMENT per la tabella `dettagli_ordine`
 --
 ALTER TABLE `dettagli_ordine`
-  MODIFY `id_prodotti` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `fornitori`
@@ -1121,13 +1154,13 @@ ALTER TABLE `fornitori_has_prodotti`
 -- AUTO_INCREMENT per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=293;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=304;
 
 --
 -- AUTO_INCREMENT per la tabella `immagini_has_prodotti`
 --
 ALTER TABLE `immagini_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=280;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=291;
 
 --
 -- AUTO_INCREMENT per la tabella `indirizzi_has_utenti`
@@ -1139,7 +1172,7 @@ ALTER TABLE `indirizzi_has_utenti`
 -- AUTO_INCREMENT per la tabella `modello`
 --
 ALTER TABLE `modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -1157,7 +1190,7 @@ ALTER TABLE `pagamenti_has_utenti`
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT per la tabella `taglia`
@@ -1169,7 +1202,7 @@ ALTER TABLE `taglia`
 -- AUTO_INCREMENT per la tabella `taglie_has_prodotti`
 --
 ALTER TABLE `taglie_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=553;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=557;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
@@ -1199,8 +1232,8 @@ ALTER TABLE `colore_has_prodotti`
 -- Limiti per la tabella `dettagli_ordine`
 --
 ALTER TABLE `dettagli_ordine`
-  ADD CONSTRAINT `fk_DETTAGLI ORDINE_ORDINE1` FOREIGN KEY (`id_ordine`) REFERENCES `ordine` (`id`),
-  ADD CONSTRAINT `fk_DETTAGLI ORDINE_PRODOTTI1` FOREIGN KEY (`id_prodotti`) REFERENCES `prodotti` (`id`);
+  ADD CONSTRAINT `fk_DETTAGLI ORDINE_ORDINE` FOREIGN KEY (`id_ordine`) REFERENCES `ordine` (`id`),
+  ADD CONSTRAINT `fk_DETTAGLI ORDINE_PRODOTTI` FOREIGN KEY (`id_prodotto`) REFERENCES `prodotti` (`id`);
 
 --
 -- Limiti per la tabella `fornitori_has_prodotti`
@@ -1241,9 +1274,9 @@ ALTER TABLE `modello`
 -- Limiti per la tabella `ordine`
 --
 ALTER TABLE `ordine`
-  ADD CONSTRAINT `fk_ORDINE_CUSTOMERS1` FOREIGN KEY (`id_utente`) REFERENCES `utenti` (`id`),
-  ADD CONSTRAINT `fk_ORDINE_INDIRIZZO1` FOREIGN KEY (`id_indirizzo`) REFERENCES `indirizzi` (`id`),
-  ADD CONSTRAINT `fk_ORDINE_PAGAMENTO1` FOREIGN KEY (`id_pagamento`) REFERENCES `pagamenti` (`id`);
+  ADD CONSTRAINT `fk_ORDINE_INDIRIZZO` FOREIGN KEY (`id_indirizzo`) REFERENCES `indirizzi` (`id`),
+  ADD CONSTRAINT `fk_ORDINE_PAGAMENTO` FOREIGN KEY (`id_pagamento`) REFERENCES `pagamenti` (`id`),
+  ADD CONSTRAINT `fk_ORDINE_UTENTE` FOREIGN KEY (`id_utente`) REFERENCES `utenti` (`id`);
 
 --
 -- Limiti per la tabella `pagamenti`
