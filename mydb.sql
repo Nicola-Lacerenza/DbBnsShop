@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Mar 15, 2025 alle 19:46
+-- Creato il: Mar 16, 2025 alle 22:47
 -- Versione del server: 5.7.24
 -- Versione PHP: 8.3.1
 
@@ -192,7 +192,8 @@ INSERT INTO `colore_has_prodotti` (`id`, `id_colore`, `id_prodotto`) VALUES
 (299, 4, 88),
 (300, 4, 91),
 (301, 1, 92),
-(302, 11, 93);
+(302, 11, 93),
+(303, 10, 94);
 
 -- --------------------------------------------------------
 
@@ -309,6 +310,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (137, 'images/55d69856-d189-41eb-ac6d-4d7c36a99b8f.png'),
 (218, 'images/55db4a75-8226-4408-a3bf-28e39f1fd30c.png'),
 (265, 'images/56819174-09fa-4dd6-b5ff-e1eedff99ba3.png'),
+(304, 'images/5aeeeed3-0062-4c83-883b-60030b24b455.mp4'),
 (234, 'images/5e03f8f3-13d6-465a-ac48-73f25759d18c.jpeg'),
 (293, 'images/5e9958d3-220a-4326-a133-b0e1f6f49646.jpg'),
 (222, 'images/5eff62e8-1f2d-4454-8a22-faa28ed78377.png'),
@@ -614,7 +616,8 @@ INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
 (287, 300, 93),
 (288, 301, 93),
 (289, 302, 93),
-(290, 303, 93);
+(290, 303, 93),
+(291, 304, 94);
 
 -- --------------------------------------------------------
 
@@ -678,6 +681,7 @@ INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) 
 (117, 4, 1, 'Nike AIR FORCE 1 07', 'La leggenda continua a risplendere con Nike Air Force 1 \'07. Questo modello originale da basket rivisita tutto cio\' che ami di AF1 con pelle, dettagli d\'impatto e il giusto tocco di visibilita\'. I dettagli lucidi in pelle verniciata e le tonalita\' blu creano un look e una calzata eccezionali, mentre l\'ammortizzazione Air ti dara\' la sensazione di camminare sulle nuvole.'),
 (89, 4, 1, 'NIKE DUNK LOW', 'Creata per il parquet, ma ideale per la citta, torna l icona del basket degli anni Ottanta con strati esterni perfettamente lucidati e colori classici della squadra. Con un iconico design da basket, Nike Dunk Low riporta in strada lo stile vintage degli anni Ottanta, mentre il collare ammortizzato a taglio basso ti fara sentire al meglio ovunque e con il massimo comfort.'),
 (90, 4, 1, 'NIKE DUNK LOW NEXT NATURE', 'Puoi sempre contare su un classico. Dunk Low unisce l\'iconico design in blocchi di colore, materiali pregiati e un\'imbottitura morbida per un comfort rivoluzionario che dura nel tempo. Le possibilita di styling sono infinite: come indosserai le tue Dunk?'),
+(124, 4, 1, 'prova', 'dddddd'),
 (118, 4, 3, 'AIR JORDAN 1 MID', 'Air Jordan 1 Mid combina stile pensato per il campo, comfort eccezionale e look iconico. L\'unita\' Air-Sole ammortizza il passo sul parquet, mentre il collare imbottito assicura il massimo supporto.'),
 (107, 4, 3, 'AIR JORDAN 4 RM', 'Il modello remixato di cui non sapevi di aver bisogno. Pensata per una vita in movimento, questa sneaker reinterpreta AJ4 per offrirti comfort e resistenza. Max Air ammortizza ogni tuo passo. In piu\', abbiamo fuso alcune parti della tomaia in una gabbia robusta e flessibile, che avvolge la scarpa per donare ancora piu\' resistenza ogni giorno.'),
 (108, 5, 3, 'AIR JORDAN 1 LOW', 'Non si puo\' negare che AJ1 sia un classico. Ora torna in auge con pelle, tocchi di colore e classica ammortizzazione Air per uno stile attuale e un comfort costante. Il logo Wings impresso e il Jumpman ricamato aggiungono un tocco di stile ispirato alla leggenda di Jordan che non potrai fare a meno di mettere in mostra.');
@@ -769,7 +773,8 @@ INSERT INTO `prodotti` (`id`, `id_modello`, `prezzo`, `stato_pubblicazione`) VAL
 (90, 118, 120, 1),
 (91, 121, 150, 1),
 (92, 122, 250, 1),
-(93, 123, 250, 1);
+(93, 123, 250, 1),
+(94, 124, 250, 1);
 
 -- --------------------------------------------------------
 
@@ -904,7 +909,8 @@ INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`)
 (553, 5, 92, 1),
 (554, 7, 92, 1),
 (555, 3, 93, 1),
-(556, 5, 93, 1);
+(556, 5, 93, 1),
+(557, 3, 94, 1);
 
 -- --------------------------------------------------------
 
@@ -1130,7 +1136,7 @@ ALTER TABLE `colore`
 -- AUTO_INCREMENT per la tabella `colore_has_prodotti`
 --
 ALTER TABLE `colore_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=303;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=304;
 
 --
 -- AUTO_INCREMENT per la tabella `dettagli_ordine`
@@ -1154,13 +1160,13 @@ ALTER TABLE `fornitori_has_prodotti`
 -- AUTO_INCREMENT per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=304;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=305;
 
 --
 -- AUTO_INCREMENT per la tabella `immagini_has_prodotti`
 --
 ALTER TABLE `immagini_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=291;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=292;
 
 --
 -- AUTO_INCREMENT per la tabella `indirizzi_has_utenti`
@@ -1172,7 +1178,7 @@ ALTER TABLE `indirizzi_has_utenti`
 -- AUTO_INCREMENT per la tabella `modello`
 --
 ALTER TABLE `modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -1190,7 +1196,7 @@ ALTER TABLE `pagamenti_has_utenti`
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT per la tabella `taglia`
@@ -1202,7 +1208,7 @@ ALTER TABLE `taglia`
 -- AUTO_INCREMENT per la tabella `taglie_has_prodotti`
 --
 ALTER TABLE `taglie_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=557;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=558;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
