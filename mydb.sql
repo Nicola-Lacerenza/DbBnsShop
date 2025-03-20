@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Mar 19, 2025 alle 22:24
+-- Creato il: Mar 20, 2025 alle 23:21
 -- Versione del server: 5.7.24
 -- Versione PHP: 8.3.1
 
@@ -186,8 +186,6 @@ INSERT INTO `colore_has_prodotti` (`id`, `id_colore`, `id_prodotto`) VALUES
 (289, 3, 87),
 (292, 7, 89),
 (293, 4, 89),
-(294, 4, 90),
-(295, 13, 90),
 (298, 1, 88),
 (299, 4, 88),
 (300, 4, 91),
@@ -195,11 +193,13 @@ INSERT INTO `colore_has_prodotti` (`id`, `id_colore`, `id_prodotto`) VALUES
 (313, 2, 100),
 (314, 4, 100),
 (315, 12, 100),
-(316, 10, 101),
-(317, 4, 101),
-(318, 11, 101),
 (319, 1, 102),
-(320, 4, 102);
+(320, 4, 102),
+(323, 4, 90),
+(324, 13, 90),
+(325, 10, 101),
+(326, 4, 101),
+(327, 11, 101);
 
 -- --------------------------------------------------------
 
@@ -281,7 +281,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (245, 'images/1f07b1cf-e46d-405c-aec0-d89890964a26.jpeg'),
 (213, 'images/1f90c784-02ad-4e5a-99fb-836be52a7fd1.png'),
 (278, 'images/2006d67f-8eeb-491a-8e86-a989dcba94a1.png'),
-(286, 'images/20cdadb0-f873-4a5b-a3ae-6fc45ecd2835.png'),
+(327, 'images/20cdadb0-f873-4a5b-a3ae-6fc45ecd2835.png'),
 (221, 'images/23b9b242-40b0-4969-9d71-521233fd7ba6.png'),
 (142, 'images/2a097e2f-3ea3-477f-a5fb-ebd246be0439.png'),
 (239, 'images/2ce92aa0-a262-48a8-b48d-bfe5fa77e620.jpeg'),
@@ -321,7 +321,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (222, 'images/5eff62e8-1f2d-4454-8a22-faa28ed78377.png'),
 (267, 'images/5f3e446b-0e1d-4b48-8e2e-c02060cfbeb9.png'),
 (248, 'images/600b6229-0366-4ed0-aa34-be2605b0afcf.png'),
-(283, 'images/60139a60-9138-4fef-a3bd-26d38cb4078b.png'),
+(324, 'images/60139a60-9138-4fef-a3bd-26d38cb4078b.png'),
 (201, 'images/607b4764-06bb-4c43-84f6-547261340439.png'),
 (320, 'images/60f3c5ea-1649-4d41-9b84-606849576c5a.jpg'),
 (288, 'images/610d88d3-84cb-4b0b-a9d0-c9222bf67277.png'),
@@ -337,7 +337,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (176, 'images/7254ec03-0c9e-4ef2-a111-d4e5cde1ae7e.png'),
 (303, 'images/72ed1a68-ad8d-484d-a0f3-4d6f080fa24d.png'),
 (209, 'images/73690ae4-0664-4461-ab8a-374baf547afc.png'),
-(284, 'images/74e5ca06-7bfa-494e-af8a-01d71ea270fd.png'),
+(325, 'images/74e5ca06-7bfa-494e-af8a-01d71ea270fd.png'),
 (146, 'images/74f056e4-c2ad-4325-919f-e909737eb063.png'),
 (270, 'images/7536bff4-85bd-433d-8bd2-3ec9b267871b.png'),
 (225, 'images/76c62fcc-1eb4-4b9b-aa62-7f617f98a4ab.png'),
@@ -368,7 +368,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (269, 'images/9a5e0129-96c0-468c-beb2-ddc514dfe833.png'),
 (155, 'images/9b02c0ed-9c69-4405-8049-db3cf672d8d2.png'),
 (194, 'images/9b687ee9-7237-4d94-9082-2c148e886ee6.png'),
-(282, 'images/9d221c45-1b50-469f-88a0-b4a70360811e.png'),
+(323, 'images/9d221c45-1b50-469f-88a0-b4a70360811e.png'),
 (275, 'images/a226fb1d-1810-41f8-8a66-9f7b59266b3e.png'),
 (273, 'images/a36d832e-e579-4b33-ac03-0de655eeda93.png'),
 (199, 'images/a512b904-17c0-4102-b402-34313c8610ff.png'),
@@ -402,7 +402,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (133, 'images/c5bc838c-6ff3-4b85-8f3d-475d633dd615.png'),
 (144, 'images/c822f382-332d-4fc7-ad82-76d6b64985ca.png'),
 (257, 'images/cac283da-ae4d-4bb3-843a-1cb1ac797e22.png'),
-(285, 'images/cadd2a7b-2b87-4570-b524-bd227d90806f.png'),
+(326, 'images/cadd2a7b-2b87-4570-b524-bd227d90806f.png'),
 (219, 'images/cee7216e-8642-4aa5-a657-fecc6f32d398.png'),
 (241, 'images/d01c1638-4364-4917-894f-1dc90e17f4bc.jpeg'),
 (136, 'images/d17d3dca-0102-4363-b9d4-398fc4f8ccf1.png'),
@@ -416,9 +416,8 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (138, 'images/e0996df4-c13a-4b29-b20e-f011136f556d.png'),
 (229, 'images/e49f45bb-519c-4ef9-b4c5-d793466ab4ca.png'),
 (246, 'images/e50bdca9-8345-421b-a5ff-26b691cd0185.jpeg'),
-(280, 'images/e76a01b7-283e-4514-a258-14403bc16127.png'),
 (249, 'images/e862a865-513b-42c1-b27d-5858b2497d75.png'),
-(281, 'images/eaa8755a-176b-479c-8840-18bfa21e8540.png'),
+(322, 'images/eaa8755a-176b-479c-8840-18bfa21e8540.png'),
 (204, 'images/ec45a13f-d017-49a5-911f-a061f2ed2a21.jpeg'),
 (171, 'images/ed0b7da6-da5e-4260-8e63-42deaa312eb2.png'),
 (226, 'images/ed0fed34-6aa5-4c3d-80c9-d4d43ec84c3f.png'),
@@ -603,13 +602,6 @@ INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
 (264, 277, 89),
 (265, 278, 89),
 (266, 279, 89),
-(267, 280, 90),
-(268, 281, 90),
-(269, 282, 90),
-(270, 283, 90),
-(271, 284, 90),
-(272, 285, 90),
-(273, 286, 90),
 (274, 287, 91),
 (275, 288, 91),
 (276, 289, 91),
@@ -631,7 +623,13 @@ INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
 (305, 318, 102),
 (306, 319, 102),
 (307, 320, 102),
-(308, 321, 102);
+(308, 321, 102),
+(309, 322, 90),
+(310, 323, 90),
+(311, 324, 90),
+(312, 325, 90),
+(313, 326, 90),
+(314, 327, 90);
 
 -- --------------------------------------------------------
 
@@ -641,16 +639,24 @@ INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
 
 CREATE TABLE `indirizzi` (
   `id` int(11) NOT NULL,
-  `id_utente` int(11) NOT NULL,
+  `id_utente` int(11) DEFAULT NULL,
   `nome` varchar(45) NOT NULL,
   `cognome` varchar(45) NOT NULL,
   `citta` varchar(45) NOT NULL,
   `stato` varchar(45) NOT NULL,
-  `cap` int(11) NOT NULL,
+  `cap` varchar(5) NOT NULL,
   `indirizzo` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `numero_telefono` int(11) NOT NULL
+  `numero_telefono` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `indirizzi`
+--
+
+INSERT INTO `indirizzi` (`id`, `id_utente`, `nome`, `cognome`, `citta`, `stato`, `cap`, `indirizzo`, `email`, `numero_telefono`) VALUES
+(1, 14, 'Nicola', 'Lacerenza', 'Barletta', 'ITA', '76123', 'Via Ofanto 72', 'nicolace98@gmail.com', '3282018804'),
+(2, NULL, 'Nicola', 'Lacerenza', 'Barletta', 'ITA', '76123', 'Via Ofanto 72', 'nicolace98@gmail.com', '3282018804');
 
 -- --------------------------------------------------------
 
@@ -785,11 +791,11 @@ INSERT INTO `prodotti` (`id`, `id_modello`, `prezzo`, `stato_pubblicazione`) VAL
 (87, 116, 150, 1),
 (88, 117, 120, 1),
 (89, 118, 130, 1),
-(90, 118, 120, 1),
+(90, 118, 120, 0),
 (91, 121, 150, 1),
 (93, 123, 250, 1),
 (100, 130, 150, 1),
-(101, 131, 350, 1),
+(101, 131, 350, 0),
 (102, 122, 210, 1);
 
 -- --------------------------------------------------------
@@ -916,8 +922,6 @@ INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`)
 (538, 15, 86, 1),
 (539, 19, 87, 2),
 (543, 3, 89, 1),
-(544, 3, 90, 1),
-(545, 5, 90, 1),
 (549, 5, 88, 1),
 (550, 7, 88, 1),
 (551, 9, 88, 1),
@@ -925,9 +929,11 @@ INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`)
 (555, 3, 93, 1),
 (556, 5, 93, 1),
 (563, 5, 100, 1),
-(564, 11, 101, 1),
-(565, 13, 101, 1),
-(566, 5, 102, 1);
+(566, 5, 102, 1),
+(569, 3, 90, 1),
+(570, 5, 90, 1),
+(571, 11, 101, 1),
+(572, 13, 101, 1);
 
 -- --------------------------------------------------------
 
@@ -1153,7 +1159,7 @@ ALTER TABLE `colore`
 -- AUTO_INCREMENT per la tabella `colore_has_prodotti`
 --
 ALTER TABLE `colore_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=321;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=328;
 
 --
 -- AUTO_INCREMENT per la tabella `dettagli_ordine`
@@ -1177,13 +1183,13 @@ ALTER TABLE `fornitori_has_prodotti`
 -- AUTO_INCREMENT per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=322;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=328;
 
 --
 -- AUTO_INCREMENT per la tabella `immagini_has_prodotti`
 --
 ALTER TABLE `immagini_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=309;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=315;
 
 --
 -- AUTO_INCREMENT per la tabella `indirizzi_has_utenti`
@@ -1195,7 +1201,7 @@ ALTER TABLE `indirizzi_has_utenti`
 -- AUTO_INCREMENT per la tabella `modello`
 --
 ALTER TABLE `modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -1225,7 +1231,7 @@ ALTER TABLE `taglia`
 -- AUTO_INCREMENT per la tabella `taglie_has_prodotti`
 --
 ALTER TABLE `taglie_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=567;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=573;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
