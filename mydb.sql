@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Mar 20, 2025 alle 23:21
+-- Creato il: Mar 23, 2025 alle 18:13
 -- Versione del server: 5.7.24
 -- Versione PHP: 8.3.1
 
@@ -76,16 +76,25 @@ INSERT INTO `categoria` (`id`, `nome_categoria`, `target`) VALUES
 CREATE TABLE `codice_sconto` (
   `id` int(11) NOT NULL,
   `codice` varchar(45) NOT NULL,
-  `valore` decimal(11,0) NOT NULL,
-  `descrizione` varchar(255) NOT NULL,
-  `tipo` enum('percentuale','fisso') NOT NULL,
+  `valore` int(4) NOT NULL,
+  `descrizione` varchar(255) DEFAULT NULL,
+  `tipo` varchar(45) NOT NULL,
   `data_inizio` date DEFAULT NULL,
   `data_fine` date DEFAULT NULL,
-  `uso_massimo` int(11) NOT NULL,
+  `uso_massimo` int(11) DEFAULT NULL,
   `uso_per_utente` int(11) NOT NULL,
-  `minimo_acquisto` decimal(10,0) NOT NULL,
-  `attivo` tinyint(1) NOT NULL
+  `minimo_acquisto` int(5) NOT NULL,
+  `attivo` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `codice_sconto`
+--
+
+INSERT INTO `codice_sconto` (`id`, `codice`, `valore`, `descrizione`, `tipo`, `data_inizio`, `data_fine`, `uso_massimo`, `uso_per_utente`, `minimo_acquisto`, `attivo`) VALUES
+(7, 'pippo', 10, 'Scrp', 'percentuale', '2025-03-19', '2025-03-26', 1, 1, 100, 1),
+(8, 'pippo1', 10, 'dd', 'percentuale', '2025-03-12', '2025-03-26', 10, 1, 100, 1),
+(9, 'pluto', 10, 'sca', 'percentuale', '2025-03-19', '2025-03-28', 10, 1, 100, 1);
 
 -- --------------------------------------------------------
 
@@ -199,7 +208,9 @@ INSERT INTO `colore_has_prodotti` (`id`, `id_colore`, `id_prodotto`) VALUES
 (324, 13, 90),
 (325, 10, 101),
 (326, 4, 101),
-(327, 11, 101);
+(327, 11, 101),
+(330, 6, 103),
+(331, 4, 103);
 
 -- --------------------------------------------------------
 
@@ -268,15 +279,19 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (261, 'images/07f8d607-b183-4e4a-bc20-e224e6bc1154.png'),
 (300, 'images/08f74ad5-aea1-4b46-a686-7a4659588ee6.png'),
 (206, 'images/0bded708-c8a9-4907-abc7-2ce70ad89c19.jpeg'),
+(330, 'images/0e893003-5c8e-4b08-96c2-15a1f2e98a2a.jpg'),
+(328, 'images/10a8b1f2-632f-426a-a57d-52f62bd8cd6e.mp4'),
 (164, 'images/115d7358-4c5c-4752-acf3-84c52e7512e2.png'),
 (170, 'images/12aefe28-20cc-4974-b723-bd1d6e17123b.png'),
 (262, 'images/13daea38-474f-47f8-8e67-97af9502273a.png'),
 (192, 'images/15d1fd3f-f4fc-4c88-ab6a-325b7e48544c.png'),
+(332, 'images/1689dde0-718d-45b8-840c-837784751771.jpg'),
 (299, 'images/16a2443d-6bc0-4805-a888-af1c3fad6a94.png'),
 (186, 'images/1701e614-6828-4eae-ba23-21321c1b99bf.png'),
 (205, 'images/17a36a05-97a8-4649-bc21-e024cd3b913b.jpeg'),
 (148, 'images/1caa3950-412c-4cf3-9057-2fc43757a8dc.png'),
 (134, 'images/1d829f85-e7d1-4415-a45c-558709219a26.png'),
+(329, 'images/1dba9e89-e7c7-48ec-ac2d-6e3e1d778fab.png'),
 (139, 'images/1e2319c8-8174-4bcd-881f-eddda222bc28.png'),
 (245, 'images/1f07b1cf-e46d-405c-aec0-d89890964a26.jpeg'),
 (213, 'images/1f90c784-02ad-4e5a-99fb-836be52a7fd1.png'),
@@ -381,6 +396,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (291, 'images/acaa8faa-06d0-4eb7-a360-764168ae2136.png'),
 (169, 'images/adc086b7-779b-4738-9ba7-045a4310da49.png'),
 (289, 'images/adfbdcb5-c35c-4f19-beb3-c41954d903b9.png'),
+(333, 'images/aeb85a10-f847-42c9-b875-03fc3217aca5.jpg'),
 (314, 'images/aed79d66-a50c-47fa-acf4-f9208825949f.mp4'),
 (149, 'images/afad54a0-bacf-419f-97ba-cd263506d2e3.png'),
 (247, 'images/b14eb96a-6269-48ba-89c5-e20ab7d960ab.png'),
@@ -435,6 +451,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (238, 'images/fb2f6295-7113-402d-b3e8-b7d8b25e48c1.jpeg'),
 (255, 'images/fc9a410e-0276-4d24-9851-a26e7c2a16be.png'),
 (319, 'images/fe1eded4-1c92-459d-a10c-2a699a4d7180.jpg'),
+(331, 'images/fea19a3c-f8ed-4b96-ba14-84390f283bc4.jpg'),
 (182, 'images/ff63222d-f888-4d0a-b3d6-26f92d401efb.png');
 
 -- --------------------------------------------------------
@@ -629,7 +646,13 @@ INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
 (311, 324, 90),
 (312, 325, 90),
 (313, 326, 90),
-(314, 327, 90);
+(314, 327, 90),
+(315, 328, 103),
+(316, 329, 103),
+(317, 330, 103),
+(318, 331, 103),
+(319, 332, 103),
+(320, 333, 103);
 
 -- --------------------------------------------------------
 
@@ -639,7 +662,6 @@ INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
 
 CREATE TABLE `indirizzi` (
   `id` int(11) NOT NULL,
-  `id_utente` int(11) DEFAULT NULL,
   `nome` varchar(45) NOT NULL,
   `cognome` varchar(45) NOT NULL,
   `citta` varchar(45) NOT NULL,
@@ -654,9 +676,14 @@ CREATE TABLE `indirizzi` (
 -- Dump dei dati per la tabella `indirizzi`
 --
 
-INSERT INTO `indirizzi` (`id`, `id_utente`, `nome`, `cognome`, `citta`, `stato`, `cap`, `indirizzo`, `email`, `numero_telefono`) VALUES
-(1, 14, 'Nicola', 'Lacerenza', 'Barletta', 'ITA', '76123', 'Via Ofanto 72', 'nicolace98@gmail.com', '3282018804'),
-(2, NULL, 'Nicola', 'Lacerenza', 'Barletta', 'ITA', '76123', 'Via Ofanto 72', 'nicolace98@gmail.com', '3282018804');
+INSERT INTO `indirizzi` (`id`, `nome`, `cognome`, `citta`, `stato`, `cap`, `indirizzo`, `email`, `numero_telefono`) VALUES
+(1, 'Nicola', 'Lacerenza', 'Barletta', 'ITA', '76123', 'Via Ofanto 72', 'nicolace98@gmail.com', '3282018804'),
+(2, 'Nicola', 'Lacerenza', 'Barletta', 'ITA', '76121', 'Via Ofanto ', 'nicolace98@gmail.com', '3282018804'),
+(3, 'Nicola', 'Lacerenza', 'Barletta', 'ITA', '76121', 'Via Ofanto 72', 'nicolace98@gmail.com', '3282018804'),
+(4, 'Nicola', 'Lacerenza', 'Barletta', 'ITA', '76121', 'Via Ofanto 72', 'nicolace98@gmail.com', '3282018804'),
+(5, 'Nicola', 'Lacerenza', 'Barletta', 'ITA', '76121', 'Via Ofanto 72', 'nicolace98@gmail.com', '3282018804'),
+(6, 'Nicola', 'Lacerenza', 'Barletta', 'ITA', '76121', 'Via Ofanto 72', 'nicolace98@gmail.com', '3282018804'),
+(7, 'Nicola', 'Lacerenza', 'Barletta', 'ITA', '76123', 'Via Ofanto 72', 'nicolace98@gmail.com', '3282018804');
 
 -- --------------------------------------------------------
 
@@ -669,6 +696,18 @@ CREATE TABLE `indirizzi_has_utenti` (
   `id_utente` int(11) NOT NULL,
   `id_indirizzo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `indirizzi_has_utenti`
+--
+
+INSERT INTO `indirizzi_has_utenti` (`id`, `id_utente`, `id_indirizzo`) VALUES
+(1, 14, 1),
+(2, 14, 3),
+(3, 14, 4),
+(4, 14, 5),
+(5, 14, 6),
+(6, 14, 7);
 
 -- --------------------------------------------------------
 
@@ -705,6 +744,7 @@ INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) 
 (90, 4, 1, 'NIKE DUNK LOW NEXT NATURE', 'Puoi sempre contare su un classico. Dunk Low unisce l\'iconico design in blocchi di colore, materiali pregiati e un\'imbottitura morbida per un comfort rivoluzionario che dura nel tempo. Le possibilita di styling sono infinite: come indosserai le tue Dunk?'),
 (118, 4, 3, 'AIR JORDAN 1 MID', 'Air Jordan 1 Mid combina stile pensato per il campo, comfort eccezionale e look iconico. L\'unita\' Air-Sole ammortizza il passo sul parquet, mentre il collare imbottito assicura il massimo supporto.'),
 (107, 4, 3, 'AIR JORDAN 4 RM', 'Il modello remixato di cui non sapevi di aver bisogno. Pensata per una vita in movimento, questa sneaker reinterpreta AJ4 per offrirti comfort e resistenza. Max Air ammortizza ogni tuo passo. In piu\', abbiamo fuso alcune parti della tomaia in una gabbia robusta e flessibile, che avvolge la scarpa per donare ancora piu\' resistenza ogni giorno.'),
+(132, 4, 4, 'ADIDAS CAMPUS GS', 'Uno stile old-school piu\' attuale che mai. Queste scarpe junior adidas Campus 00s si basano sulle Campus degli anni \'80 ma presentano un look contemporaneo ispirato alla moda di inizio millennio. La silhouette raffinata e il mix di materiali donano un tocco inedito al modello. Abbinale ai tuoi jeans preferiti e vivi al meglio la tua giornata.'),
 (108, 5, 3, 'AIR JORDAN 1 LOW', 'Non si puo\' negare che AJ1 sia un classico. Ora torna in auge con pelle, tocchi di colore e classica ammortizzazione Air per uno stile attuale e un comfort costante. Il logo Wings impresso e il Jumpman ricamato aggiungono un tocco di stile ispirato alla leggenda di Jordan che non potrai fare a meno di mettere in mostra.');
 
 -- --------------------------------------------------------
@@ -796,7 +836,8 @@ INSERT INTO `prodotti` (`id`, `id_modello`, `prezzo`, `stato_pubblicazione`) VAL
 (93, 123, 250, 1),
 (100, 130, 150, 1),
 (101, 131, 350, 0),
-(102, 122, 210, 1);
+(102, 122, 210, 1),
+(103, 132, 90, 1);
 
 -- --------------------------------------------------------
 
@@ -933,7 +974,8 @@ INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`)
 (569, 3, 90, 1),
 (570, 5, 90, 1),
 (571, 11, 101, 1),
-(572, 13, 101, 1);
+(572, 13, 101, 1),
+(574, 3, 103, 1);
 
 -- --------------------------------------------------------
 
@@ -984,7 +1026,8 @@ ALTER TABLE `categoria`
 -- Indici per le tabelle `codice_sconto`
 --
 ALTER TABLE `codice_sconto`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_codice` (`codice`);
 
 --
 -- Indici per le tabelle `codice_sconto_has_categoria`
@@ -1050,16 +1093,15 @@ ALTER TABLE `immagini_has_prodotti`
 -- Indici per le tabelle `indirizzi`
 --
 ALTER TABLE `indirizzi`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_INDIRIZZO_UTENTI` (`id_utente`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indici per le tabelle `indirizzi_has_utenti`
 --
 ALTER TABLE `indirizzi_has_utenti`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_INDIRIZZI_has_UTENTI_INDIRIZZO` (`id_indirizzo`),
-  ADD KEY `fk_INDIRIZZI_has_UTENTI_UTENTE` (`id_utente`);
+  ADD KEY `fk_INDIRIZZI_has_UTENTI_UTENTE` (`id_utente`),
+  ADD KEY `fk_INDIRIZZI_has_UTENTI_INDIRIZZO` (`id_indirizzo`);
 
 --
 -- Indici per le tabelle `modello`
@@ -1075,9 +1117,9 @@ ALTER TABLE `modello`
 --
 ALTER TABLE `ordine`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_ORDINE_INDIRIZZO` (`id_indirizzo`),
   ADD KEY `fk_ORDINE_UTENTE` (`id_utente`),
-  ADD KEY `fk_ORDINE_PAGAMENTO` (`id_pagamento`);
+  ADD KEY `fk_ORDINE_PAGAMENTO` (`id_pagamento`),
+  ADD KEY `fk_ORDINE_INDIRIZZO` (`id_indirizzo`);
 
 --
 -- Indici per le tabelle `pagamenti`
@@ -1119,7 +1161,8 @@ ALTER TABLE `taglie_has_prodotti`
 -- Indici per le tabelle `utenti`
 --
 ALTER TABLE `utenti`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_email` (`email`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -1141,7 +1184,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT per la tabella `codice_sconto`
 --
 ALTER TABLE `codice_sconto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT per la tabella `codice_sconto_has_categoria`
@@ -1159,7 +1202,7 @@ ALTER TABLE `colore`
 -- AUTO_INCREMENT per la tabella `colore_has_prodotti`
 --
 ALTER TABLE `colore_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=328;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=332;
 
 --
 -- AUTO_INCREMENT per la tabella `dettagli_ordine`
@@ -1183,25 +1226,31 @@ ALTER TABLE `fornitori_has_prodotti`
 -- AUTO_INCREMENT per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=328;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=334;
 
 --
 -- AUTO_INCREMENT per la tabella `immagini_has_prodotti`
 --
 ALTER TABLE `immagini_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=315;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=321;
+
+--
+-- AUTO_INCREMENT per la tabella `indirizzi`
+--
+ALTER TABLE `indirizzi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT per la tabella `indirizzi_has_utenti`
 --
 ALTER TABLE `indirizzi_has_utenti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT per la tabella `modello`
 --
 ALTER TABLE `modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -1219,7 +1268,7 @@ ALTER TABLE `pagamenti_has_utenti`
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT per la tabella `taglia`
@@ -1231,7 +1280,7 @@ ALTER TABLE `taglia`
 -- AUTO_INCREMENT per la tabella `taglie_has_prodotti`
 --
 ALTER TABLE `taglie_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=573;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=575;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
@@ -1278,12 +1327,6 @@ ALTER TABLE `fornitori_has_prodotti`
 ALTER TABLE `immagini_has_prodotti`
   ADD CONSTRAINT `fk_IMMAGINI_has_PRODOTTI_IMMAGINI1` FOREIGN KEY (`id_immagine`) REFERENCES `immagini` (`id`),
   ADD CONSTRAINT `fk_IMMAGINI_has_PRODOTTI_PRODOTTI1` FOREIGN KEY (`id_prodotto`) REFERENCES `prodotti` (`id`);
-
---
--- Limiti per la tabella `indirizzi`
---
-ALTER TABLE `indirizzi`
-  ADD CONSTRAINT `fk_INDIRIZZO_UTENTI` FOREIGN KEY (`id_utente`) REFERENCES `utenti` (`id`);
 
 --
 -- Limiti per la tabella `indirizzi_has_utenti`
