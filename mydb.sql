@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Mar 23, 2025 alle 18:13
+-- Creato il: Mar 29, 2025 alle 16:28
 -- Versione del server: 5.7.24
 -- Versione PHP: 8.3.1
 
@@ -86,15 +86,6 @@ CREATE TABLE `codice_sconto` (
   `minimo_acquisto` int(5) NOT NULL,
   `attivo` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dump dei dati per la tabella `codice_sconto`
---
-
-INSERT INTO `codice_sconto` (`id`, `codice`, `valore`, `descrizione`, `tipo`, `data_inizio`, `data_fine`, `uso_massimo`, `uso_per_utente`, `minimo_acquisto`, `attivo`) VALUES
-(7, 'pippo', 10, 'Scrp', 'percentuale', '2025-03-19', '2025-03-26', 1, 1, 100, 1),
-(8, 'pippo1', 10, 'dd', 'percentuale', '2025-03-12', '2025-03-26', 10, 1, 100, 1),
-(9, 'pluto', 10, 'sca', 'percentuale', '2025-03-19', '2025-03-28', 10, 1, 100, 1);
 
 -- --------------------------------------------------------
 
@@ -210,7 +201,14 @@ INSERT INTO `colore_has_prodotti` (`id`, `id_colore`, `id_prodotto`) VALUES
 (326, 4, 101),
 (327, 11, 101),
 (330, 6, 103),
-(331, 4, 103);
+(331, 4, 103),
+(332, 12, 104),
+(333, 11, 104),
+(334, 5, 105),
+(335, 4, 105),
+(336, 12, 105),
+(337, 1, 106),
+(338, 11, 106);
 
 -- --------------------------------------------------------
 
@@ -297,7 +295,9 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (213, 'images/1f90c784-02ad-4e5a-99fb-836be52a7fd1.png'),
 (278, 'images/2006d67f-8eeb-491a-8e86-a989dcba94a1.png'),
 (327, 'images/20cdadb0-f873-4a5b-a3ae-6fc45ecd2835.png'),
+(335, 'images/22e8f0e6-2829-49eb-a226-e5a4acbcbfbe.jpg'),
 (221, 'images/23b9b242-40b0-4969-9d71-521233fd7ba6.png'),
+(336, 'images/273d2f57-be23-4f72-ad7e-c2abf8a2a273.jpg'),
 (142, 'images/2a097e2f-3ea3-477f-a5fb-ebd246be0439.png'),
 (239, 'images/2ce92aa0-a262-48a8-b48d-bfe5fa77e620.jpeg'),
 (187, 'images/2dc37496-2850-49f7-96a0-8b20378b6ab0.png'),
@@ -318,6 +318,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (191, 'images/3cfca509-f0d5-4b87-abb2-6918108ba767.png'),
 (227, 'images/3f8258cd-9bfd-41e7-a545-77dd4dac23b7.png'),
 (266, 'images/41921036-0423-4e16-9355-c6a399321daa.png'),
+(346, 'images/42ea3a26-a6d6-46ad-b335-7a2817ac5b85.jpg'),
 (237, 'images/44295637-d29f-4183-a846-84a76b61aae4.png'),
 (268, 'images/4523af16-c13c-4698-9406-45d65c5a90b4.png'),
 (165, 'images/455dd021-35ea-4a47-8f5a-76999cb69ac6.png'),
@@ -331,7 +332,9 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (137, 'images/55d69856-d189-41eb-ac6d-4d7c36a99b8f.png'),
 (218, 'images/55db4a75-8226-4408-a3bf-28e39f1fd30c.png'),
 (265, 'images/56819174-09fa-4dd6-b5ff-e1eedff99ba3.png'),
+(338, 'images/577f5e28-2b51-4469-8222-0f471e72349c.jpg'),
 (318, 'images/589de189-03b9-493b-b00b-ae0e6f268b7c.jpg'),
+(342, 'images/59cda35a-59bc-489b-9328-30b8393ba438.jpg'),
 (234, 'images/5e03f8f3-13d6-465a-ac48-73f25759d18c.jpeg'),
 (222, 'images/5eff62e8-1f2d-4454-8a22-faa28ed78377.png'),
 (267, 'images/5f3e446b-0e1d-4b48-8e2e-c02060cfbeb9.png'),
@@ -341,6 +344,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (320, 'images/60f3c5ea-1649-4d41-9b84-606849576c5a.jpg'),
 (288, 'images/610d88d3-84cb-4b0b-a9d0-c9222bf67277.png'),
 (243, 'images/6243410a-c40b-44ce-9c13-771ab76e63d7.png'),
+(350, 'images/635acb5e-4d4b-401e-a619-a69d77798da9.jpg'),
 (211, 'images/64dc51bf-caeb-4368-8789-e001a30a63d4.png'),
 (190, 'images/6637413d-9313-4dea-966a-597c30ad2576.png'),
 (235, 'images/68126a92-cdce-4bd2-8921-144a8f4be170.png'),
@@ -349,6 +353,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (244, 'images/6f20fd1b-3a37-4387-a9ed-a470ed06744a.png'),
 (215, 'images/6f6095ca-177b-4ab9-a1ea-a55af08d9cc7.png'),
 (258, 'images/7118d595-28a7-476e-a9c5-df4a35670393.png'),
+(334, 'images/71813ef7-32f5-406d-8f09-4288c8945f6e.jpg'),
 (176, 'images/7254ec03-0c9e-4ef2-a111-d4e5cde1ae7e.png'),
 (303, 'images/72ed1a68-ad8d-484d-a0f3-4d6f080fa24d.png'),
 (209, 'images/73690ae4-0664-4461-ab8a-374baf547afc.png'),
@@ -366,7 +371,9 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (242, 'images/81d9d811-c2c1-4f25-870a-923696cdddb5.jpeg'),
 (214, 'images/86113245-090d-499a-baf4-9f6067effc6f.png'),
 (180, 'images/86dcdbe6-b2c9-420f-bc18-2502eabf7bb1.png'),
+(340, 'images/87eaaeff-f324-4b46-9ec0-1458a8d6b0a3.jpg'),
 (188, 'images/8aa7e93a-c329-4d4b-8af4-0ac9cc78b2e0.png'),
+(349, 'images/8adba881-d121-4df2-9262-3de3988bab90.jpg'),
 (216, 'images/8b8bf355-ff3d-4d88-9a12-96d9654f099c.png'),
 (153, 'images/8be809a0-d0cc-417e-af77-64416727baf5.png'),
 (202, 'images/8c5e3b9b-5dae-4117-924d-67f58d92fccd.jpeg'),
@@ -384,7 +391,10 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (155, 'images/9b02c0ed-9c69-4405-8049-db3cf672d8d2.png'),
 (194, 'images/9b687ee9-7237-4d94-9082-2c148e886ee6.png'),
 (323, 'images/9d221c45-1b50-469f-88a0-b4a70360811e.png'),
+(347, 'images/9ecc9ff1-7f22-4db3-a492-65c2a6cf7a18.jpg'),
 (275, 'images/a226fb1d-1810-41f8-8a66-9f7b59266b3e.png'),
+(343, 'images/a2d54289-789d-4c6c-b2b5-23407d48ec51.jpg'),
+(337, 'images/a317c067-bd6b-4da5-8074-42dac317b4c0.jpg'),
 (273, 'images/a36d832e-e579-4b33-ac03-0de655eeda93.png'),
 (199, 'images/a512b904-17c0-4102-b402-34313c8610ff.png'),
 (147, 'images/a5227972-a389-4ff4-b9ec-15ed5ae08d0e.png'),
@@ -394,6 +404,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (232, 'images/ac388828-bef8-4f87-89f2-3a098185f78e.jpeg'),
 (212, 'images/ac3a8b5e-166d-4581-8ccd-aafd97286410.png'),
 (291, 'images/acaa8faa-06d0-4eb7-a360-764168ae2136.png'),
+(348, 'images/ad71d27e-29b5-4390-b1ac-21fecb4087b4.jpg'),
 (169, 'images/adc086b7-779b-4738-9ba7-045a4310da49.png'),
 (289, 'images/adfbdcb5-c35c-4f19-beb3-c41954d903b9.png'),
 (333, 'images/aeb85a10-f847-42c9-b875-03fc3217aca5.jpg'),
@@ -409,10 +420,13 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (193, 'images/b6af99ae-30f2-43d0-8751-b4cbc6e50cb7.png'),
 (197, 'images/b85dd5cf-5d23-47c2-9428-95a465a976bc.png'),
 (233, 'images/b91e2a44-8ca7-4071-b02f-3cf440c0f44e.jpeg'),
+(339, 'images/b9235bea-4d11-4436-b10f-feab47725b50.mp4'),
 (277, 'images/b94a68c2-2936-4678-b747-bb7600ba56e2.png'),
+(341, 'images/bc5ef6dc-27ca-4ed0-b737-31328c5cbe24.jpg'),
 (143, 'images/bc9dbd77-f6f2-4a52-8bd5-835ea24d25e8.png'),
 (172, 'images/bffab1d2-a797-4ed4-bcd3-4655a4dded39.png'),
 (264, 'images/c09d3d5c-50f6-4c87-b084-a6f8f14b32f6.png'),
+(344, 'images/c11fa693-8ad5-446f-83bd-30124319a895.jpg'),
 (185, 'images/c3079851-c69d-4816-9929-4a2c3a81561a.png'),
 (301, 'images/c349d9d2-5b8f-4cba-b9e3-2da143cddc00.png'),
 (133, 'images/c5bc838c-6ff3-4b85-8f3d-475d633dd615.png'),
@@ -428,6 +442,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (315, 'images/d8e64a50-a212-43b1-8f1d-e424d999df36.png'),
 (179, 'images/daf9f058-116f-4214-994e-aa7c4da5d298.png'),
 (183, 'images/dc7475b2-0e7a-4032-98a2-7747a59b56ac.png'),
+(345, 'images/dd9929e6-e6c0-433a-ab7a-d3f0a56a5041.mp4'),
 (236, 'images/de545d15-4c22-4988-b4c3-3e2ac0ce4822.jpeg'),
 (138, 'images/e0996df4-c13a-4b29-b20e-f011136f556d.png'),
 (229, 'images/e49f45bb-519c-4ef9-b4c5-d793466ab4ca.png'),
@@ -652,7 +667,24 @@ INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
 (317, 330, 103),
 (318, 331, 103),
 (319, 332, 103),
-(320, 333, 103);
+(320, 333, 103),
+(321, 334, 104),
+(322, 335, 104),
+(323, 336, 104),
+(324, 337, 104),
+(325, 338, 104),
+(326, 339, 104),
+(327, 340, 105),
+(328, 341, 105),
+(329, 342, 105),
+(330, 343, 105),
+(331, 344, 105),
+(332, 345, 105),
+(333, 346, 106),
+(334, 347, 106),
+(335, 348, 106),
+(336, 349, 106),
+(337, 350, 106);
 
 -- --------------------------------------------------------
 
@@ -734,6 +766,7 @@ INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) 
 (71, 2, 1, 'NIKE AIR MAX PLUS', 'Scopri la leggendaria tecnologia Tuned Air con queste scarpe confortevoli. Con l\'iconica gabbia a forma di fiamma e la coda di balena vicino all\'arco plantare, questa Air Max Plus sfoggia vivaci tocchi di colore per un look che non passa inosservato nel tempo libero. '),
 (102, 2, 1, 'NIKE DUNK SB LOW PRO', 'Una scarpa da skateboard classica, perfetta sulla tavola e per qualsiasi occasione. Questa versione esclusiva di Dunk Low e realizzata in pelle e presenta un battistrada in gomma per un tocco di fascino in piu a ogni trick. Inoltre, la traspirante linguetta in tessuto e l ammortizzazione Zoom Air sotto il piede regalano leggerezza anche durante le session piu lunghe sullo skate. E poi ce lo Swoosh, per un tocco di contrasto in piu. E uno stile ancora piu d\'impatto.'),
 (116, 2, 1, 'NOCTA AIR FORCE 1 LOW', 'Qual e\' il tuo libro per bambini preferito? Nate per rendere omaggio all\'amore dei genitori e alla storia che la madre di Drake leggeva a suo figlio, NOCTA Air Force 1 Low arricchisce l\'iconico stile da basket con dettagli tratti dalle classiche storie per bambini. Sull\'intersuola e\' presente la scritta \'Love you forever\' e comprende un set di perline (realizzate in NOCTA blu) con cui puoi scrivere la tua ninna nanna sui lacci.'),
+(134, 2, 2, 'NEW BALANCE 9060', 'Le 9060 rappresentano una nuova espressione dello stile raffinato e del design innovativo della classica serie 99X. Il modello 9060 reinterpreta gli elementi familiari del 99X con una sensibilita\' visionaria, ispirata all\'estetica visibilmente tecnologica e orgogliosamente futuristica dell\'era Y2K. '),
 (131, 2, 3, 'AIR JORDAN 1 RETRO HIGH', 'Scarpe'),
 (122, 2, 3, 'AIR JORDAN 4 ABUNDANCE', 'I risultati non arrivano da soli, bisogna conquistarli. AJ4 \"Abundance\" e\' un omaggio alla grinta e al duro lavoro che la nuova generazione di talenti mette in ogni cosa che fa, dentro e fuori dal campo. Questa edizione richiama l\'iconica AJ4 \'\'Pure Money\'\' attraverso finiture color argento metallizzato, perfette per un look moderno, e una colorway in Seafoam e Sail, che offre un tocco di stile discreto.'),
 (123, 2, 3, 'AIR JORDAN 4 NET', 'Questo aggiornamento in grande stile di AJ4 trasforma un classico in un vero e proprio spettacolo. Materiali pregiati come la morbida pelle, donano a questa scarpa un look e una calzata di lusso. I dettagli dorati, come la targhetta staccabile Jumpman, spiccano sulla tomaia Triple White e attirano tutti gli sguardi su di te. Indossala e sfoggia uno stile che non passa inosservato.'),
@@ -745,6 +778,7 @@ INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) 
 (118, 4, 3, 'AIR JORDAN 1 MID', 'Air Jordan 1 Mid combina stile pensato per il campo, comfort eccezionale e look iconico. L\'unita\' Air-Sole ammortizza il passo sul parquet, mentre il collare imbottito assicura il massimo supporto.'),
 (107, 4, 3, 'AIR JORDAN 4 RM', 'Il modello remixato di cui non sapevi di aver bisogno. Pensata per una vita in movimento, questa sneaker reinterpreta AJ4 per offrirti comfort e resistenza. Max Air ammortizza ogni tuo passo. In piu\', abbiamo fuso alcune parti della tomaia in una gabbia robusta e flessibile, che avvolge la scarpa per donare ancora piu\' resistenza ogni giorno.'),
 (132, 4, 4, 'ADIDAS CAMPUS GS', 'Uno stile old-school piu\' attuale che mai. Queste scarpe junior adidas Campus 00s si basano sulle Campus degli anni \'80 ma presentano un look contemporaneo ispirato alla moda di inizio millennio. La silhouette raffinata e il mix di materiali donano un tocco inedito al modello. Abbinale ai tuoi jeans preferiti e vivi al meglio la tua giornata.'),
+(133, 4, 4, 'ADIDAS HANDBALL SPEZIAL', 'Le adidas Spezial sono state create nel 1979 per la pallamano, ma ben presto hanno fatto la loro comparsa anche fuori dal campo. Questa versione celebra il loro ricco passato con elementi originali come la tomaia in suede e la punta a T. Le vivaci combinazioni di colori aggiungono un tocco contemporaneo che non passa inosservato. Allaccia queste sneaker e mostra il tuo stile con un tocco old-school.'),
 (108, 5, 3, 'AIR JORDAN 1 LOW', 'Non si puo\' negare che AJ1 sia un classico. Ora torna in auge con pelle, tocchi di colore e classica ammortizzazione Air per uno stile attuale e un comfort costante. Il logo Wings impresso e il Jumpman ricamato aggiungono un tocco di stile ispirato alla leggenda di Jordan che non potrai fare a meno di mettere in mostra.');
 
 -- --------------------------------------------------------
@@ -788,6 +822,32 @@ CREATE TABLE `pagamenti_has_utenti` (
   `id_utente` int(11) NOT NULL,
   `id_pagamento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `paypal_token`
+--
+
+CREATE TABLE `paypal_token` (
+  `id` int(11) NOT NULL,
+  `access_token` varchar(255) NOT NULL,
+  `scope` varchar(20000) NOT NULL,
+  `token_type` varchar(255) NOT NULL,
+  `app_id` varchar(255) NOT NULL,
+  `expires_in` int(11) NOT NULL,
+  `nonce` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `paypal_token`
+--
+
+INSERT INTO `paypal_token` (`id`, `access_token`, `scope`, `token_type`, `app_id`, `expires_in`, `nonce`) VALUES
+(1, 'A21AAIXnWC9kQ8nJfvv6xZmvCaAgwoOvLmE2XoD-9zMqfPU9u8d4ygTDLA8AkKvRq_PcSYeKcJh3hlRCA9F3GcqTZ8llsSoWw', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 32311, '2025-03-29T16:05:08Z5_AjNAqTb8Olso-qTcQQcXOCdMh4k_4YQIKCTh7nfb4'),
+(2, 'A21AAIXnWC9kQ8nJfvv6xZmvCaAgwoOvLmE2XoD-9zMqfPU9u8d4ygTDLA8AkKvRq_PcSYeKcJh3hlRCA9F3GcqTZ8llsSoWw', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 31942, '2025-03-29T16:05:08Z5_AjNAqTb8Olso-qTcQQcXOCdMh4k_4YQIKCTh7nfb4'),
+(3, 'A21AAIXnWC9kQ8nJfvv6xZmvCaAgwoOvLmE2XoD-9zMqfPU9u8d4ygTDLA8AkKvRq_PcSYeKcJh3hlRCA9F3GcqTZ8llsSoWw', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 31924, '2025-03-29T16:05:08Z5_AjNAqTb8Olso-qTcQQcXOCdMh4k_4YQIKCTh7nfb4'),
+(4, 'A21AAIXnWC9kQ8nJfvv6xZmvCaAgwoOvLmE2XoD-9zMqfPU9u8d4ygTDLA8AkKvRq_PcSYeKcJh3hlRCA9F3GcqTZ8llsSoWw', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 31465, '2025-03-29T16:05:08Z5_AjNAqTb8Olso-qTcQQcXOCdMh4k_4YQIKCTh7nfb4');
 
 -- --------------------------------------------------------
 
@@ -837,7 +897,10 @@ INSERT INTO `prodotti` (`id`, `id_modello`, `prezzo`, `stato_pubblicazione`) VAL
 (100, 130, 150, 1),
 (101, 131, 350, 0),
 (102, 122, 210, 1),
-(103, 132, 90, 1);
+(103, 132, 90, 1),
+(104, 133, 120, 1),
+(105, 133, 120, 1),
+(106, 134, 190, 1);
 
 -- --------------------------------------------------------
 
@@ -975,7 +1038,20 @@ INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`)
 (570, 5, 90, 1),
 (571, 11, 101, 1),
 (572, 13, 101, 1),
-(574, 3, 103, 1);
+(574, 3, 103, 1),
+(575, 5, 104, 1),
+(576, 3, 105, 1),
+(577, 4, 105, 1),
+(578, 5, 105, 1),
+(579, 6, 105, 1),
+(580, 7, 105, 1),
+(581, 17, 106, 1),
+(582, 18, 106, 1),
+(583, 19, 106, 1),
+(584, 20, 106, 1),
+(585, 21, 106, 1),
+(586, 22, 106, 1),
+(587, 23, 106, 1);
 
 -- --------------------------------------------------------
 
@@ -1137,6 +1213,12 @@ ALTER TABLE `pagamenti_has_utenti`
   ADD KEY `fk_PAGAMENTI_has_UTENTI_UTENTE` (`id_utente`);
 
 --
+-- Indici per le tabelle `paypal_token`
+--
+ALTER TABLE `paypal_token`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indici per le tabelle `prodotti`
 --
 ALTER TABLE `prodotti`
@@ -1184,7 +1266,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT per la tabella `codice_sconto`
 --
 ALTER TABLE `codice_sconto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `codice_sconto_has_categoria`
@@ -1202,7 +1284,7 @@ ALTER TABLE `colore`
 -- AUTO_INCREMENT per la tabella `colore_has_prodotti`
 --
 ALTER TABLE `colore_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=332;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=339;
 
 --
 -- AUTO_INCREMENT per la tabella `dettagli_ordine`
@@ -1226,13 +1308,13 @@ ALTER TABLE `fornitori_has_prodotti`
 -- AUTO_INCREMENT per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=334;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=351;
 
 --
 -- AUTO_INCREMENT per la tabella `immagini_has_prodotti`
 --
 ALTER TABLE `immagini_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=321;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=338;
 
 --
 -- AUTO_INCREMENT per la tabella `indirizzi`
@@ -1250,7 +1332,7 @@ ALTER TABLE `indirizzi_has_utenti`
 -- AUTO_INCREMENT per la tabella `modello`
 --
 ALTER TABLE `modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -1265,10 +1347,16 @@ ALTER TABLE `pagamenti_has_utenti`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT per la tabella `paypal_token`
+--
+ALTER TABLE `paypal_token`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT per la tabella `taglia`
@@ -1280,7 +1368,7 @@ ALTER TABLE `taglia`
 -- AUTO_INCREMENT per la tabella `taglie_has_prodotti`
 --
 ALTER TABLE `taglie_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=575;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=588;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
