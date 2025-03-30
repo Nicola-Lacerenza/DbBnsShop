@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Mar 29, 2025 alle 16:28
+-- Creato il: Mar 30, 2025 alle 22:00
 -- Versione del server: 5.7.24
 -- Versione PHP: 8.3.1
 
@@ -793,8 +793,20 @@ CREATE TABLE `ordine` (
   `id_pagamento` int(11) NOT NULL,
   `id_indirizzo` int(11) NOT NULL,
   `stato_ordine` varchar(45) NOT NULL,
-  `data_ordine` date NOT NULL
+  `data_creazione_ordine` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `data_aggiornamento_stato_ordine` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `importo` double NOT NULL,
+  `valuta` varchar(255) NOT NULL,
+  `locale_utente` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `ordine`
+--
+
+INSERT INTO `ordine` (`id`, `id_utente`, `id_pagamento`, `id_indirizzo`, `stato_ordine`, `data_creazione_ordine`, `data_aggiornamento_stato_ordine`, `importo`, `valuta`, `locale_utente`) VALUES
+(1, 14, 1, 1, 'PAYER_ACTION_REQUIRED', '2025-03-30 19:47:26', '2025-03-30 19:47:26', 340, 'EUR', 'it-IT'),
+(2, 14, 1, 1, 'PAYER_ACTION_REQUIRED', '2025-03-30 19:50:05', '2025-03-30 19:50:05', 340, 'EUR', 'it-IT');
 
 -- --------------------------------------------------------
 
@@ -810,6 +822,13 @@ CREATE TABLE `pagamenti` (
   `data_scadenza` date NOT NULL,
   `codice_verfica` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `pagamenti`
+--
+
+INSERT INTO `pagamenti` (`id`, `id_utente`, `nome_titolare`, `numero_carta`, `data_scadenza`, `codice_verfica`) VALUES
+(1, NULL, 'Nicola Lacerenza', 0, '2025-03-18', '100');
 
 -- --------------------------------------------------------
 
@@ -847,7 +866,8 @@ INSERT INTO `paypal_token` (`id`, `access_token`, `scope`, `token_type`, `app_id
 (1, 'A21AAIXnWC9kQ8nJfvv6xZmvCaAgwoOvLmE2XoD-9zMqfPU9u8d4ygTDLA8AkKvRq_PcSYeKcJh3hlRCA9F3GcqTZ8llsSoWw', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 32311, '2025-03-29T16:05:08Z5_AjNAqTb8Olso-qTcQQcXOCdMh4k_4YQIKCTh7nfb4'),
 (2, 'A21AAIXnWC9kQ8nJfvv6xZmvCaAgwoOvLmE2XoD-9zMqfPU9u8d4ygTDLA8AkKvRq_PcSYeKcJh3hlRCA9F3GcqTZ8llsSoWw', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 31942, '2025-03-29T16:05:08Z5_AjNAqTb8Olso-qTcQQcXOCdMh4k_4YQIKCTh7nfb4'),
 (3, 'A21AAIXnWC9kQ8nJfvv6xZmvCaAgwoOvLmE2XoD-9zMqfPU9u8d4ygTDLA8AkKvRq_PcSYeKcJh3hlRCA9F3GcqTZ8llsSoWw', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 31924, '2025-03-29T16:05:08Z5_AjNAqTb8Olso-qTcQQcXOCdMh4k_4YQIKCTh7nfb4'),
-(4, 'A21AAIXnWC9kQ8nJfvv6xZmvCaAgwoOvLmE2XoD-9zMqfPU9u8d4ygTDLA8AkKvRq_PcSYeKcJh3hlRCA9F3GcqTZ8llsSoWw', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 31465, '2025-03-29T16:05:08Z5_AjNAqTb8Olso-qTcQQcXOCdMh4k_4YQIKCTh7nfb4');
+(4, 'A21AAIXnWC9kQ8nJfvv6xZmvCaAgwoOvLmE2XoD-9zMqfPU9u8d4ygTDLA8AkKvRq_PcSYeKcJh3hlRCA9F3GcqTZ8llsSoWw', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 31465, '2025-03-29T16:05:08Z5_AjNAqTb8Olso-qTcQQcXOCdMh4k_4YQIKCTh7nfb4'),
+(5, 'A21AAJYChoShUDXTPkguxSmA3KAJd40GQe-J4HQ50DLJGHW9_QOthDNSvZbLGsSfOprI-qPPs8xcLIyNtN2TXWuToxgtu6xBw', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 32399, '2025-03-30T17:05:37Zdjw9NSqu8lWFybczz0QyppGKFDmvWJ9kTIKyabywNyc');
 
 -- --------------------------------------------------------
 
@@ -1338,7 +1358,7 @@ ALTER TABLE `modello`
 -- AUTO_INCREMENT per la tabella `ordine`
 --
 ALTER TABLE `ordine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `pagamenti_has_utenti`
@@ -1350,7 +1370,7 @@ ALTER TABLE `pagamenti_has_utenti`
 -- AUTO_INCREMENT per la tabella `paypal_token`
 --
 ALTER TABLE `paypal_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT per la tabella `prodotti`
