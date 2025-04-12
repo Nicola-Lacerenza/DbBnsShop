@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Mar 30, 2025 alle 22:00
+-- Creato il: Apr 12, 2025 alle 13:44
 -- Versione del server: 5.7.24
 -- Versione PHP: 8.3.1
 
@@ -87,6 +87,13 @@ CREATE TABLE `codice_sconto` (
   `attivo` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dump dei dati per la tabella `codice_sconto`
+--
+
+INSERT INTO `codice_sconto` (`id`, `codice`, `valore`, `descrizione`, `tipo`, `data_inizio`, `data_fine`, `uso_massimo`, `uso_per_utente`, `minimo_acquisto`, `attivo`) VALUES
+(15, 'BNS10', 10, 'Sconto del 10% su tutte le Sneakers da Uomo!!', 'percentuale', '2025-04-09', '2025-04-29', 100, 1, 100, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -98,6 +105,13 @@ CREATE TABLE `codice_sconto_has_categoria` (
   `id_categoria` int(11) NOT NULL,
   `id_codicesconto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `codice_sconto_has_categoria`
+--
+
+INSERT INTO `codice_sconto_has_categoria` (`id`, `id_categoria`, `id_codicesconto`) VALUES
+(5, 2, 15);
 
 -- --------------------------------------------------------
 
@@ -208,7 +222,10 @@ INSERT INTO `colore_has_prodotti` (`id`, `id_colore`, `id_prodotto`) VALUES
 (335, 4, 105),
 (336, 12, 105),
 (337, 1, 106),
-(338, 11, 106);
+(338, 11, 106),
+(348, 4, 107),
+(349, 2, 107),
+(350, 11, 107);
 
 -- --------------------------------------------------------
 
@@ -296,6 +313,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (278, 'images/2006d67f-8eeb-491a-8e86-a989dcba94a1.png'),
 (327, 'images/20cdadb0-f873-4a5b-a3ae-6fc45ecd2835.png'),
 (335, 'images/22e8f0e6-2829-49eb-a226-e5a4acbcbfbe.jpg'),
+(351, 'images/22f026aa-0276-4280-8618-bccd143e642d.jpg'),
 (221, 'images/23b9b242-40b0-4969-9d71-521233fd7ba6.png'),
 (336, 'images/273d2f57-be23-4f72-ad7e-c2abf8a2a273.jpg'),
 (142, 'images/2a097e2f-3ea3-477f-a5fb-ebd246be0439.png'),
@@ -364,9 +382,11 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (145, 'images/76cdaf0e-867a-4ea2-a19e-3760fa7f4f40.png'),
 (316, 'images/77ae73e2-f068-463e-bb8f-644206eb37ed.mp4'),
 (272, 'images/787cb423-3967-48cb-b2e5-441e73561cfa.png'),
+(354, 'images/7d996c86-f3fe-4e53-ae42-04ebe33abe2a.jpg'),
 (174, 'images/7f0c37cb-5fa5-4c1f-a958-c3c28b676a1a.png'),
 (274, 'images/7ff63029-7e64-49bd-8dc1-c4a17cbc39d4.png'),
 (158, 'images/80081115-e8a0-420b-b65d-4580eaa9a138.png'),
+(353, 'images/803cc5f1-d0e6-444a-9402-c9bf73bcd8d4.jpg'),
 (302, 'images/804dbdbf-590b-4585-9266-1539a3f35fd7.png'),
 (242, 'images/81d9d811-c2c1-4f25-870a-923696cdddb5.jpeg'),
 (214, 'images/86113245-090d-499a-baf4-9f6067effc6f.png'),
@@ -433,10 +453,12 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (144, 'images/c822f382-332d-4fc7-ad82-76d6b64985ca.png'),
 (257, 'images/cac283da-ae4d-4bb3-843a-1cb1ac797e22.png'),
 (326, 'images/cadd2a7b-2b87-4570-b524-bd227d90806f.png'),
+(356, 'images/cbe9cf21-1ec6-4c03-aa08-be8db56d9a50.jpg'),
 (219, 'images/cee7216e-8642-4aa5-a657-fecc6f32d398.png'),
 (241, 'images/d01c1638-4364-4917-894f-1dc90e17f4bc.jpeg'),
 (136, 'images/d17d3dca-0102-4363-b9d4-398fc4f8ccf1.png'),
 (254, 'images/d232caec-5b84-497b-818e-716c8c712eb9.png'),
+(355, 'images/d4ba26dc-1f6d-4dc4-bb5d-55bc1aec61f8.jpg'),
 (175, 'images/d7b25a15-dcaf-488b-95b9-94074c160427.png'),
 (240, 'images/d88e2a36-199d-4210-bc21-edb2355839e2.png'),
 (315, 'images/d8e64a50-a212-43b1-8f1d-e424d999df36.png'),
@@ -460,6 +482,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (195, 'images/f452dddc-2ace-4777-b95e-d3b6ef2c6e98.png'),
 (196, 'images/f5997997-8302-44ed-8c5d-d8777ceb52fd.png'),
 (252, 'images/f6b32138-c91f-444a-b235-56070a852160.png'),
+(352, 'images/f726217c-42ff-46d7-8d57-0398ea9c422f.jpg'),
 (203, 'images/f7c14e33-5fca-417f-9921-412f19fef369.jpeg'),
 (200, 'images/fa9e602c-fb1d-4a8f-b6f8-6e61b151bed8.png'),
 (161, 'images/faeb2d95-a5e6-4cdc-9050-32063c5f86f8.png'),
@@ -684,7 +707,13 @@ INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
 (334, 347, 106),
 (335, 348, 106),
 (336, 349, 106),
-(337, 350, 106);
+(337, 350, 106),
+(338, 351, 107),
+(339, 352, 107),
+(340, 353, 107),
+(341, 354, 107),
+(342, 355, 107),
+(343, 356, 107);
 
 -- --------------------------------------------------------
 
@@ -752,7 +781,7 @@ CREATE TABLE `modello` (
   `id_categoria` int(11) NOT NULL,
   `id_brand` int(11) NOT NULL,
   `nome` varchar(45) NOT NULL,
-  `descrizione` varchar(500) DEFAULT NULL
+  `descrizione` varchar(800) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -768,6 +797,7 @@ INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) 
 (116, 2, 1, 'NOCTA AIR FORCE 1 LOW', 'Qual e\' il tuo libro per bambini preferito? Nate per rendere omaggio all\'amore dei genitori e alla storia che la madre di Drake leggeva a suo figlio, NOCTA Air Force 1 Low arricchisce l\'iconico stile da basket con dettagli tratti dalle classiche storie per bambini. Sull\'intersuola e\' presente la scritta \'Love you forever\' e comprende un set di perline (realizzate in NOCTA blu) con cui puoi scrivere la tua ninna nanna sui lacci.'),
 (134, 2, 2, 'NEW BALANCE 9060', 'Le 9060 rappresentano una nuova espressione dello stile raffinato e del design innovativo della classica serie 99X. Il modello 9060 reinterpreta gli elementi familiari del 99X con una sensibilita\' visionaria, ispirata all\'estetica visibilmente tecnologica e orgogliosamente futuristica dell\'era Y2K. '),
 (131, 2, 3, 'AIR JORDAN 1 RETRO HIGH', 'Scarpe'),
+(137, 2, 3, 'Air Jordan 3 x A Ma Maniere', '\"For The Love\" di A Ma Maniere\" celebra la forza dell\'unita\', dell\'entusiasmo e di una passione condivisa contro tutte le aspettative. Rinnovando il modello AJ3 originale di Jordan e A Ma Maniere, questa edizione punta tutto su emozioni e legami potenti, in un design d\'impatto, che rivisita un classico intramontabile di MJ.\nUna pelle pregiata bianca caratterizza la tomaia, mentre strati esterni in suede antracite testurizzato donano carattere e dimensionalita\' al look. Dettagli in Diffused Blue sottolineano le linee di design. La linguetta, infine, celebra la collaborazione tra i brand, riportando su una scarpa l\'esclusivo logo Jumpman e sull\'altra il logo \"A\" di A Ma Maniere.'),
 (122, 2, 3, 'AIR JORDAN 4 ABUNDANCE', 'I risultati non arrivano da soli, bisogna conquistarli. AJ4 \"Abundance\" e\' un omaggio alla grinta e al duro lavoro che la nuova generazione di talenti mette in ogni cosa che fa, dentro e fuori dal campo. Questa edizione richiama l\'iconica AJ4 \'\'Pure Money\'\' attraverso finiture color argento metallizzato, perfette per un look moderno, e una colorway in Seafoam e Sail, che offre un tocco di stile discreto.'),
 (123, 2, 3, 'AIR JORDAN 4 NET', 'Questo aggiornamento in grande stile di AJ4 trasforma un classico in un vero e proprio spettacolo. Materiali pregiati come la morbida pelle, donano a questa scarpa un look e una calzata di lusso. I dettagli dorati, come la targhetta staccabile Jumpman, spiccano sulla tomaia Triple White e attirano tutti gli sguardi su di te. Indossala e sfoggia uno stile che non passa inosservato.'),
 (130, 2, 3, 'AIR JORDAN 4 RETRO SB BLU NAVY', 'Scarpe'),
@@ -790,6 +820,7 @@ INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) 
 CREATE TABLE `ordine` (
   `id` int(11) NOT NULL,
   `id_utente` int(11) NOT NULL,
+  `id_ordine_paypal` varchar(255) NOT NULL,
   `id_pagamento` int(11) NOT NULL,
   `id_indirizzo` int(11) NOT NULL,
   `stato_ordine` varchar(45) NOT NULL,
@@ -799,14 +830,6 @@ CREATE TABLE `ordine` (
   `valuta` varchar(255) NOT NULL,
   `locale_utente` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dump dei dati per la tabella `ordine`
---
-
-INSERT INTO `ordine` (`id`, `id_utente`, `id_pagamento`, `id_indirizzo`, `stato_ordine`, `data_creazione_ordine`, `data_aggiornamento_stato_ordine`, `importo`, `valuta`, `locale_utente`) VALUES
-(1, 14, 1, 1, 'PAYER_ACTION_REQUIRED', '2025-03-30 19:47:26', '2025-03-30 19:47:26', 340, 'EUR', 'it-IT'),
-(2, 14, 1, 1, 'PAYER_ACTION_REQUIRED', '2025-03-30 19:50:05', '2025-03-30 19:50:05', 340, 'EUR', 'it-IT');
 
 -- --------------------------------------------------------
 
@@ -840,6 +863,23 @@ CREATE TABLE `pagamenti_has_utenti` (
   `id` int(11) NOT NULL,
   `id_utente` int(11) NOT NULL,
   `id_pagamento` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `paypal_pagamento_creato`
+--
+
+CREATE TABLE `paypal_pagamento_creato` (
+  `id` int(11) NOT NULL,
+  `id_ordine_paypal` varchar(255) NOT NULL,
+  `payer_id` varchar(255) NOT NULL,
+  `payment_id` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `paypal_fee` decimal(10,2) NOT NULL,
+  `gross_amount` decimal(10,2) NOT NULL,
+  `net_amount` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -920,7 +960,8 @@ INSERT INTO `prodotti` (`id`, `id_modello`, `prezzo`, `stato_pubblicazione`) VAL
 (103, 132, 90, 1),
 (104, 133, 120, 1),
 (105, 133, 120, 1),
-(106, 134, 190, 1);
+(106, 134, 190, 1),
+(107, 137, 230, 1);
 
 -- --------------------------------------------------------
 
@@ -1071,7 +1112,9 @@ INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`)
 (584, 20, 106, 1),
 (585, 21, 106, 1),
 (586, 22, 106, 1),
-(587, 23, 106, 1);
+(587, 23, 106, 1),
+(594, 13, 107, 1),
+(595, 15, 107, 1);
 
 -- --------------------------------------------------------
 
@@ -1088,6 +1131,8 @@ CREATE TABLE `utenti` (
   `sesso` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `telefono` varchar(255) NOT NULL,
+  `id_taglia_preferita` int(11) DEFAULT NULL,
+  `id_colore_preferito` int(11) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `ruolo` varchar(255) NOT NULL DEFAULT 'Cliente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1096,9 +1141,9 @@ CREATE TABLE `utenti` (
 -- Dump dei dati per la tabella `utenti`
 --
 
-INSERT INTO `utenti` (`id`, `nome`, `cognome`, `data_nascita`, `luogo_nascita`, `sesso`, `email`, `telefono`, `password`, `ruolo`) VALUES
-(14, 'Nicola', 'Lacerenza', '1998-04-07', 'Barletta', 'maschio', 'admin@gmail.com', '3282018804', '5a6663d75fb68c8a15ac040b2bd478ece92fdd39f9099df5e7db1f8695366d82ac70d50b73ac74019a6e8e769f65a820b1181d38fe60588b995beb246ab1702f', 'admin'),
-(22, 'NIcola', 'Lacerenza', '1998-04-07', 'Barletta', 'maschio', 'nicolace98@gmail.com', '3282018804', '5a6663d75fb68c8a15ac040b2bd478ece92fdd39f9099df5e7db1f8695366d82ac70d50b73ac74019a6e8e769f65a820b1181d38fe60588b995beb246ab1702f', 'cliente');
+INSERT INTO `utenti` (`id`, `nome`, `cognome`, `data_nascita`, `luogo_nascita`, `sesso`, `email`, `telefono`, `id_taglia_preferita`, `id_colore_preferito`, `password`, `ruolo`) VALUES
+(14, 'Nicola', 'Lacerenza', '1998-04-07', 'Barletta', 'maschio', 'admin@gmail.com', '3282018804', NULL, NULL, '5a6663d75fb68c8a15ac040b2bd478ece92fdd39f9099df5e7db1f8695366d82ac70d50b73ac74019a6e8e769f65a820b1181d38fe60588b995beb246ab1702f', 'admin'),
+(22, 'NIcola', 'Lacerenza', '1998-04-07', 'Barletta', 'maschio', 'nicolace98@gmail.com', '3282018804', NULL, NULL, '5a6663d75fb68c8a15ac040b2bd478ece92fdd39f9099df5e7db1f8695366d82ac70d50b73ac74019a6e8e769f65a820b1181d38fe60588b995beb246ab1702f', 'cliente');
 
 --
 -- Indici per le tabelle scaricate
@@ -1213,6 +1258,7 @@ ALTER TABLE `modello`
 --
 ALTER TABLE `ordine`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `ChiaveEsternaIdOrdinePayPal` (`id_ordine_paypal`),
   ADD KEY `fk_ORDINE_UTENTE` (`id_utente`),
   ADD KEY `fk_ORDINE_PAGAMENTO` (`id_pagamento`),
   ADD KEY `fk_ORDINE_INDIRIZZO` (`id_indirizzo`);
@@ -1231,6 +1277,13 @@ ALTER TABLE `pagamenti_has_utenti`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_PAGAMENTI_has_UTENTI_PAGAMENTO` (`id_pagamento`),
   ADD KEY `fk_PAGAMENTI_has_UTENTI_UTENTE` (`id_utente`);
+
+--
+-- Indici per le tabelle `paypal_pagamento_creato`
+--
+ALTER TABLE `paypal_pagamento_creato`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_ORDINE_has_PAGAMENTOPAYPAL_ORIDNEPAYPAL` (`id_ordine_paypal`);
 
 --
 -- Indici per le tabelle `paypal_token`
@@ -1264,7 +1317,9 @@ ALTER TABLE `taglie_has_prodotti`
 --
 ALTER TABLE `utenti`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `unique_email` (`email`);
+  ADD UNIQUE KEY `unique_email` (`email`),
+  ADD KEY `id_taglia_preferita` (`id_taglia_preferita`),
+  ADD KEY `id_colore_preferito` (`id_colore_preferito`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -1286,13 +1341,13 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT per la tabella `codice_sconto`
 --
 ALTER TABLE `codice_sconto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT per la tabella `codice_sconto_has_categoria`
 --
 ALTER TABLE `codice_sconto_has_categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT per la tabella `colore`
@@ -1304,7 +1359,7 @@ ALTER TABLE `colore`
 -- AUTO_INCREMENT per la tabella `colore_has_prodotti`
 --
 ALTER TABLE `colore_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=339;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=351;
 
 --
 -- AUTO_INCREMENT per la tabella `dettagli_ordine`
@@ -1328,13 +1383,13 @@ ALTER TABLE `fornitori_has_prodotti`
 -- AUTO_INCREMENT per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=351;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=357;
 
 --
 -- AUTO_INCREMENT per la tabella `immagini_has_prodotti`
 --
 ALTER TABLE `immagini_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=338;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=344;
 
 --
 -- AUTO_INCREMENT per la tabella `indirizzi`
@@ -1352,7 +1407,7 @@ ALTER TABLE `indirizzi_has_utenti`
 -- AUTO_INCREMENT per la tabella `modello`
 --
 ALTER TABLE `modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -1367,6 +1422,12 @@ ALTER TABLE `pagamenti_has_utenti`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT per la tabella `paypal_pagamento_creato`
+--
+ALTER TABLE `paypal_pagamento_creato`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT per la tabella `paypal_token`
 --
 ALTER TABLE `paypal_token`
@@ -1376,7 +1437,7 @@ ALTER TABLE `paypal_token`
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT per la tabella `taglia`
@@ -1388,7 +1449,7 @@ ALTER TABLE `taglia`
 -- AUTO_INCREMENT per la tabella `taglie_has_prodotti`
 --
 ALTER TABLE `taglie_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=588;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=596;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
@@ -1472,6 +1533,12 @@ ALTER TABLE `pagamenti_has_utenti`
   ADD CONSTRAINT `fk_PAGAMENTI_has_UTENTI_UTENTE` FOREIGN KEY (`id_utente`) REFERENCES `utenti` (`id`);
 
 --
+-- Limiti per la tabella `paypal_pagamento_creato`
+--
+ALTER TABLE `paypal_pagamento_creato`
+  ADD CONSTRAINT `fk_ORDINE_has_PAGAMENTOPAYPAL_ORIDNEPAYPAL` FOREIGN KEY (`id_ordine_paypal`) REFERENCES `ordine` (`id_ordine_paypal`);
+
+--
 -- Limiti per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
@@ -1483,6 +1550,13 @@ ALTER TABLE `prodotti`
 ALTER TABLE `taglie_has_prodotti`
   ADD CONSTRAINT `fk_TAGLIE_has_PRODOTTI_PRODOTTO` FOREIGN KEY (`id_prodotto`) REFERENCES `prodotti` (`id`),
   ADD CONSTRAINT `fk_TAGLIE_has_PRODOTTI_TAGLIA` FOREIGN KEY (`id_taglia`) REFERENCES `taglia` (`id`);
+
+--
+-- Limiti per la tabella `utenti`
+--
+ALTER TABLE `utenti`
+  ADD CONSTRAINT `utenti_ibfk_1` FOREIGN KEY (`id_taglia_preferita`) REFERENCES `taglia` (`id`),
+  ADD CONSTRAINT `utenti_ibfk_2` FOREIGN KEY (`id_colore_preferito`) REFERENCES `colore` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
