@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Apr 19, 2025 alle 15:47
+-- Creato il: Apr 20, 2025 alle 10:28
 -- Versione del server: 5.7.24
 -- Versione PHP: 8.3.1
 
@@ -240,6 +240,14 @@ CREATE TABLE `dettagli_ordine` (
   `quantita` int(11) NOT NULL,
   `codice_sconto` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `dettagli_ordine`
+--
+
+INSERT INTO `dettagli_ordine` (`id`, `id_ordine`, `id_prodotto`, `quantita`, `codice_sconto`) VALUES
+(1, 2, 65, 1, ''),
+(2, 2, 71, 2, '');
 
 -- --------------------------------------------------------
 
@@ -1436,7 +1444,7 @@ ALTER TABLE `colore_has_prodotti`
 -- AUTO_INCREMENT per la tabella `dettagli_ordine`
 --
 ALTER TABLE `dettagli_ordine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `fornitori`
