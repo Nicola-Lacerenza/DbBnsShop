@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Apr 24, 2025 alle 18:23
+-- Creato il: Apr 26, 2025 alle 21:06
 -- Versione del server: 5.7.24
 -- Versione PHP: 8.3.1
 
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `brand` (
   `id` int(11) NOT NULL,
-  `nome` varchar(45) NOT NULL,
-  `descrizione` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `nome` varchar(45) CHARACTER SET utf8 NOT NULL,
+  `descrizione` varchar(255) CHARACTER SET utf8 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `brand`
@@ -87,13 +87,6 @@ CREATE TABLE `codice_sconto` (
   `attivo` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dump dei dati per la tabella `codice_sconto`
---
-
-INSERT INTO `codice_sconto` (`id`, `codice`, `valore`, `descrizione`, `tipo`, `data_inizio`, `data_fine`, `uso_massimo`, `uso_per_utente`, `minimo_acquisto`, `attivo`) VALUES
-(15, 'BNS10', 10, 'Sconto del 10% su tutte le Sneakers da Uomo!!', 'percentuale', '2025-04-09', '2025-04-29', 100, 1, 100, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -105,13 +98,6 @@ CREATE TABLE `codice_sconto_has_categoria` (
   `id_categoria` int(11) NOT NULL,
   `id_codicesconto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dump dei dati per la tabella `codice_sconto_has_categoria`
---
-
-INSERT INTO `codice_sconto_has_categoria` (`id`, `id_categoria`, `id_codicesconto`) VALUES
-(5, 2, 15);
 
 -- --------------------------------------------------------
 
@@ -225,7 +211,8 @@ INSERT INTO `colore_has_prodotti` (`id`, `id_colore`, `id_prodotto`) VALUES
 (338, 11, 106),
 (348, 4, 107),
 (349, 2, 107),
-(350, 11, 107);
+(350, 11, 107),
+(351, 1, 108);
 
 -- --------------------------------------------------------
 
@@ -248,7 +235,10 @@ CREATE TABLE `dettagli_ordine` (
 
 INSERT INTO `dettagli_ordine` (`id`, `id_ordine`, `id_prodotto`, `quantita`, `prezzo`, `taglia_scelta`) VALUES
 (6, 8, 104, 1, '120.00', '37'),
-(7, 9, 104, 1, '120.00', '37');
+(7, 9, 104, 1, '120.00', '37'),
+(8, 10, 89, 1, '130.00', '36'),
+(9, 11, 89, 1, '130.00', '36'),
+(10, 12, 70, 1, '120.00', '36.5');
 
 -- --------------------------------------------------------
 
@@ -435,6 +425,7 @@ INSERT INTO `immagini` (`id`, `url`) VALUES
 (291, 'images/acaa8faa-06d0-4eb7-a360-764168ae2136.png'),
 (348, 'images/ad71d27e-29b5-4390-b1ac-21fecb4087b4.jpg'),
 (169, 'images/adc086b7-779b-4738-9ba7-045a4310da49.png'),
+(357, 'images/adfa762a-d176-4fe7-86e8-256e7ae9f9b0.jpg'),
 (289, 'images/adfbdcb5-c35c-4f19-beb3-c41954d903b9.png'),
 (333, 'images/aeb85a10-f847-42c9-b875-03fc3217aca5.jpg'),
 (314, 'images/aed79d66-a50c-47fa-acf4-f9208825949f.mp4'),
@@ -722,7 +713,8 @@ INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
 (340, 353, 107),
 (341, 354, 107),
 (342, 355, 107),
-(343, 356, 107);
+(343, 356, 107),
+(344, 357, 108);
 
 -- --------------------------------------------------------
 
@@ -804,6 +796,7 @@ INSERT INTO `modello` (`id`, `id_categoria`, `id_brand`, `nome`, `descrizione`) 
 (71, 2, 1, 'NIKE AIR MAX PLUS', 'Scopri la leggendaria tecnologia Tuned Air con queste scarpe confortevoli. Con l\'iconica gabbia a forma di fiamma e la coda di balena vicino all\'arco plantare, questa Air Max Plus sfoggia vivaci tocchi di colore per un look che non passa inosservato nel tempo libero. '),
 (102, 2, 1, 'NIKE DUNK SB LOW PRO', 'Una scarpa da skateboard classica, perfetta sulla tavola e per qualsiasi occasione. Questa versione esclusiva di Dunk Low e realizzata in pelle e presenta un battistrada in gomma per un tocco di fascino in piu a ogni trick. Inoltre, la traspirante linguetta in tessuto e l ammortizzazione Zoom Air sotto il piede regalano leggerezza anche durante le session piu lunghe sullo skate. E poi ce lo Swoosh, per un tocco di contrasto in piu. E uno stile ancora piu d\'impatto.'),
 (116, 2, 1, 'NOCTA AIR FORCE 1 LOW', 'Qual e\' il tuo libro per bambini preferito? Nate per rendere omaggio all\'amore dei genitori e alla storia che la madre di Drake leggeva a suo figlio, NOCTA Air Force 1 Low arricchisce l\'iconico stile da basket con dettagli tratti dalle classiche storie per bambini. Sull\'intersuola e\' presente la scritta \'Love you forever\' e comprende un set di perline (realizzate in NOCTA blu) con cui puoi scrivere la tua ninna nanna sui lacci.'),
+(146, 2, 2, 'fghjk', 'fghjk'),
 (134, 2, 2, 'NEW BALANCE 9060', 'Le 9060 rappresentano una nuova espressione dello stile raffinato e del design innovativo della classica serie 99X. Il modello 9060 reinterpreta gli elementi familiari del 99X con una sensibilita\' visionaria, ispirata all\'estetica visibilmente tecnologica e orgogliosamente futuristica dell\'era Y2K. '),
 (131, 2, 3, 'AIR JORDAN 1 RETRO HIGH', 'Scarpe'),
 (137, 2, 3, 'Air Jordan 3 x A Ma Maniere', '\"For The Love\" di A Ma Maniere\" celebra la forza dell\'unita\', dell\'entusiasmo e di una passione condivisa contro tutte le aspettative. Rinnovando il modello AJ3 originale di Jordan e A Ma Maniere, questa edizione punta tutto su emozioni e legami potenti, in un design d\'impatto, che rivisita un classico intramontabile di MJ.\nUna pelle pregiata bianca caratterizza la tomaia, mentre strati esterni in suede antracite testurizzato donano carattere e dimensionalita\' al look. Dettagli in Diffused Blue sottolineano le linee di design. La linguetta, infine, celebra la collaborazione tra i brand, riportando su una scarpa l\'esclusivo logo Jumpman e sull\'altra il logo \"A\" di A Ma Maniere.'),
@@ -846,7 +839,10 @@ CREATE TABLE `ordine` (
 
 INSERT INTO `ordine` (`id`, `id_utente`, `id_ordine_paypal`, `id_pagamento`, `id_indirizzo`, `stato_ordine`, `data_creazione_ordine`, `data_aggiornamento_stato_ordine`, `importo`, `valuta`, `locale_utente`) VALUES
 (8, 14, '2Y8800813D738305N', 1, 1, 'COMPLETED', '2025-04-24 19:40:26', '2025-04-24 19:40:36', 120, 'EUR', 'it-IT'),
-(9, 14, '29482106E92119432', 1, 1, 'COMPLETED', '2025-04-24 19:46:34', '2025-04-24 19:46:44', 120, 'EUR', 'it-IT');
+(9, 14, '29482106E92119432', 1, 1, 'COMPLETED', '2025-04-24 19:46:34', '2025-04-24 19:46:44', 120, 'EUR', 'it-IT'),
+(10, 14, '22U8293463415204N', 1, 1, 'COMPLETED', '2025-04-26 19:06:01', '2025-04-26 19:06:18', 130, 'EUR', 'it-IT'),
+(11, 14, '3KW79097PG975150D', 1, 1, 'PAYER_ACTION_REQUIRED', '2025-04-26 19:06:04', '2025-04-26 19:06:04', 130, 'EUR', 'it-IT'),
+(12, 14, '7H22874554461633H', 1, 1, 'COMPLETED', '2025-04-26 19:06:54', '2025-04-26 19:07:03', 120, 'EUR', 'it-IT');
 
 -- --------------------------------------------------------
 
@@ -907,7 +903,9 @@ CREATE TABLE `paypal_pagamento_creato` (
 
 INSERT INTO `paypal_pagamento_creato` (`id`, `id_ordine_paypal`, `payer_id`, `payment_id`, `status`, `paypal_fee`, `gross_amount`, `net_amount`, `refund_link_href`, `refund_link_request_method`) VALUES
 (5, '2Y8800813D738305N', '8GWP2JRWYCKH6', '4P841557XU234684J', 'COMPLETED', '4.43', '120.00', '115.57', 'https://api.sandbox.paypal.com/v2/payments/captures/4P841557XU234684J/refund', 'POST'),
-(6, '29482106E92119432', '8GWP2JRWYCKH6', '3CD85206HM6003729', 'COMPLETED', '4.43', '120.00', '115.57', 'https://api.sandbox.paypal.com/v2/payments/captures/3CD85206HM6003729/refund', 'POST');
+(6, '29482106E92119432', '8GWP2JRWYCKH6', '3CD85206HM6003729', 'COMPLETED', '4.43', '120.00', '115.57', 'https://api.sandbox.paypal.com/v2/payments/captures/3CD85206HM6003729/refund', 'POST'),
+(7, '22U8293463415204N', '8GWP2JRWYCKH6', '338628639U210474W', 'COMPLETED', '4.77', '130.00', '125.23', 'https://api.sandbox.paypal.com/v2/payments/captures/338628639U210474W/refund', 'POST'),
+(8, '7H22874554461633H', '8GWP2JRWYCKH6', '8RH19472T3003972X', 'COMPLETED', '4.43', '120.00', '115.57', 'https://api.sandbox.paypal.com/v2/payments/captures/8RH19472T3003972X/refund', 'POST');
 
 -- --------------------------------------------------------
 
@@ -937,7 +935,8 @@ INSERT INTO `paypal_token` (`id`, `access_token`, `scope`, `token_type`, `app_id
 (5, 'A21AAJYChoShUDXTPkguxSmA3KAJd40GQe-J4HQ50DLJGHW9_QOthDNSvZbLGsSfOprI-qPPs8xcLIyNtN2TXWuToxgtu6xBw', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 32399, '2025-03-30T17:05:37Zdjw9NSqu8lWFybczz0QyppGKFDmvWJ9kTIKyabywNyc'),
 (6, 'A21AAL0SBgBnarTXpIG-W1fGYDxIcJh_b6Y6GeghClTxv43ikvQhJTItS5oeKQ67KATN3vDVtW_F8nXE1FRF0QP0orXSB7BYg', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 32400, '2025-04-19T07:36:39ZykjDKE-FS7rcJPGd11TuNBtdOxLuwZ2HeO1hfsuk2xA'),
 (7, 'A21AAIjQtr1sGz9UG3Q8r3ZvjOVh72XJEw8c6ZK_Ny1Nck67UIE_KRvSTB-_qHqQNIjemT5SeBnyfc0gH0ZExthANXlVQ2rAA', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 32400, '2025-04-24T17:33:43ZaveAQcZMb-YcMW2YQMU_5BZDv1H0hEuOo53DjKSG1WE'),
-(8, 'A21AAIjQtr1sGz9UG3Q8r3ZvjOVh72XJEw8c6ZK_Ny1Nck67UIE_KRvSTB-_qHqQNIjemT5SeBnyfc0gH0ZExthANXlVQ2rAA', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 32400, '2025-04-24T17:33:43ZaveAQcZMb-YcMW2YQMU_5BZDv1H0hEuOo53DjKSG1WE');
+(8, 'A21AAIjQtr1sGz9UG3Q8r3ZvjOVh72XJEw8c6ZK_Ny1Nck67UIE_KRvSTB-_qHqQNIjemT5SeBnyfc0gH0ZExthANXlVQ2rAA', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 32400, '2025-04-24T17:33:43ZaveAQcZMb-YcMW2YQMU_5BZDv1H0hEuOo53DjKSG1WE'),
+(9, 'A21AAJ6ZZmiswEODecowaNZD3r0vNswKCsLLKWwNRKphyryLLK9JXE4L-mvBy4a2UTj1fzbJ2dbOCWZQW2v0GvU8sOMvaGHpQ', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 32400, '2025-04-26T17:06:00ZEXzjwdVm5-2VvZ9qgaOxZw_m_ZRnO9xaomOVAlxKfts');
 
 -- --------------------------------------------------------
 
@@ -948,7 +947,7 @@ INSERT INTO `paypal_token` (`id`, `access_token`, `scope`, `token_type`, `app_id
 CREATE TABLE `prodotti` (
   `id` int(11) NOT NULL,
   `id_modello` int(11) NOT NULL,
-  `prezzo` int(11) NOT NULL,
+  `prezzo` decimal(10,2) NOT NULL,
   `stato_pubblicazione` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -957,41 +956,42 @@ CREATE TABLE `prodotti` (
 --
 
 INSERT INTO `prodotti` (`id`, `id_modello`, `prezzo`, `stato_pubblicazione`) VALUES
-(65, 89, 130, 1),
-(66, 102, 200, 1),
-(67, 103, 250, 1),
-(68, 103, 150, 1),
-(69, 71, 250, 1),
-(70, 104, 120, 1),
-(71, 104, 120, 1),
-(72, 104, 120, 1),
-(73, 102, 120, 1),
-(74, 89, 120, 1),
-(75, 71, 199, 1),
-(76, 71, 120, 1),
-(77, 71, 120, 1),
-(78, 106, 150, 1),
-(79, 106, 150, 1),
-(80, 106, 150, 1),
-(81, 107, 150, 1),
-(82, 107, 150, 1),
-(83, 108, 70, 1),
-(84, 108, 70, 1),
-(86, 116, 150, 1),
-(87, 116, 150, 1),
-(88, 117, 120, 1),
-(89, 118, 130, 1),
-(90, 118, 120, 0),
-(91, 121, 150, 1),
-(93, 123, 250, 1),
-(100, 130, 150, 1),
-(101, 131, 350, 0),
-(102, 122, 210, 1),
-(103, 132, 90, 1),
-(104, 133, 120, 1),
-(105, 133, 120, 1),
-(106, 134, 190, 1),
-(107, 137, 230, 1);
+(65, 89, '130.00', 1),
+(66, 102, '200.00', 1),
+(67, 103, '250.00', 1),
+(68, 103, '150.00', 1),
+(69, 71, '250.00', 1),
+(70, 104, '120.00', 1),
+(71, 104, '120.00', 1),
+(72, 104, '120.00', 1),
+(73, 102, '120.00', 1),
+(74, 89, '120.00', 1),
+(75, 71, '199.00', 1),
+(76, 71, '120.00', 1),
+(77, 71, '120.00', 1),
+(78, 106, '150.00', 1),
+(79, 106, '150.00', 1),
+(80, 106, '150.00', 1),
+(81, 107, '150.00', 1),
+(82, 107, '150.00', 1),
+(83, 108, '70.00', 1),
+(84, 108, '70.00', 1),
+(86, 116, '150.00', 1),
+(87, 116, '150.00', 1),
+(88, 117, '120.00', 1),
+(89, 118, '130.00', 1),
+(90, 118, '120.00', 0),
+(91, 121, '150.00', 1),
+(93, 123, '250.00', 1),
+(100, 130, '150.00', 1),
+(101, 131, '350.00', 0),
+(102, 122, '210.00', 1),
+(103, 132, '90.00', 1),
+(104, 133, '120.00', 1),
+(105, 133, '120.00', 1),
+(106, 134, '190.00', 1),
+(107, 137, '230.00', 1),
+(108, 146, '130.00', 1);
 
 -- --------------------------------------------------------
 
@@ -1177,7 +1177,8 @@ INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`)
 (586, 22, 106, 1),
 (587, 23, 106, 1),
 (594, 13, 107, 1),
-(595, 15, 107, 1);
+(595, 15, 107, 1),
+(596, 3, 108, 1);
 
 -- --------------------------------------------------------
 
@@ -1421,13 +1422,13 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT per la tabella `codice_sconto`
 --
 ALTER TABLE `codice_sconto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `codice_sconto_has_categoria`
 --
 ALTER TABLE `codice_sconto_has_categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `colore`
@@ -1439,13 +1440,13 @@ ALTER TABLE `colore`
 -- AUTO_INCREMENT per la tabella `colore_has_prodotti`
 --
 ALTER TABLE `colore_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=351;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=352;
 
 --
 -- AUTO_INCREMENT per la tabella `dettagli_ordine`
 --
 ALTER TABLE `dettagli_ordine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT per la tabella `fornitori`
@@ -1463,13 +1464,13 @@ ALTER TABLE `fornitori_has_prodotti`
 -- AUTO_INCREMENT per la tabella `immagini`
 --
 ALTER TABLE `immagini`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=357;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=358;
 
 --
 -- AUTO_INCREMENT per la tabella `immagini_has_prodotti`
 --
 ALTER TABLE `immagini_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=344;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=345;
 
 --
 -- AUTO_INCREMENT per la tabella `indirizzi`
@@ -1487,13 +1488,13 @@ ALTER TABLE `indirizzi_has_utenti`
 -- AUTO_INCREMENT per la tabella `modello`
 --
 ALTER TABLE `modello`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
 --
 ALTER TABLE `ordine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT per la tabella `pagamenti_has_utenti`
@@ -1505,19 +1506,19 @@ ALTER TABLE `pagamenti_has_utenti`
 -- AUTO_INCREMENT per la tabella `paypal_pagamento_creato`
 --
 ALTER TABLE `paypal_pagamento_creato`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT per la tabella `paypal_token`
 --
 ALTER TABLE `paypal_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT per la tabella `resi`
@@ -1541,7 +1542,7 @@ ALTER TABLE `taglia`
 -- AUTO_INCREMENT per la tabella `taglie_has_prodotti`
 --
 ALTER TABLE `taglie_has_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=596;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=597;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
