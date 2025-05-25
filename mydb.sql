@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Mag 02, 2025 alle 08:18
+-- Creato il: Mag 25, 2025 alle 10:51
 -- Versione del server: 5.7.24
 -- Versione PHP: 8.3.1
 
@@ -161,7 +161,6 @@ CREATE TABLE `colore_has_prodotti` (
 INSERT INTO `colore_has_prodotti` (`id`, `id_colore`, `id_prodotto`) VALUES
 (240, 4, 66),
 (241, 12, 66),
-(242, 11, 67),
 (244, 3, 69),
 (245, 11, 69),
 (247, 4, 68),
@@ -239,22 +238,49 @@ CREATE TABLE `dettagli_ordine` (
   `id_prodotto` int(11) NOT NULL,
   `quantita` int(11) NOT NULL,
   `prezzo` decimal(10,2) NOT NULL,
-  `taglia_scelta` varchar(50) NOT NULL
+  `taglia_scelta` varchar(50) NOT NULL,
+  `reso_effettuabile` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `dettagli_ordine`
 --
 
-INSERT INTO `dettagli_ordine` (`id`, `id_ordine`, `id_prodotto`, `quantita`, `prezzo`, `taglia_scelta`) VALUES
-(6, 8, 104, 1, '120.00', '37'),
-(7, 9, 104, 1, '120.00', '37'),
-(8, 10, 89, 1, '130.00', '36'),
-(9, 11, 89, 1, '130.00', '36'),
-(10, 12, 70, 1, '120.00', '36.5'),
-(11, 13, 87, 1, '150.00', '44'),
-(12, 13, 106, 1, '190.00', '44'),
-(13, 14, 65, 2, '129.00', '38');
+INSERT INTO `dettagli_ordine` (`id`, `id_ordine`, `id_prodotto`, `quantita`, `prezzo`, `taglia_scelta`, `reso_effettuabile`) VALUES
+(6, 8, 104, 1, '120.00', '37', 0),
+(7, 9, 104, 1, '120.00', '37', 1),
+(8, 10, 89, 1, '130.00', '36', 1),
+(9, 11, 89, 1, '130.00', '36', 1),
+(10, 12, 70, 1, '120.00', '36.5', 1),
+(11, 13, 87, 1, '150.00', '44', 1),
+(12, 13, 106, 1, '190.00', '44', 1),
+(13, 14, 65, 2, '129.00', '38', 1),
+(14, 15, 69, 1, '250.00', '37', 1),
+(15, 15, 66, 1, '200.00', '36', 1),
+(16, 16, 69, 1, '250.00', '37', 1),
+(17, 16, 66, 1, '200.00', '36', 1),
+(18, 17, 75, 1, '199.00', '36', 1),
+(19, 18, 75, 1, '199.00', '37', 1),
+(20, 19, 74, 1, '120.00', '36', 1),
+(21, 19, 74, 1, '120.00', '37', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `email_inviate`
+--
+
+CREATE TABLE `email_inviate` (
+  `id` int(11) NOT NULL,
+  `google_id` varchar(255) NOT NULL,
+  `thread_id` varchar(255) NOT NULL,
+  `mittente` varchar(255) NOT NULL,
+  `destinatario` varchar(255) NOT NULL,
+  `oggetto` varchar(255) NOT NULL,
+  `testo` text NOT NULL,
+  `nome_file_allegato` varchar(255) NOT NULL,
+  `data_ora_invio` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -288,6 +314,23 @@ CREATE TABLE `fornitori_has_prodotti` (
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `gmail_token`
+--
+
+CREATE TABLE `gmail_token` (
+  `id` int(11) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `scadenza_token` int(11) NOT NULL,
+  `refresh_token` varchar(255) NOT NULL,
+  `scadenza_refresh_token` int(11) NOT NULL,
+  `scope` varchar(255) NOT NULL,
+  `tipo_token` varchar(255) NOT NULL,
+  `timestamp_creazione` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `immagini`
 --
 
@@ -301,211 +344,205 @@ CREATE TABLE `immagini` (
 --
 
 INSERT INTO `immagini` (`id`, `url`) VALUES
-(290, 'images/00a83ce4-e272-45c4-9739-2d30df90e17a.jpeg'),
-(152, 'images/0223ac22-0bc1-4a23-9d69-29b95964d3e5.png'),
-(313, 'images/02756270-b268-48ff-a94d-95b90c8835a7.mp4'),
-(159, 'images/0397e6bd-4f33-4ea4-bbeb-7d156baf1ac8.png'),
-(167, 'images/06e7e8cd-e263-433d-9b75-e236d39d75d8.png'),
-(261, 'images/07f8d607-b183-4e4a-bc20-e224e6bc1154.png'),
-(300, 'images/08f74ad5-aea1-4b46-a686-7a4659588ee6.png'),
-(206, 'images/0bded708-c8a9-4907-abc7-2ce70ad89c19.jpeg'),
-(330, 'images/0e893003-5c8e-4b08-96c2-15a1f2e98a2a.jpg'),
-(328, 'images/10a8b1f2-632f-426a-a57d-52f62bd8cd6e.mp4'),
-(164, 'images/115d7358-4c5c-4752-acf3-84c52e7512e2.png'),
-(170, 'images/12aefe28-20cc-4974-b723-bd1d6e17123b.png'),
-(262, 'images/13daea38-474f-47f8-8e67-97af9502273a.png'),
-(192, 'images/15d1fd3f-f4fc-4c88-ab6a-325b7e48544c.png'),
-(332, 'images/1689dde0-718d-45b8-840c-837784751771.jpg'),
-(299, 'images/16a2443d-6bc0-4805-a888-af1c3fad6a94.png'),
-(186, 'images/1701e614-6828-4eae-ba23-21321c1b99bf.png'),
-(205, 'images/17a36a05-97a8-4649-bc21-e024cd3b913b.jpeg'),
-(148, 'images/1caa3950-412c-4cf3-9057-2fc43757a8dc.png'),
-(134, 'images/1d829f85-e7d1-4415-a45c-558709219a26.png'),
-(329, 'images/1dba9e89-e7c7-48ec-ac2d-6e3e1d778fab.png'),
-(139, 'images/1e2319c8-8174-4bcd-881f-eddda222bc28.png'),
-(245, 'images/1f07b1cf-e46d-405c-aec0-d89890964a26.jpeg'),
-(213, 'images/1f90c784-02ad-4e5a-99fb-836be52a7fd1.png'),
-(278, 'images/2006d67f-8eeb-491a-8e86-a989dcba94a1.png'),
-(327, 'images/20cdadb0-f873-4a5b-a3ae-6fc45ecd2835.png'),
-(335, 'images/22e8f0e6-2829-49eb-a226-e5a4acbcbfbe.jpg'),
-(351, 'images/22f026aa-0276-4280-8618-bccd143e642d.jpg'),
-(221, 'images/23b9b242-40b0-4969-9d71-521233fd7ba6.png'),
-(336, 'images/273d2f57-be23-4f72-ad7e-c2abf8a2a273.jpg'),
-(142, 'images/2a097e2f-3ea3-477f-a5fb-ebd246be0439.png'),
-(239, 'images/2ce92aa0-a262-48a8-b48d-bfe5fa77e620.jpeg'),
-(187, 'images/2dc37496-2850-49f7-96a0-8b20378b6ab0.png'),
-(168, 'images/2f8ae4b4-daf1-495c-9909-dadbfb675baa.png'),
-(178, 'images/2f93e58f-d858-4be9-a3a2-a29e47b88674.png'),
-(321, 'images/31edb188-f29b-4cf1-b77e-01a84062d214.jpg'),
-(184, 'images/325babfe-c28c-437d-a2c9-53730371fb94.png'),
-(259, 'images/32b2a778-9117-4ec2-b2eb-e767c6fdd1dd.png'),
-(135, 'images/354267c0-fa7b-4956-a8b0-e99953157a53.png'),
-(279, 'images/37b8d03b-a7ff-4741-ac26-17481532e0a9.png'),
-(207, 'images/37fd4704-5cec-4e1f-a16a-9277a97581f7.jpeg'),
-(131, 'images/39005b87-170c-4cd2-a3ed-e5b129e1d188.png'),
-(181, 'images/3a4447ed-d79d-4ac4-9f78-ac0d193d076b.png'),
-(154, 'images/3a7f35b4-9dc8-4760-bb32-bc310423330a.png'),
-(160, 'images/3ae753b4-4fed-4293-924d-a0b4a8cdeba0.png'),
-(271, 'images/3bcd67c8-11f3-40c3-8eee-3f827ad7ecae.png'),
-(177, 'images/3cb29dc3-99f1-4a27-b06b-efafe367409d.png'),
-(191, 'images/3cfca509-f0d5-4b87-abb2-6918108ba767.png'),
-(227, 'images/3f8258cd-9bfd-41e7-a545-77dd4dac23b7.png'),
-(266, 'images/41921036-0423-4e16-9355-c6a399321daa.png'),
-(346, 'images/42ea3a26-a6d6-46ad-b335-7a2817ac5b85.jpg'),
-(237, 'images/44295637-d29f-4183-a846-84a76b61aae4.png'),
-(268, 'images/4523af16-c13c-4698-9406-45d65c5a90b4.png'),
-(165, 'images/455dd021-35ea-4a47-8f5a-76999cb69ac6.png'),
-(298, 'images/45d733ac-7d1e-44af-9390-377b69db0ccc.png'),
-(263, 'images/46e2cc72-66d8-4c0b-89f4-2ca9faabbfbd.png'),
-(231, 'images/4a708182-bc80-4448-b095-3a72d3491a40.png'),
-(140, 'images/4b971c00-d30c-4f11-99a4-5a1a0a69275d.png'),
-(157, 'images/4e1d5f19-2d9f-4cee-b5ba-409f9080ceec.png'),
-(276, 'images/4edaacc2-f953-4c8b-a3da-7afe01bf8755.png'),
-(163, 'images/516708df-0bfc-44e0-86e0-d69df5f30efa.png'),
-(137, 'images/55d69856-d189-41eb-ac6d-4d7c36a99b8f.png'),
-(218, 'images/55db4a75-8226-4408-a3bf-28e39f1fd30c.png'),
-(265, 'images/56819174-09fa-4dd6-b5ff-e1eedff99ba3.png'),
-(338, 'images/577f5e28-2b51-4469-8222-0f471e72349c.jpg'),
-(318, 'images/589de189-03b9-493b-b00b-ae0e6f268b7c.jpg'),
-(342, 'images/59cda35a-59bc-489b-9328-30b8393ba438.jpg'),
-(234, 'images/5e03f8f3-13d6-465a-ac48-73f25759d18c.jpeg'),
-(222, 'images/5eff62e8-1f2d-4454-8a22-faa28ed78377.png'),
-(267, 'images/5f3e446b-0e1d-4b48-8e2e-c02060cfbeb9.png'),
-(248, 'images/600b6229-0366-4ed0-aa34-be2605b0afcf.png'),
-(324, 'images/60139a60-9138-4fef-a3bd-26d38cb4078b.png'),
-(201, 'images/607b4764-06bb-4c43-84f6-547261340439.png'),
-(320, 'images/60f3c5ea-1649-4d41-9b84-606849576c5a.jpg'),
-(288, 'images/610d88d3-84cb-4b0b-a9d0-c9222bf67277.png'),
-(243, 'images/6243410a-c40b-44ce-9c13-771ab76e63d7.png'),
-(350, 'images/635acb5e-4d4b-401e-a619-a69d77798da9.jpg'),
-(211, 'images/64dc51bf-caeb-4368-8789-e001a30a63d4.png'),
-(190, 'images/6637413d-9313-4dea-966a-597c30ad2576.png'),
-(235, 'images/68126a92-cdce-4bd2-8921-144a8f4be170.png'),
-(253, 'images/686c4424-2f81-47c9-a6df-efa961aa0554.png'),
-(250, 'images/68e1243c-0fa6-433e-bbca-29710361d93b.png'),
-(244, 'images/6f20fd1b-3a37-4387-a9ed-a470ed06744a.png'),
-(215, 'images/6f6095ca-177b-4ab9-a1ea-a55af08d9cc7.png'),
-(258, 'images/7118d595-28a7-476e-a9c5-df4a35670393.png'),
-(334, 'images/71813ef7-32f5-406d-8f09-4288c8945f6e.jpg'),
-(176, 'images/7254ec03-0c9e-4ef2-a111-d4e5cde1ae7e.png'),
-(303, 'images/72ed1a68-ad8d-484d-a0f3-4d6f080fa24d.png'),
-(209, 'images/73690ae4-0664-4461-ab8a-374baf547afc.png'),
-(325, 'images/74e5ca06-7bfa-494e-af8a-01d71ea270fd.png'),
-(146, 'images/74f056e4-c2ad-4325-919f-e909737eb063.png'),
-(270, 'images/7536bff4-85bd-433d-8bd2-3ec9b267871b.png'),
-(225, 'images/76c62fcc-1eb4-4b9b-aa62-7f617f98a4ab.png'),
-(145, 'images/76cdaf0e-867a-4ea2-a19e-3760fa7f4f40.png'),
-(316, 'images/77ae73e2-f068-463e-bb8f-644206eb37ed.mp4'),
-(272, 'images/787cb423-3967-48cb-b2e5-441e73561cfa.png'),
-(354, 'images/7d996c86-f3fe-4e53-ae42-04ebe33abe2a.jpg'),
-(174, 'images/7f0c37cb-5fa5-4c1f-a958-c3c28b676a1a.png'),
-(274, 'images/7ff63029-7e64-49bd-8dc1-c4a17cbc39d4.png'),
-(158, 'images/80081115-e8a0-420b-b65d-4580eaa9a138.png'),
-(353, 'images/803cc5f1-d0e6-444a-9402-c9bf73bcd8d4.jpg'),
-(302, 'images/804dbdbf-590b-4585-9266-1539a3f35fd7.png'),
-(242, 'images/81d9d811-c2c1-4f25-870a-923696cdddb5.jpeg'),
-(214, 'images/86113245-090d-499a-baf4-9f6067effc6f.png'),
-(180, 'images/86dcdbe6-b2c9-420f-bc18-2502eabf7bb1.png'),
-(340, 'images/87eaaeff-f324-4b46-9ec0-1458a8d6b0a3.jpg'),
-(188, 'images/8aa7e93a-c329-4d4b-8af4-0ac9cc78b2e0.png'),
-(349, 'images/8adba881-d121-4df2-9262-3de3988bab90.jpg'),
-(216, 'images/8b8bf355-ff3d-4d88-9a12-96d9654f099c.png'),
-(153, 'images/8be809a0-d0cc-417e-af77-64416727baf5.png'),
-(202, 'images/8c5e3b9b-5dae-4117-924d-67f58d92fccd.jpeg'),
-(150, 'images/8c805ed6-c47c-48b5-b13c-42a52372c9d5.png'),
-(198, 'images/8f379d39-ed60-4b39-905f-0fdec821a51e.png'),
-(287, 'images/915520a3-28f5-4044-a4a7-36c34446930b.png'),
-(141, 'images/92095959-7a86-4080-98ef-b810970c6814.png'),
-(217, 'images/92773a65-42d4-43af-bbf0-02873c0f566d.png'),
-(173, 'images/940731ea-b9bd-4e04-b4cd-e57a830db453.png'),
-(228, 'images/96635af4-fe5b-45b3-8d56-1402d238525b.png'),
-(292, 'images/9667b7dc-a403-4e66-bc1b-64126022465f.png'),
-(210, 'images/994be2e8-bb06-4bed-bcb3-1fe12d7748d0.png'),
-(151, 'images/99dc1977-7c1f-47d0-adff-9baa23909830.png'),
-(269, 'images/9a5e0129-96c0-468c-beb2-ddc514dfe833.png'),
-(155, 'images/9b02c0ed-9c69-4405-8049-db3cf672d8d2.png'),
-(194, 'images/9b687ee9-7237-4d94-9082-2c148e886ee6.png'),
-(323, 'images/9d221c45-1b50-469f-88a0-b4a70360811e.png'),
-(347, 'images/9ecc9ff1-7f22-4db3-a492-65c2a6cf7a18.jpg'),
-(275, 'images/a226fb1d-1810-41f8-8a66-9f7b59266b3e.png'),
-(343, 'images/a2d54289-789d-4c6c-b2b5-23407d48ec51.jpg'),
-(337, 'images/a317c067-bd6b-4da5-8074-42dac317b4c0.jpg'),
-(273, 'images/a36d832e-e579-4b33-ac03-0de655eeda93.png'),
-(199, 'images/a512b904-17c0-4102-b402-34313c8610ff.png'),
-(147, 'images/a5227972-a389-4ff4-b9ec-15ed5ae08d0e.png'),
-(220, 'images/a56ab9b1-d45b-4573-afcf-c3e37992ef6f.png'),
-(156, 'images/a6271d29-7275-4598-981b-12be7d57ff3e.png'),
-(162, 'images/abdd36ad-42a3-4bea-85d9-55fe67b72935.png'),
-(232, 'images/ac388828-bef8-4f87-89f2-3a098185f78e.jpeg'),
-(212, 'images/ac3a8b5e-166d-4581-8ccd-aafd97286410.png'),
-(291, 'images/acaa8faa-06d0-4eb7-a360-764168ae2136.png'),
-(348, 'images/ad71d27e-29b5-4390-b1ac-21fecb4087b4.jpg'),
-(169, 'images/adc086b7-779b-4738-9ba7-045a4310da49.png'),
-(289, 'images/adfbdcb5-c35c-4f19-beb3-c41954d903b9.png'),
-(333, 'images/aeb85a10-f847-42c9-b875-03fc3217aca5.jpg'),
-(314, 'images/aed79d66-a50c-47fa-acf4-f9208825949f.mp4'),
-(149, 'images/afad54a0-bacf-419f-97ba-cd263506d2e3.png'),
-(247, 'images/b14eb96a-6269-48ba-89c5-e20ab7d960ab.png'),
-(166, 'images/b156a4b7-9cd2-4163-892b-f9390e70cc60.png'),
-(132, 'images/b17d7a98-7095-461e-be2d-d7d75e24d2d8.png'),
-(260, 'images/b4e0f947-6999-4255-8e60-49b7cfbe6662.png'),
-(223, 'images/b5b6a715-6c6d-40a9-acb4-6907ab41f897.png'),
-(256, 'images/b5dd06b6-2c36-4433-a8af-b38292620dab.png'),
-(317, 'images/b64076ab-a990-49de-ae10-5bc876df18b9.jpg'),
-(193, 'images/b6af99ae-30f2-43d0-8751-b4cbc6e50cb7.png'),
-(197, 'images/b85dd5cf-5d23-47c2-9428-95a465a976bc.png'),
-(233, 'images/b91e2a44-8ca7-4071-b02f-3cf440c0f44e.jpeg'),
-(339, 'images/b9235bea-4d11-4436-b10f-feab47725b50.mp4'),
-(277, 'images/b94a68c2-2936-4678-b747-bb7600ba56e2.png'),
-(341, 'images/bc5ef6dc-27ca-4ed0-b737-31328c5cbe24.jpg'),
-(143, 'images/bc9dbd77-f6f2-4a52-8bd5-835ea24d25e8.png'),
-(172, 'images/bffab1d2-a797-4ed4-bcd3-4655a4dded39.png'),
-(264, 'images/c09d3d5c-50f6-4c87-b084-a6f8f14b32f6.png'),
-(344, 'images/c11fa693-8ad5-446f-83bd-30124319a895.jpg'),
-(185, 'images/c3079851-c69d-4816-9929-4a2c3a81561a.png'),
-(301, 'images/c349d9d2-5b8f-4cba-b9e3-2da143cddc00.png'),
-(133, 'images/c5bc838c-6ff3-4b85-8f3d-475d633dd615.png'),
-(144, 'images/c822f382-332d-4fc7-ad82-76d6b64985ca.png'),
-(257, 'images/cac283da-ae4d-4bb3-843a-1cb1ac797e22.png'),
-(326, 'images/cadd2a7b-2b87-4570-b524-bd227d90806f.png'),
-(356, 'images/cbe9cf21-1ec6-4c03-aa08-be8db56d9a50.jpg'),
-(219, 'images/cee7216e-8642-4aa5-a657-fecc6f32d398.png'),
-(241, 'images/d01c1638-4364-4917-894f-1dc90e17f4bc.jpeg'),
-(136, 'images/d17d3dca-0102-4363-b9d4-398fc4f8ccf1.png'),
-(254, 'images/d232caec-5b84-497b-818e-716c8c712eb9.png'),
-(355, 'images/d4ba26dc-1f6d-4dc4-bb5d-55bc1aec61f8.jpg'),
-(175, 'images/d7b25a15-dcaf-488b-95b9-94074c160427.png'),
-(240, 'images/d88e2a36-199d-4210-bc21-edb2355839e2.png'),
-(315, 'images/d8e64a50-a212-43b1-8f1d-e424d999df36.png'),
-(179, 'images/daf9f058-116f-4214-994e-aa7c4da5d298.png'),
-(183, 'images/dc7475b2-0e7a-4032-98a2-7747a59b56ac.png'),
-(345, 'images/dd9929e6-e6c0-433a-ab7a-d3f0a56a5041.mp4'),
-(236, 'images/de545d15-4c22-4988-b4c3-3e2ac0ce4822.jpeg'),
-(138, 'images/e0996df4-c13a-4b29-b20e-f011136f556d.png'),
-(229, 'images/e49f45bb-519c-4ef9-b4c5-d793466ab4ca.png'),
-(246, 'images/e50bdca9-8345-421b-a5ff-26b691cd0185.jpeg'),
-(249, 'images/e862a865-513b-42c1-b27d-5858b2497d75.png'),
-(322, 'images/eaa8755a-176b-479c-8840-18bfa21e8540.png'),
-(204, 'images/ec45a13f-d017-49a5-911f-a061f2ed2a21.jpeg'),
-(171, 'images/ed0b7da6-da5e-4260-8e63-42deaa312eb2.png'),
-(226, 'images/ed0fed34-6aa5-4c3d-80c9-d4d43ec84c3f.png'),
-(208, 'images/ed21cd0a-d226-4a53-b19e-c4720ca72694.png'),
-(224, 'images/edc2e848-7bac-4427-be3f-bf1f62a6b051.png'),
-(230, 'images/f04db87a-9625-4570-bf3c-a5b225ce0f98.png'),
-(189, 'images/f057ff66-8228-45e3-afec-47f7f395ea70.png'),
-(312, 'images/f223a329-83ce-4093-a57a-a4ddb343d3c8.png'),
-(195, 'images/f452dddc-2ace-4777-b95e-d3b6ef2c6e98.png'),
-(196, 'images/f5997997-8302-44ed-8c5d-d8777ceb52fd.png'),
-(252, 'images/f6b32138-c91f-444a-b235-56070a852160.png'),
-(352, 'images/f726217c-42ff-46d7-8d57-0398ea9c422f.jpg'),
-(203, 'images/f7c14e33-5fca-417f-9921-412f19fef369.jpeg'),
-(200, 'images/fa9e602c-fb1d-4a8f-b6f8-6e61b151bed8.png'),
-(161, 'images/faeb2d95-a5e6-4cdc-9050-32063c5f86f8.png'),
-(238, 'images/fb2f6295-7113-402d-b3e8-b7d8b25e48c1.jpeg'),
-(255, 'images/fc9a410e-0276-4d24-9851-a26e7c2a16be.png'),
-(319, 'images/fe1eded4-1c92-459d-a10c-2a699a4d7180.jpg'),
-(331, 'images/fea19a3c-f8ed-4b96-ba14-84390f283bc4.jpg'),
-(182, 'images/ff63222d-f888-4d0a-b3d6-26f92d401efb.png');
+(290, '00a83ce4-e272-45c4-9739-2d30df90e17a.jpeg'),
+(152, '0223ac22-0bc1-4a23-9d69-29b95964d3e5.png'),
+(313, '02756270-b268-48ff-a94d-95b90c8835a7.mp4'),
+(159, '0397e6bd-4f33-4ea4-bbeb-7d156baf1ac8.png'),
+(167, '06e7e8cd-e263-433d-9b75-e236d39d75d8.png'),
+(261, '07f8d607-b183-4e4a-bc20-e224e6bc1154.png'),
+(300, '08f74ad5-aea1-4b46-a686-7a4659588ee6.png'),
+(206, '0bded708-c8a9-4907-abc7-2ce70ad89c19.jpeg'),
+(330, '0e893003-5c8e-4b08-96c2-15a1f2e98a2a.jpg'),
+(328, '10a8b1f2-632f-426a-a57d-52f62bd8cd6e.mp4'),
+(164, '115d7358-4c5c-4752-acf3-84c52e7512e2.png'),
+(170, '12aefe28-20cc-4974-b723-bd1d6e17123b.png'),
+(262, '13daea38-474f-47f8-8e67-97af9502273a.png'),
+(192, '15d1fd3f-f4fc-4c88-ab6a-325b7e48544c.png'),
+(332, '1689dde0-718d-45b8-840c-837784751771.jpg'),
+(299, '16a2443d-6bc0-4805-a888-af1c3fad6a94.png'),
+(186, '1701e614-6828-4eae-ba23-21321c1b99bf.png'),
+(205, '17a36a05-97a8-4649-bc21-e024cd3b913b.jpeg'),
+(134, '1d829f85-e7d1-4415-a45c-558709219a26.png'),
+(329, '1dba9e89-e7c7-48ec-ac2d-6e3e1d778fab.png'),
+(139, '1e2319c8-8174-4bcd-881f-eddda222bc28.png'),
+(245, '1f07b1cf-e46d-405c-aec0-d89890964a26.jpeg'),
+(213, '1f90c784-02ad-4e5a-99fb-836be52a7fd1.png'),
+(278, '2006d67f-8eeb-491a-8e86-a989dcba94a1.png'),
+(327, '20cdadb0-f873-4a5b-a3ae-6fc45ecd2835.png'),
+(335, '22e8f0e6-2829-49eb-a226-e5a4acbcbfbe.jpg'),
+(351, '22f026aa-0276-4280-8618-bccd143e642d.jpg'),
+(221, '23b9b242-40b0-4969-9d71-521233fd7ba6.png'),
+(336, '273d2f57-be23-4f72-ad7e-c2abf8a2a273.jpg'),
+(142, '2a097e2f-3ea3-477f-a5fb-ebd246be0439.png'),
+(239, '2ce92aa0-a262-48a8-b48d-bfe5fa77e620.jpeg'),
+(187, '2dc37496-2850-49f7-96a0-8b20378b6ab0.png'),
+(168, '2f8ae4b4-daf1-495c-9909-dadbfb675baa.png'),
+(178, '2f93e58f-d858-4be9-a3a2-a29e47b88674.png'),
+(321, '31edb188-f29b-4cf1-b77e-01a84062d214.jpg'),
+(184, '325babfe-c28c-437d-a2c9-53730371fb94.png'),
+(259, '32b2a778-9117-4ec2-b2eb-e767c6fdd1dd.png'),
+(135, '354267c0-fa7b-4956-a8b0-e99953157a53.png'),
+(279, '37b8d03b-a7ff-4741-ac26-17481532e0a9.png'),
+(207, '37fd4704-5cec-4e1f-a16a-9277a97581f7.jpeg'),
+(131, '39005b87-170c-4cd2-a3ed-e5b129e1d188.png'),
+(181, '3a4447ed-d79d-4ac4-9f78-ac0d193d076b.png'),
+(154, '3a7f35b4-9dc8-4760-bb32-bc310423330a.png'),
+(160, '3ae753b4-4fed-4293-924d-a0b4a8cdeba0.png'),
+(271, '3bcd67c8-11f3-40c3-8eee-3f827ad7ecae.png'),
+(177, '3cb29dc3-99f1-4a27-b06b-efafe367409d.png'),
+(191, '3cfca509-f0d5-4b87-abb2-6918108ba767.png'),
+(227, '3f8258cd-9bfd-41e7-a545-77dd4dac23b7.png'),
+(266, '41921036-0423-4e16-9355-c6a399321daa.png'),
+(346, '42ea3a26-a6d6-46ad-b335-7a2817ac5b85.jpg'),
+(237, '44295637-d29f-4183-a846-84a76b61aae4.png'),
+(268, '4523af16-c13c-4698-9406-45d65c5a90b4.png'),
+(165, '455dd021-35ea-4a47-8f5a-76999cb69ac6.png'),
+(298, '45d733ac-7d1e-44af-9390-377b69db0ccc.png'),
+(263, '46e2cc72-66d8-4c0b-89f4-2ca9faabbfbd.png'),
+(231, '4a708182-bc80-4448-b095-3a72d3491a40.png'),
+(140, '4b971c00-d30c-4f11-99a4-5a1a0a69275d.png'),
+(157, '4e1d5f19-2d9f-4cee-b5ba-409f9080ceec.png'),
+(276, '4edaacc2-f953-4c8b-a3da-7afe01bf8755.png'),
+(163, '516708df-0bfc-44e0-86e0-d69df5f30efa.png'),
+(137, '55d69856-d189-41eb-ac6d-4d7c36a99b8f.png'),
+(218, '55db4a75-8226-4408-a3bf-28e39f1fd30c.png'),
+(265, '56819174-09fa-4dd6-b5ff-e1eedff99ba3.png'),
+(338, '577f5e28-2b51-4469-8222-0f471e72349c.jpg'),
+(318, '589de189-03b9-493b-b00b-ae0e6f268b7c.jpg'),
+(342, '59cda35a-59bc-489b-9328-30b8393ba438.jpg'),
+(234, '5e03f8f3-13d6-465a-ac48-73f25759d18c.jpeg'),
+(222, '5eff62e8-1f2d-4454-8a22-faa28ed78377.png'),
+(267, '5f3e446b-0e1d-4b48-8e2e-c02060cfbeb9.png'),
+(248, '600b6229-0366-4ed0-aa34-be2605b0afcf.png'),
+(324, '60139a60-9138-4fef-a3bd-26d38cb4078b.png'),
+(201, '607b4764-06bb-4c43-84f6-547261340439.png'),
+(320, '60f3c5ea-1649-4d41-9b84-606849576c5a.jpg'),
+(288, '610d88d3-84cb-4b0b-a9d0-c9222bf67277.png'),
+(243, '6243410a-c40b-44ce-9c13-771ab76e63d7.png'),
+(350, '635acb5e-4d4b-401e-a619-a69d77798da9.jpg'),
+(211, '64dc51bf-caeb-4368-8789-e001a30a63d4.png'),
+(190, '6637413d-9313-4dea-966a-597c30ad2576.png'),
+(235, '68126a92-cdce-4bd2-8921-144a8f4be170.png'),
+(253, '686c4424-2f81-47c9-a6df-efa961aa0554.png'),
+(250, '68e1243c-0fa6-433e-bbca-29710361d93b.png'),
+(244, '6f20fd1b-3a37-4387-a9ed-a470ed06744a.png'),
+(215, '6f6095ca-177b-4ab9-a1ea-a55af08d9cc7.png'),
+(258, '7118d595-28a7-476e-a9c5-df4a35670393.png'),
+(334, '71813ef7-32f5-406d-8f09-4288c8945f6e.jpg'),
+(176, '7254ec03-0c9e-4ef2-a111-d4e5cde1ae7e.png'),
+(303, '72ed1a68-ad8d-484d-a0f3-4d6f080fa24d.png'),
+(209, '73690ae4-0664-4461-ab8a-374baf547afc.png'),
+(325, '74e5ca06-7bfa-494e-af8a-01d71ea270fd.png'),
+(270, '7536bff4-85bd-433d-8bd2-3ec9b267871b.png'),
+(225, '76c62fcc-1eb4-4b9b-aa62-7f617f98a4ab.png'),
+(316, '77ae73e2-f068-463e-bb8f-644206eb37ed.mp4'),
+(272, '787cb423-3967-48cb-b2e5-441e73561cfa.png'),
+(354, '7d996c86-f3fe-4e53-ae42-04ebe33abe2a.jpg'),
+(174, '7f0c37cb-5fa5-4c1f-a958-c3c28b676a1a.png'),
+(274, '7ff63029-7e64-49bd-8dc1-c4a17cbc39d4.png'),
+(158, '80081115-e8a0-420b-b65d-4580eaa9a138.png'),
+(353, '803cc5f1-d0e6-444a-9402-c9bf73bcd8d4.jpg'),
+(302, '804dbdbf-590b-4585-9266-1539a3f35fd7.png'),
+(242, '81d9d811-c2c1-4f25-870a-923696cdddb5.jpeg'),
+(214, '86113245-090d-499a-baf4-9f6067effc6f.png'),
+(180, '86dcdbe6-b2c9-420f-bc18-2502eabf7bb1.png'),
+(340, '87eaaeff-f324-4b46-9ec0-1458a8d6b0a3.jpg'),
+(188, '8aa7e93a-c329-4d4b-8af4-0ac9cc78b2e0.png'),
+(349, '8adba881-d121-4df2-9262-3de3988bab90.jpg'),
+(216, '8b8bf355-ff3d-4d88-9a12-96d9654f099c.png'),
+(153, '8be809a0-d0cc-417e-af77-64416727baf5.png'),
+(202, '8c5e3b9b-5dae-4117-924d-67f58d92fccd.jpeg'),
+(150, '8c805ed6-c47c-48b5-b13c-42a52372c9d5.png'),
+(198, '8f379d39-ed60-4b39-905f-0fdec821a51e.png'),
+(287, '915520a3-28f5-4044-a4a7-36c34446930b.png'),
+(141, '92095959-7a86-4080-98ef-b810970c6814.png'),
+(217, '92773a65-42d4-43af-bbf0-02873c0f566d.png'),
+(173, '940731ea-b9bd-4e04-b4cd-e57a830db453.png'),
+(228, '96635af4-fe5b-45b3-8d56-1402d238525b.png'),
+(292, '9667b7dc-a403-4e66-bc1b-64126022465f.png'),
+(210, '994be2e8-bb06-4bed-bcb3-1fe12d7748d0.png'),
+(151, '99dc1977-7c1f-47d0-adff-9baa23909830.png'),
+(269, '9a5e0129-96c0-468c-beb2-ddc514dfe833.png'),
+(155, '9b02c0ed-9c69-4405-8049-db3cf672d8d2.png'),
+(194, '9b687ee9-7237-4d94-9082-2c148e886ee6.png'),
+(323, '9d221c45-1b50-469f-88a0-b4a70360811e.png'),
+(347, '9ecc9ff1-7f22-4db3-a492-65c2a6cf7a18.jpg'),
+(275, 'a226fb1d-1810-41f8-8a66-9f7b59266b3e.png'),
+(343, 'a2d54289-789d-4c6c-b2b5-23407d48ec51.jpg'),
+(337, 'a317c067-bd6b-4da5-8074-42dac317b4c0.jpg'),
+(273, 'a36d832e-e579-4b33-ac03-0de655eeda93.png'),
+(199, 'a512b904-17c0-4102-b402-34313c8610ff.png'),
+(220, 'a56ab9b1-d45b-4573-afcf-c3e37992ef6f.png'),
+(156, 'a6271d29-7275-4598-981b-12be7d57ff3e.png'),
+(162, 'abdd36ad-42a3-4bea-85d9-55fe67b72935.png'),
+(232, 'ac388828-bef8-4f87-89f2-3a098185f78e.jpeg'),
+(212, 'ac3a8b5e-166d-4581-8ccd-aafd97286410.png'),
+(291, 'acaa8faa-06d0-4eb7-a360-764168ae2136.png'),
+(348, 'ad71d27e-29b5-4390-b1ac-21fecb4087b4.jpg'),
+(169, 'adc086b7-779b-4738-9ba7-045a4310da49.png'),
+(289, 'adfbdcb5-c35c-4f19-beb3-c41954d903b9.png'),
+(333, 'aeb85a10-f847-42c9-b875-03fc3217aca5.jpg'),
+(314, 'aed79d66-a50c-47fa-acf4-f9208825949f.mp4'),
+(149, 'afad54a0-bacf-419f-97ba-cd263506d2e3.png'),
+(247, 'b14eb96a-6269-48ba-89c5-e20ab7d960ab.png'),
+(166, 'b156a4b7-9cd2-4163-892b-f9390e70cc60.png'),
+(132, 'b17d7a98-7095-461e-be2d-d7d75e24d2d8.png'),
+(260, 'b4e0f947-6999-4255-8e60-49b7cfbe6662.png'),
+(223, 'b5b6a715-6c6d-40a9-acb4-6907ab41f897.png'),
+(256, 'b5dd06b6-2c36-4433-a8af-b38292620dab.png'),
+(317, 'b64076ab-a990-49de-ae10-5bc876df18b9.jpg'),
+(193, 'b6af99ae-30f2-43d0-8751-b4cbc6e50cb7.png'),
+(197, 'b85dd5cf-5d23-47c2-9428-95a465a976bc.png'),
+(233, 'b91e2a44-8ca7-4071-b02f-3cf440c0f44e.jpeg'),
+(339, 'b9235bea-4d11-4436-b10f-feab47725b50.mp4'),
+(277, 'b94a68c2-2936-4678-b747-bb7600ba56e2.png'),
+(341, 'bc5ef6dc-27ca-4ed0-b737-31328c5cbe24.jpg'),
+(172, 'bffab1d2-a797-4ed4-bcd3-4655a4dded39.png'),
+(264, 'c09d3d5c-50f6-4c87-b084-a6f8f14b32f6.png'),
+(344, 'c11fa693-8ad5-446f-83bd-30124319a895.jpg'),
+(185, 'c3079851-c69d-4816-9929-4a2c3a81561a.png'),
+(301, 'c349d9d2-5b8f-4cba-b9e3-2da143cddc00.png'),
+(133, 'c5bc838c-6ff3-4b85-8f3d-475d633dd615.png'),
+(257, 'cac283da-ae4d-4bb3-843a-1cb1ac797e22.png'),
+(326, 'cadd2a7b-2b87-4570-b524-bd227d90806f.png'),
+(356, 'cbe9cf21-1ec6-4c03-aa08-be8db56d9a50.jpg'),
+(219, 'cee7216e-8642-4aa5-a657-fecc6f32d398.png'),
+(241, 'd01c1638-4364-4917-894f-1dc90e17f4bc.jpeg'),
+(136, 'd17d3dca-0102-4363-b9d4-398fc4f8ccf1.png'),
+(254, 'd232caec-5b84-497b-818e-716c8c712eb9.png'),
+(355, 'd4ba26dc-1f6d-4dc4-bb5d-55bc1aec61f8.jpg'),
+(175, 'd7b25a15-dcaf-488b-95b9-94074c160427.png'),
+(240, 'd88e2a36-199d-4210-bc21-edb2355839e2.png'),
+(315, 'd8e64a50-a212-43b1-8f1d-e424d999df36.png'),
+(179, 'daf9f058-116f-4214-994e-aa7c4da5d298.png'),
+(183, 'dc7475b2-0e7a-4032-98a2-7747a59b56ac.png'),
+(345, 'dd9929e6-e6c0-433a-ab7a-d3f0a56a5041.mp4'),
+(236, 'de545d15-4c22-4988-b4c3-3e2ac0ce4822.jpeg'),
+(138, 'e0996df4-c13a-4b29-b20e-f011136f556d.png'),
+(229, 'e49f45bb-519c-4ef9-b4c5-d793466ab4ca.png'),
+(246, 'e50bdca9-8345-421b-a5ff-26b691cd0185.jpeg'),
+(249, 'e862a865-513b-42c1-b27d-5858b2497d75.png'),
+(322, 'eaa8755a-176b-479c-8840-18bfa21e8540.png'),
+(204, 'ec45a13f-d017-49a5-911f-a061f2ed2a21.jpeg'),
+(171, 'ed0b7da6-da5e-4260-8e63-42deaa312eb2.png'),
+(226, 'ed0fed34-6aa5-4c3d-80c9-d4d43ec84c3f.png'),
+(208, 'ed21cd0a-d226-4a53-b19e-c4720ca72694.png'),
+(224, 'edc2e848-7bac-4427-be3f-bf1f62a6b051.png'),
+(230, 'f04db87a-9625-4570-bf3c-a5b225ce0f98.png'),
+(189, 'f057ff66-8228-45e3-afec-47f7f395ea70.png'),
+(312, 'f223a329-83ce-4093-a57a-a4ddb343d3c8.png'),
+(195, 'f452dddc-2ace-4777-b95e-d3b6ef2c6e98.png'),
+(196, 'f5997997-8302-44ed-8c5d-d8777ceb52fd.png'),
+(252, 'f6b32138-c91f-444a-b235-56070a852160.png'),
+(352, 'f726217c-42ff-46d7-8d57-0398ea9c422f.jpg'),
+(203, 'f7c14e33-5fca-417f-9921-412f19fef369.jpeg'),
+(200, 'fa9e602c-fb1d-4a8f-b6f8-6e61b151bed8.png'),
+(161, 'faeb2d95-a5e6-4cdc-9050-32063c5f86f8.png'),
+(238, 'fb2f6295-7113-402d-b3e8-b7d8b25e48c1.jpeg'),
+(255, 'fc9a410e-0276-4d24-9851-a26e7c2a16be.png'),
+(319, 'fe1eded4-1c92-459d-a10c-2a699a4d7180.jpg'),
+(331, 'fea19a3c-f8ed-4b96-ba14-84390f283bc4.jpg'),
+(182, 'ff63222d-f888-4d0a-b3d6-26f92d401efb.png');
 
 -- --------------------------------------------------------
 
@@ -536,12 +573,6 @@ INSERT INTO `immagini_has_prodotti` (`id`, `id_immagine`, `id_prodotto`) VALUES
 (127, 140, 66),
 (128, 141, 66),
 (129, 142, 66),
-(130, 143, 67),
-(131, 144, 67),
-(132, 145, 67),
-(133, 146, 67),
-(134, 147, 67),
-(135, 148, 67),
 (136, 149, 68),
 (137, 150, 68),
 (138, 151, 68),
@@ -851,13 +882,18 @@ CREATE TABLE `ordine` (
 --
 
 INSERT INTO `ordine` (`id`, `id_utente`, `id_ordine_paypal`, `id_pagamento`, `id_indirizzo`, `stato_ordine`, `data_creazione_ordine`, `data_aggiornamento_stato_ordine`, `importo`, `valuta`, `locale_utente`) VALUES
-(8, 14, '2Y8800813D738305N', 1, 1, 'COMPLETED', '2025-04-24 19:40:26', '2025-04-24 19:40:36', 120, 'EUR', 'it-IT'),
+(8, 14, '2Y8800813D738305N', 1, 1, 'RICHIESTA RESO', '2025-04-24 19:40:26', '2025-05-18 11:39:46', 120, 'EUR', 'it-IT'),
 (9, 14, '29482106E92119432', 1, 1, 'COMPLETED', '2025-04-24 19:46:34', '2025-04-24 19:46:44', 120, 'EUR', 'it-IT'),
 (10, 14, '22U8293463415204N', 1, 1, 'COMPLETED', '2025-04-26 19:06:01', '2025-04-26 19:06:18', 130, 'EUR', 'it-IT'),
-(11, 14, '3KW79097PG975150D', 1, 1, 'PAYER_ACTION_REQUIRED', '2025-04-26 19:06:04', '2025-04-26 19:06:04', 130, 'EUR', 'it-IT'),
+(11, 14, '3KW79097PG975150D', 1, 1, 'COMPLETED', '2025-04-26 19:06:04', '2025-04-26 19:06:04', 130, 'EUR', 'it-IT'),
 (12, 14, '7H22874554461633H', 1, 1, 'COMPLETED', '2025-04-26 19:06:54', '2025-04-26 19:07:03', 120, 'EUR', 'it-IT'),
 (13, 14, '24G91371NF226633F', 1, 1, 'COMPLETED', '2025-04-27 17:46:57', '2025-04-27 17:47:09', 340, 'EUR', 'it-IT'),
-(14, 14, '3CG447496G4699319', 1, 1, 'COMPLETED', '2025-04-27 17:47:51', '2025-04-27 17:48:00', 259.98, 'EUR', 'it-IT');
+(14, 14, '3CG447496G4699319', 1, 1, 'COMPLETED', '2025-04-27 17:47:51', '2025-04-27 17:48:00', 259.98, 'EUR', 'it-IT'),
+(15, 14, '190414520W615884B', 1, 1, 'COMPLETED', '2025-05-02 17:36:40', '2025-05-02 17:36:40', 450, 'EUR', 'it-IT'),
+(16, 14, '6RP00611MF831674N', 1, 1, 'COMPLETED', '2025-05-02 18:22:56', '2025-05-02 18:23:22', 450, 'EUR', 'it-IT'),
+(17, 14, '1FS18988377754232', 1, 1, 'COMPLETED', '2025-05-02 18:25:39', '2025-05-02 18:25:51', 199, 'EUR', 'it-IT'),
+(18, 14, '51G292414L1879416', 1, 1, 'COMPLETED', '2025-05-02 18:27:15', '2025-05-02 18:27:26', 199, 'EUR', 'it-IT'),
+(19, 14, '2YF62453S8855151D', 1, 1, 'COMPLETED', '2025-05-03 16:47:22', '2025-05-03 16:47:48', 240, 'EUR', 'it-IT');
 
 -- --------------------------------------------------------
 
@@ -922,7 +958,11 @@ INSERT INTO `paypal_pagamento_creato` (`id`, `id_ordine_paypal`, `payer_id`, `pa
 (7, '22U8293463415204N', '8GWP2JRWYCKH6', '338628639U210474W', 'COMPLETED', '4.77', '130.00', '125.23', 'https://api.sandbox.paypal.com/v2/payments/captures/338628639U210474W/refund', 'POST'),
 (8, '7H22874554461633H', '8GWP2JRWYCKH6', '8RH19472T3003972X', 'COMPLETED', '4.43', '120.00', '115.57', 'https://api.sandbox.paypal.com/v2/payments/captures/8RH19472T3003972X/refund', 'POST'),
 (9, '24G91371NF226633F', '8GWP2JRWYCKH6', '1H639726MK691542W', 'COMPLETED', '11.91', '340.00', '328.09', 'https://api.sandbox.paypal.com/v2/payments/captures/1H639726MK691542W/refund', 'POST'),
-(10, '3CG447496G4699319', '8GWP2JRWYCKH6', '2WA98419Y87208049', 'COMPLETED', '9.19', '259.98', '250.79', 'https://api.sandbox.paypal.com/v2/payments/captures/2WA98419Y87208049/refund', 'POST');
+(10, '3CG447496G4699319', '8GWP2JRWYCKH6', '2WA98419Y87208049', 'COMPLETED', '9.19', '259.98', '250.79', 'https://api.sandbox.paypal.com/v2/payments/captures/2WA98419Y87208049/refund', 'POST'),
+(11, '6RP00611MF831674N', '8GWP2JRWYCKH6', '6TB86602HA400415L', 'COMPLETED', '15.65', '450.00', '434.35', 'https://api.sandbox.paypal.com/v2/payments/captures/6TB86602HA400415L/refund', 'POST'),
+(12, '1FS18988377754232', '8GWP2JRWYCKH6', '85J652817R5738202', 'COMPLETED', '7.12', '199.00', '191.88', 'https://api.sandbox.paypal.com/v2/payments/captures/85J652817R5738202/refund', 'POST'),
+(13, '51G292414L1879416', '8GWP2JRWYCKH6', '75G540915N056261B', 'COMPLETED', '7.12', '199.00', '191.88', 'https://api.sandbox.paypal.com/v2/payments/captures/75G540915N056261B/refund', 'POST'),
+(14, '2YF62453S8855151D', '8GWP2JRWYCKH6', '73U67781G3102003P', 'COMPLETED', '8.51', '240.00', '231.49', 'https://api.sandbox.paypal.com/v2/payments/captures/73U67781G3102003P/refund', 'POST');
 
 -- --------------------------------------------------------
 
@@ -954,7 +994,9 @@ INSERT INTO `paypal_token` (`id`, `access_token`, `scope`, `token_type`, `app_id
 (7, 'A21AAIjQtr1sGz9UG3Q8r3ZvjOVh72XJEw8c6ZK_Ny1Nck67UIE_KRvSTB-_qHqQNIjemT5SeBnyfc0gH0ZExthANXlVQ2rAA', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 32400, '2025-04-24T17:33:43ZaveAQcZMb-YcMW2YQMU_5BZDv1H0hEuOo53DjKSG1WE'),
 (8, 'A21AAIjQtr1sGz9UG3Q8r3ZvjOVh72XJEw8c6ZK_Ny1Nck67UIE_KRvSTB-_qHqQNIjemT5SeBnyfc0gH0ZExthANXlVQ2rAA', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 32400, '2025-04-24T17:33:43ZaveAQcZMb-YcMW2YQMU_5BZDv1H0hEuOo53DjKSG1WE'),
 (9, 'A21AAJ6ZZmiswEODecowaNZD3r0vNswKCsLLKWwNRKphyryLLK9JXE4L-mvBy4a2UTj1fzbJ2dbOCWZQW2v0GvU8sOMvaGHpQ', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 32400, '2025-04-26T17:06:00ZEXzjwdVm5-2VvZ9qgaOxZw_m_ZRnO9xaomOVAlxKfts'),
-(10, 'A21AAKSduethClnG0P8RGrz34sLXoRyR_eDFQEHoJ4ZfzKGUGdtwaVCYJmqguElgyEhT_lfrofQ3Fm9oXaSrd3A_ANZvBYqqQ', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 32400, '2025-04-27T15:46:55ZpTy_Qwzuk1wBK5VDVys-Sly8gr7vkrrEGBe8nnrrRwo');
+(10, 'A21AAKSduethClnG0P8RGrz34sLXoRyR_eDFQEHoJ4ZfzKGUGdtwaVCYJmqguElgyEhT_lfrofQ3Fm9oXaSrd3A_ANZvBYqqQ', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 32400, '2025-04-27T15:46:55ZpTy_Qwzuk1wBK5VDVys-Sly8gr7vkrrEGBe8nnrrRwo'),
+(11, 'A21AAJX6xa9mhnfb1naGPJFHMI2N5ANPv8qwaELDJxtjb0VOsjK4eV6tUCj_dO9w1dX95HcM7dATB-SqRVBsjmG0agWUq3wVw', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 32400, '2025-05-02T15:36:38Zp4odYjeZA3-GDIFoDcqU5n6QXsrzPDkUHff9yabjX54'),
+(12, 'A21AAKxl2dGn38asm1CGsS519ij3FM98M32mQ_WSl8jOs-7ugcaqzgyet4WUQ6qTRQ3d0STGavTgBg2jqE6uh_VLMeB0pIFwg', 'https://uri.paypal.com/services/payments/futurepayments https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/services/wallet/mandates/write https://uri.paypal.com/services/wallet/mandates/read https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks', 'Bearer', 'APP-80W284485P519543T', 32400, '2025-05-03T14:47:19ZXSajooRK8-5jKhml_wzpJlq4BamfCus4ES8UsUcUWLI');
 
 -- --------------------------------------------------------
 
@@ -976,7 +1018,6 @@ CREATE TABLE `prodotti` (
 INSERT INTO `prodotti` (`id`, `id_modello`, `prezzo`, `stato_pubblicazione`) VALUES
 (65, 89, '129.99', 1),
 (66, 102, '200.00', 1),
-(67, 103, '250.00', 1),
 (68, 103, '150.00', 1),
 (69, 71, '250.00', 1),
 (70, 104, '120.00', 1),
@@ -1020,28 +1061,43 @@ CREATE TABLE `resi` (
   `id` int(11) NOT NULL,
   `id_utente` int(11) NOT NULL,
   `id_ordine` int(11) NOT NULL,
-  `data_richiesta` datetime NOT NULL,
+  `data_richiesta` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `motivo` varchar(255) NOT NULL,
-  `data_rimborso` datetime NOT NULL,
+  `data_rimborso` datetime DEFAULT NULL,
   `importo` decimal(10,2) NOT NULL,
-  `refund_id` varchar(100) NOT NULL,
+  `refund_id` varchar(100) DEFAULT NULL,
   `valuta` varchar(50) NOT NULL,
   `stato_reso` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dump dei dati per la tabella `resi`
+--
+
+INSERT INTO `resi` (`id`, `id_utente`, `id_ordine`, `data_richiesta`, `motivo`, `data_rimborso`, `importo`, `refund_id`, `valuta`, `stato_reso`) VALUES
+(10, 14, 8, '2025-05-18 11:39:46', 'fghj', NULL, '120.00', NULL, 'EUR', 'IN ATTESA DI APPROVAZIONE');
+
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `resi_prodotti`
+-- Struttura della tabella `resi_has_prodotti`
 --
 
-CREATE TABLE `resi_prodotti` (
+CREATE TABLE `resi_has_prodotti` (
   `id` int(11) NOT NULL,
   `id_reso` int(11) NOT NULL,
   `id_prodotto` int(11) NOT NULL,
+  `id_taglia` int(11) NOT NULL,
   `quantita` int(11) NOT NULL,
   `prezzo_unitario` double(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `resi_has_prodotti`
+--
+
+INSERT INTO `resi_has_prodotti` (`id`, `id_reso`, `id_prodotto`, `id_taglia`, `quantita`, `prezzo_unitario`) VALUES
+(12, 10, 104, 5, 1, 120.00);
 
 -- --------------------------------------------------------
 
@@ -1104,9 +1160,8 @@ CREATE TABLE `taglie_has_prodotti` (
 --
 
 INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`) VALUES
-(459, 3, 66, 1),
-(460, 5, 67, 1),
-(462, 5, 69, 1),
+(459, 3, 66, 0),
+(462, 5, 69, 0),
 (467, 4, 68, 1),
 (468, 7, 68, 2),
 (469, 15, 68, 2),
@@ -1136,10 +1191,10 @@ INSERT INTO `taglie_has_prodotti` (`id`, `id_taglia`, `id_prodotto`, `quantita`)
 (498, 21, 73, 2),
 (499, 22, 73, 1),
 (500, 23, 73, 2),
-(503, 3, 74, 1),
-(504, 5, 74, 2),
-(505, 3, 75, 1),
-(506, 5, 75, 1),
+(503, 3, 74, 0),
+(504, 5, 74, 1),
+(505, 3, 75, 0),
+(506, 5, 75, 0),
 (507, 3, 76, 1),
 (508, 5, 76, 1),
 (509, 5, 77, 1),
@@ -1283,6 +1338,12 @@ ALTER TABLE `dettagli_ordine`
   ADD KEY `fk_DETTAGLI ORDINE_ORDINE` (`id_ordine`);
 
 --
+-- Indici per le tabelle `email_inviate`
+--
+ALTER TABLE `email_inviate`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indici per le tabelle `fornitori`
 --
 ALTER TABLE `fornitori`
@@ -1295,6 +1356,12 @@ ALTER TABLE `fornitori_has_prodotti`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_FORNITORI_has_PRODOTTI_FORNITORI1` (`id_fornitore`),
   ADD KEY `fk_FORNITORI_has_PRODOTTI_PRODOTTI` (`id_prodotti`);
+
+--
+-- Indici per le tabelle `gmail_token`
+--
+ALTER TABLE `gmail_token`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indici per le tabelle `immagini`
@@ -1388,12 +1455,13 @@ ALTER TABLE `resi`
   ADD KEY `fk_RESI_has_UTENTE_IDUTENTE` (`id_utente`);
 
 --
--- Indici per le tabelle `resi_prodotti`
+-- Indici per le tabelle `resi_has_prodotti`
 --
-ALTER TABLE `resi_prodotti`
+ALTER TABLE `resi_has_prodotti`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_RESIPRODOTTI_has_RESI_IDRESI` (`id_reso`),
-  ADD KEY `fk_RESIPRODOTTI_has_PRODOTTO_IDPRODOTTO` (`id_prodotto`);
+  ADD KEY `fk_RESIPRODOTTI_has_PRODOTTO_IDPRODOTTO` (`id_prodotto`),
+  ADD KEY `fk_RESIPRODOTTI_has_TAGLIA_IDTAGLIA` (`id_taglia`);
 
 --
 -- Indici per le tabelle `taglia`
@@ -1462,7 +1530,13 @@ ALTER TABLE `colore_has_prodotti`
 -- AUTO_INCREMENT per la tabella `dettagli_ordine`
 --
 ALTER TABLE `dettagli_ordine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT per la tabella `email_inviate`
+--
+ALTER TABLE `email_inviate`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `fornitori`
@@ -1474,6 +1548,12 @@ ALTER TABLE `fornitori`
 -- AUTO_INCREMENT per la tabella `fornitori_has_prodotti`
 --
 ALTER TABLE `fornitori_has_prodotti`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `gmail_token`
+--
+ALTER TABLE `gmail_token`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -1510,7 +1590,7 @@ ALTER TABLE `modello`
 -- AUTO_INCREMENT per la tabella `ordine`
 --
 ALTER TABLE `ordine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT per la tabella `pagamenti_has_utenti`
@@ -1522,13 +1602,13 @@ ALTER TABLE `pagamenti_has_utenti`
 -- AUTO_INCREMENT per la tabella `paypal_pagamento_creato`
 --
 ALTER TABLE `paypal_pagamento_creato`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT per la tabella `paypal_token`
 --
 ALTER TABLE `paypal_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT per la tabella `prodotti`
@@ -1540,13 +1620,13 @@ ALTER TABLE `prodotti`
 -- AUTO_INCREMENT per la tabella `resi`
 --
 ALTER TABLE `resi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT per la tabella `resi_prodotti`
+-- AUTO_INCREMENT per la tabella `resi_has_prodotti`
 --
-ALTER TABLE `resi_prodotti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `resi_has_prodotti`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT per la tabella `taglia`
@@ -1661,11 +1741,12 @@ ALTER TABLE `resi`
   ADD CONSTRAINT `fk_RESI_has_UTENTE_IDUTENTE` FOREIGN KEY (`id_utente`) REFERENCES `utenti` (`id`);
 
 --
--- Limiti per la tabella `resi_prodotti`
+-- Limiti per la tabella `resi_has_prodotti`
 --
-ALTER TABLE `resi_prodotti`
+ALTER TABLE `resi_has_prodotti`
   ADD CONSTRAINT `fk_RESIPRODOTTI_has_PRODOTTO_IDPRODOTTO` FOREIGN KEY (`id_prodotto`) REFERENCES `prodotti` (`id`),
-  ADD CONSTRAINT `fk_RESIPRODOTTI_has_RESI_IDRESI` FOREIGN KEY (`id_reso`) REFERENCES `resi` (`id`);
+  ADD CONSTRAINT `fk_RESIPRODOTTI_has_RESI_IDRESI` FOREIGN KEY (`id_reso`) REFERENCES `resi` (`id`),
+  ADD CONSTRAINT `fk_RESIPRODOTTI_has_TAGLIA_IDTAGLIA` FOREIGN KEY (`id_taglia`) REFERENCES `taglia` (`id`);
 
 --
 -- Limiti per la tabella `taglie_has_prodotti`
